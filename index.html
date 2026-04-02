@@ -225,8 +225,8 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
     </div>
 
     <!-- TuMIC -->
-    <div class="prod-card" style="--ac:#E8730A;cursor:default">
-      <span class="prod-num">02 · Launching Soon</span>
+    <div class="prod-card" style="--ac:#E8730A" onclick="window.location='tumic/'">
+      <span class="prod-num">02 · Available Now</span>
       <div class="prod-logo-wrap">
         <div class="prod-name" style="font-size:42px">
           <span style="color:#f0ece4">Tu</span><span style="color:#E8730A">MIC</span>
@@ -239,7 +239,7 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
         <div class="prod-more-inner">
           <p>Standard turmeric powder contains 2–5% curcumin, of which the body absorbs very little. TuMIC uses a purification process developed with university partners to deliver concentrated, bioavailable curcumin — the compound that actually does the work.</p>
           <div class="prod-chips">
-            <span class="prod-chip hi">Coming Soon</span>
+            <span class="prod-chip hi">BPOM Registered</span>
             <span class="prod-chip">High Bioavailability</span>
             <span class="prod-chip">Anti-Inflammatory</span>
             <span class="prod-chip">Recovery</span>
@@ -247,8 +247,8 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
         </div>
       </div>
       <div class="prod-foot">
-        <button class="prod-toggle" onclick="toggle('more-tumic',this)">+ More Info</button>
-        <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2)">Notify Me</span>
+        <button class="prod-toggle" onclick="event.stopPropagation();toggle('more-tumic',this)">+ More Info</button>
+        <a class="prod-link" href="tumic/" onclick="event.stopPropagation()">View <span class="prod-arr">→</span></a>
       </div>
     </div>
 
