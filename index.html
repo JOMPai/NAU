@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAU Labs — Where Science Meets Jamu</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#1e1e1e;color:#f0ece4;font-family:system-ui,-apple-system,sans-serif;overflow-x:hidden}
+
+nav{padding:28px 64px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(30,30,30,.96);backdrop-filter:blur(12px);z-index:100}
+.logo{font-weight:900;font-size:20px;letter-spacing:.04em;color:#f0ece4}
+.logo span{color:#5A9E72}
+.logo-sub{font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:2px}
+.nav-cta{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.15);padding:8px 20px;border-radius:100px;text-decoration:none;transition:all .3s}
+.nav-cta:hover{color:#f0ece4;border-color:rgba(255,255,255,.35)}
+
+/* HERO */
+.hero{padding:120px 64px 100px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(90,158,114,.09) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:#5A9E72;margin-bottom:28px;display:block}
+.hero-h1{font-weight:900;font-size:clamp(64px,10vw,130px);line-height:.92;letter-spacing:-.02em;color:#f0ece4;margin-bottom:28px}
+.hero-h1 span{color:#5A9E72;display:block}
+.hero-p{font-size:16px;line-height:1.8;color:rgba(255,255,255,.45);max-width:520px;font-weight:300;margin:0 auto 44px}
+.hero-p strong{color:rgba(255,255,255,.8);font-weight:500}
+.hero-actions{display:flex;gap:12px;align-items:center;justify-content:center;margin-bottom:80px}
+.btn-green{font-weight:600;font-size:13px;color:#fff;background:#5A9E72;border:none;padding:13px 28px;border-radius:100px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-green:hover{background:#6DB585;box-shadow:0 4px 20px rgba(90,158,114,.35)}
+.btn-ghost{font-size:13px;color:rgba(255,255,255,.45);background:transparent;border:1px solid rgba(255,255,255,.15);padding:13px 28px;border-radius:100px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.35);color:#f0ece4}
+.hero-stats{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.08);padding-top:40px;max-width:800px;margin:0 auto}
+.hstat{flex:1;border-right:1px solid rgba(255,255,255,.08);padding:0 32px}
+.hstat:first-child{padding-left:0}
+.hstat:last-child{border-right:none;padding-right:0}
+.hstat-v{font-weight:900;font-size:36px;color:#f0ece4;line-height:1;display:block}
+.hstat-v span{color:#5A9E72}
+.hstat-l{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:6px;display:block}
+
+/* MARQUEE */
+.mq{background:#161616;padding:11px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+.mq-track{display:inline-flex;animation:marquee 26s linear infinite}
+.mq-item{font-weight:600;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28);padding:0 20px}
+.mq-dot{color:#5A9E72}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* PRODUCTS */
+.products{padding:100px 64px;max-width:1100px;margin:0 auto}
+.sec-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:12px;display:block}
+.sec-h{font-weight:900;font-size:clamp(40px,5vw,64px);line-height:.9;letter-spacing:-.02em;color:#f0ece4;margin-bottom:56px}
+.sec-h em{font-style:italic;color:#5A9E72}
+
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.prod-card{background:#272727;padding:40px 32px;position:relative;overflow:hidden;transition:all .3s;text-decoration:none;display:flex;flex-direction:column;color:#f0ece4;cursor:pointer}
+.prod-card:first-child{border-radius:14px 0 0 14px}
+.prod-card:last-child{border-radius:0 14px 14px 0}
+.prod-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.prod-card:hover::after{transform:scaleX(1)}
+.prod-card:hover{background:#2e2e2e;transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
+
+.prod-num{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:20px;display:block}
+
+/* product logo */
+.prod-logo-wrap{height:56px;display:flex;align-items:center;margin-bottom:16px}
+.prod-logo{max-height:52px;max-width:160px;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
+.prod-logo.colored{filter:none;opacity:1}
+
+.prod-name{font-weight:900;font-size:38px;letter-spacing:-.02em;line-height:.88;color:#f0ece4;margin-bottom:10px}
+.prod-name span{color:var(--ac)}
+.prod-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:18px;display:block}
+.prod-hook{font-size:14px;font-weight:600;color:#f0ece4;margin-bottom:10px;line-height:1.45}
+.prod-desc{font-size:13px;line-height:1.7;color:rgba(255,255,255,.4);margin-bottom:24px;flex:1}
+
+.prod-more{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.prod-more.open{max-height:220px}
+.prod-more-inner{padding-top:14px;border-top:1px solid rgba(255,255,255,.07);margin-bottom:14px}
+.prod-more-inner p{font-size:12px;line-height:1.7;color:rgba(255,255,255,.35)}
+.prod-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.prod-chip{font-size:7px;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:3px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.35)}
+.prod-chip.hi{background:var(--ac);color:#fff}
+
+.prod-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:4px}
+.prod-toggle{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);cursor:pointer;background:none;border:none;padding:0;transition:color .2s}
+.prod-toggle:hover{color:var(--ac)}
+.prod-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px}
+.prod-arr{transition:transform .3s;display:inline-block}
+.prod-card:hover .prod-arr{transform:translateX(4px)}
+
+/* SCIENCE */
+.sci{background:#161616;border-top:1px solid rgba(255,255,255,.05);padding:90px 64px}
+.sci-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.sci-h{font-weight:900;font-size:clamp(36px,5vw,58px);line-height:.9;letter-spacing:-.02em;color:#f0ece4;margin-bottom:20px}
+.sci-h em{color:#5A9E72;font-style:italic}
+.sci-p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.4);font-weight:300;margin-bottom:12px}
+.sci-p strong{color:rgba(255,255,255,.75)}
+.collab-toggle{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#5A9E72;cursor:pointer;background:none;border:none;padding:0;margin-top:16px;display:flex;align-items:center;gap:6px}
+.collab-wrap{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.collab-wrap.open{max-height:120px}
+.collab-chips{display:flex;flex-wrap:wrap;gap:6px;padding-top:14px}
+.collab-chip{font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:4px;background:rgba(90,158,114,.1);color:#5A9E72;font-weight:600;border:1px solid rgba(90,158,114,.18)}
+.sci-stats{display:flex;flex-direction:column;gap:3px}
+.sci-stat{background:#1e1e1e;padding:22px 24px;border-left:2px solid #5A9E72;transition:all .3s}
+.sci-stat:first-child{border-radius:8px 8px 0 0}
+.sci-stat:last-child{border-radius:0 0 8px 8px}
+.sci-stat:hover{background:#242424;transform:translateX(4px)}
+.sci-stat-v{font-weight:900;font-size:28px;color:#f0ece4;line-height:1;display:block}
+.sci-stat-v span{color:#5A9E72}
+.sci-stat-l{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:4px;display:block}
+.sci-stat-d{font-size:12px;color:rgba(255,255,255,.28);margin-top:6px;line-height:1.5}
+
+/* OEM */
+.oem{padding:90px 64px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center}
+.oem-h{font-weight:900;font-size:clamp(36px,5vw,58px);line-height:.9;letter-spacing:-.02em;color:#f0ece4;margin-bottom:16px}
+.oem-h em{color:#5A9E72;font-style:italic}
+.oem-p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.4);max-width:460px;margin-bottom:28px;font-weight:300}
+.oem-p strong{color:rgba(255,255,255,.75)}
+.oem-tags{display:flex;gap:7px;flex-wrap:wrap}
+.oem-tag{font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:3px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.35)}
+.oem-right{display:flex;flex-direction:column;gap:3px;min-width:180px}
+.oem-card{background:#272727;padding:20px 22px;border-left:2px solid #5A9E72}
+.oem-card:first-child{border-radius:8px 8px 0 0}
+.oem-card:last-child{border-radius:0 0 8px 8px}
+.oem-sv{font-weight:900;font-size:28px;color:#f0ece4;display:block;line-height:1}
+.oem-sl{font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:3px;display:block}
+
+footer{background:#111;padding:44px 64px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06)}
+.ft-logo{font-weight:900;font-size:20px;letter-spacing:.04em;color:#f0ece4}
+.ft-logo span{color:#5A9E72}
+.ft-sub{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:3px}
+.ft-meta{font-size:8px;letter-spacing:.1em;color:rgba(255,255,255,.2);text-align:right;line-height:1.9}
+
+@media(max-width:900px){
+  nav,footer{padding:20px 24px}
+  .hero,.products,.oem{padding-left:24px;padding-right:24px}
+  .hero{padding-top:70px;padding-bottom:70px}
+  .sci{padding:70px 24px}
+  .prod-grid{grid-template-columns:1fr;gap:3px}
+  .prod-card:first-child,.prod-card:last-child{border-radius:14px}
+  .sci-inner,.oem{grid-template-columns:1fr;gap:44px}
+  .hero-stats{flex-wrap:wrap;gap:24px}
+  .hstat{border-right:none;padding:0;margin:0;min-width:40%}
+  .oem-right{flex-direction:row;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <div class="logo">NAU<span> Labs</span></div>
+    <div class="logo-sub">Where Science Meets Jamu · Est. 2000</div>
+  </div>
+  <a href="mailto:info@nau.co.id" class="nav-cta">Partner with Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">NAU Labs — Natural Health Products</span>
+  <h1 class="hero-h1">Nature.<br><span>Science.</span><br>Results.</h1>
+  <p class="hero-p">Indonesian herbal wisdom, formulated with modern science. Every product is <strong>standardized, measured,</strong> and built for people who demand more.</p>
+  <div class="hero-actions">
+    <a href="#products" class="btn-green">See Our Products</a>
+    <a href="#science" class="btn-ghost">Our Science →</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><span class="hstat-v">24<span>+</span></span><span class="hstat-l">Years Manufacturing</span></div>
+    <div class="hstat"><span class="hstat-v">9<span>+</span></span><span class="hstat-l">University Partners</span></div>
+    <div class="hstat"><span class="hstat-v">2</span><span class="hstat-l">Production Facilities</span></div>
+    <div class="hstat"><span class="hstat-v">BPOM</span><span class="hstat-l">All Products Registered</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-track">
+    <span class="mq-item">Penelitian to Product <span class="mq-dot">◆</span></span>
+    <span class="mq-item">ITB · UI · UNDIP · Trisakti · Unibraw <span class="mq-dot">◆</span></span>
+    <span class="mq-item">BPOM Registered <span class="mq-dot">◆</span></span>
+    <span class="mq-item">Indonesian Botanical Science <span class="mq-dot">◆</span></span>
+    <span class="mq-item">OEM · ODM · Private Label <span class="mq-dot">◆</span></span>
+    <span class="mq-item">Est. 2000 · 24 Years <span class="mq-dot">◆</span></span>
+    <span class="mq-item">Not Mysticism. Science. <span class="mq-dot">◆</span></span>
+    <span class="mq-item">Penelitian to Product <span class="mq-dot">◆</span></span>
+    <span class="mq-item">ITB · UI · UNDIP · Trisakti · Unibraw <span class="mq-dot">◆</span></span>
+    <span class="mq-item">BPOM Registered <span class="mq-dot">◆</span></span>
+    <span class="mq-item">Indonesian Botanical Science <span class="mq-dot">◆</span></span>
+    <span class="mq-item">OEM · ODM · Private Label <span class="mq-dot">◆</span></span>
+    <span class="mq-item">Est. 2000 · 24 Years <span class="mq-dot">◆</span></span>
+    <span class="mq-item">Not Mysticism. Science. <span class="mq-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <span class="sec-label">Our Products</span>
+  <h2 class="sec-h">Not just natural.<br><em>Proven.</em></h2>
+
+  <div class="prod-grid">
+
+    <!-- ERJ300 -->
+    <div class="prod-card" style="--ac:#E8500A" onclick="window.location='erj300/'">
+      <span class="prod-num">01 · Available Now</span>
+      <div class="prod-logo-wrap">
+        <div class="prod-name">ERJ<span>300</span></div>
+      </div>
+      <span class="prod-tag">Royal Jelly · Lyophilized · 10-HDA</span>
+      <div class="prod-hook">The Queen Bee lives 40× longer on Royal Jelly. Here's why — in a sachet.</div>
+      <p class="prod-desc">300mg freeze-dried Royal Jelly, standardized at 6% 10-HDA. With Ginger, Temulawak, Lemon & Honey. 10ml travel-ready sachet.</p>
+      <div class="prod-more" id="more-erj">
+        <div class="prod-more-inner">
+          <p>10-HDA is found exclusively in Royal Jelly — the compound behind the Queen Bee's extraordinary lifespan. ERJ300 standardizes it at 6%, measurable and consistent in every sachet.</p>
+          <div class="prod-chips">
+            <span class="prod-chip hi">BPOM TR.256056821</span>
+            <span class="prod-chip">Lyophilized</span>
+            <span class="prod-chip">HALAL</span>
+            <span class="prod-chip">Immunity</span>
+            <span class="prod-chip">Stamina</span>
+          </div>
+        </div>
+      </div>
+      <div class="prod-foot">
+        <button class="prod-toggle" onclick="event.stopPropagation();toggle('more-erj',this)">+ More Info</button>
+        <a class="prod-link" href="erj300/" onclick="event.stopPropagation()">View <span class="prod-arr">→</span></a>
+      </div>
+    </div>
+
+    <!-- TuMIC -->
+    <div class="prod-card" style="--ac:#E8730A;cursor:default">
+      <span class="prod-num">02 · Launching Soon</span>
+      <div class="prod-logo-wrap">
+        <div class="prod-name" style="font-size:42px">
+          <span style="color:#f0ece4">Tu</span><span style="color:#E8730A">MIC</span>
+        </div>
+      </div>
+      <span class="prod-tag">Purified Curcumin · Recovery & Anti-Inflammation</span>
+      <div class="prod-hook">Curcumin works. Raw turmeric delivers 3% of it. TuMIC delivers the rest.</div>
+      <p class="prod-desc">Pharmaceutical-grade purified curcumin for real anti-inflammation, real recovery, and real bioavailability — what your body actually absorbs.</p>
+      <div class="prod-more" id="more-tumic">
+        <div class="prod-more-inner">
+          <p>Standard turmeric powder contains 2–5% curcumin, of which the body absorbs very little. TuMIC uses a purification process developed with university partners to deliver concentrated, bioavailable curcumin — the compound that actually does the work.</p>
+          <div class="prod-chips">
+            <span class="prod-chip hi">Coming Soon</span>
+            <span class="prod-chip">High Bioavailability</span>
+            <span class="prod-chip">Anti-Inflammatory</span>
+            <span class="prod-chip">Recovery</span>
+          </div>
+        </div>
+      </div>
+      <div class="prod-foot">
+        <button class="prod-toggle" onclick="toggle('more-tumic',this)">+ More Info</button>
+        <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2)">Notify Me</span>
+      </div>
+    </div>
+
+    <!-- HUGERLESS -->
+    <div class="prod-card" style="--ac:#D4A017;cursor:default">
+      <span class="prod-num">03 · Launching Soon</span>
+      <div class="prod-logo-wrap">
+        <div class="prod-name" style="font-size:34px;letter-spacing:-.03em">
+          <span style="color:#f0ece4">HUGER</span><span style="color:#D4A017">LESS</span>
+        </div>
+      </div>
+      <span class="prod-tag">Natural Appetite Control · Botanical GLP-1</span>
+      <div class="prod-hook">Indonesia's answer to Ozempic. No needle. No prescription. Just botany.</div>
+      <p class="prod-desc">A natural appetite blocker from Indonesian botanical extracts — targeting hunger signaling the way nature intended, without synthetic side effects.</p>
+      <div class="prod-more" id="more-hug">
+        <div class="prod-more-inner">
+          <p>GLP-1 receptor agonists like Ozempic suppress appetite by mimicking a gut hormone. Hugerless uses botanicals that interact with similar satiety pathways — validated by research, designed for daily use without dependency.</p>
+          <div class="prod-chips">
+            <span class="prod-chip hi">Coming Soon</span>
+            <span class="prod-chip">Appetite Blocker</span>
+            <span class="prod-chip">Natural GLP-1</span>
+            <span class="prod-chip">Weight Management</span>
+          </div>
+        </div>
+      </div>
+      <div class="prod-foot">
+        <button class="prod-toggle" onclick="toggle('more-hug',this)">+ More Info</button>
+        <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2)">Notify Me</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section class="sci" id="science">
+  <div class="sci-inner">
+    <div>
+      <span class="sec-label">The NAU Difference</span>
+      <h2 class="sci-h">Real research.<br><em>Real results.</em></h2>
+      <p class="sci-p">Most herbal products rely on tradition alone. We respect tradition — but we <strong>validate it with science.</strong></p>
+      <p class="sci-p">Our scientists don't just consult. They co-develop. Every active compound has a published study, a standardized concentration, and a measurable outcome.</p>
+      <p class="sci-p"><strong>Not big mystic. Patent. Proven. Scalable.</strong></p>
+      <button class="collab-toggle" onclick="toggleCollab()">+ See Our University Partners <span id="collab-arr">↓</span></button>
+      <div class="collab-wrap" id="collab-wrap">
+        <div class="collab-chips">
+          <span class="collab-chip">ITB</span>
+          <span class="collab-chip">UI</span>
+          <span class="collab-chip">UNDIP</span>
+          <span class="collab-chip">Trisakti</span>
+          <span class="collab-chip">Unibraw</span>
+          <span class="collab-chip">Untirta</span>
+          <span class="collab-chip">STFI</span>
+          <span class="collab-chip">BRIN</span>
+          <span class="collab-chip">Markherb</span>
+          <span class="collab-chip">+ More</span>
+        </div>
+      </div>
+    </div>
+    <div class="sci-stats">
+      <div class="sci-stat">
+        <span class="sci-stat-v">9<span>+</span></span>
+        <span class="sci-stat-l">University Partners</span>
+        <div class="sci-stat-d">ITB, UI, UNDIP, Trisakti, Unibraw, Untirta, STFI, BRIN, Markherb</div>
+      </div>
+      <div class="sci-stat">
+        <span class="sci-stat-v">8<span>+</span></span>
+        <span class="sci-stat-l">Products Developed</span>
+        <div class="sci-stat-d">Each starts with published research, ends with BPOM registration.</div>
+      </div>
+      <div class="sci-stat">
+        <span class="sci-stat-v">24<span>+</span></span>
+        <span class="sci-stat-l">Years of Formulation</span>
+        <div class="sci-stat-d">Two production facilities. Ciledug & Legok. Full GMP compliance.</div>
+      </div>
+      <div class="sci-stat">
+        <span class="sci-stat-v">100<span>%</span></span>
+        <span class="sci-stat-l">BPOM Registered</span>
+        <div class="sci-stat-d">Regulatory compliance built in from day one — not bolted on at the end.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OEM -->
+<section class="oem" id="oem">
+  <div>
+    <span class="sec-label">OEM / ODM</span>
+    <h2 class="oem-h">Have a formula<br><em>idea?</em></h2>
+    <p class="oem-p">Bring us your concept. We bring <strong>24 years of manufacturing</strong>, a network of Indonesia's best scientists, two production facilities, and full BPOM registration support.</p>
+    <div class="oem-tags">
+      <span class="oem-tag">Custom Formula</span>
+      <span class="oem-tag">Private Label</span>
+      <span class="oem-tag">R&D Support</span>
+      <span class="oem-tag">BPOM Registration</span>
+      <span class="oem-tag">Flexible MOQ</span>
+    </div>
+    <a href="mailto:info@nau.co.id" class="btn-green" style="margin-top:28px;display:inline-block">Start a Conversation</a>
+  </div>
+  <div class="oem-right">
+    <div class="oem-card"><span class="oem-sv">24+</span><span class="oem-sl">Years OEM/ODM</span></div>
+    <div class="oem-card"><span class="oem-sv">2</span><span class="oem-sl">Facilities</span></div>
+    <div class="oem-card"><span class="oem-sv">9+</span><span class="oem-sl">Sci Partners</span></div>
+    <div class="oem-card"><span class="oem-sv">BPOM</span><span class="oem-sl">All Registered</span></div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="ft-logo">NAU<span> Labs</span></div>
+    <div class="ft-sub">Natura Alamindo · nau.co.id · Est. 2000</div>
+  </div>
+  <div class="ft-meta">
+    Ciledug & Legok Production Facilities<br>
+    BPOM Registered · HALAL Certified<br>
+    © 2025 CV. Natura Alamindo
+  </div>
+</footer>
+
+<script>
+function toggle(id, btn) {
+  var el = document.getElementById(id);
+  el.classList.toggle('open');
+  btn.textContent = el.classList.contains('open') ? '− Less' : '+ More Info';
+}
+function toggleCollab() {
+  var w = document.getElementById('collab-wrap');
+  var a = document.getElementById('collab-arr');
+  w.classList.toggle('open');
+  a.textContent = w.classList.contains('open') ? '↑' : '↓';
+}
+</script>
+</body>
+</html>
