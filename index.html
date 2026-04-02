@@ -13,8 +13,14 @@ nav{padding:28px 64px;border-bottom:1px solid rgba(255,255,255,.07);display:flex
 .logo{font-weight:900;font-size:20px;letter-spacing:.04em;color:#f0ece4}
 .logo span{color:#5A9E72}
 .logo-sub{font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:2px}
+.nav-right{display:flex;align-items:center;gap:12px}
 .nav-cta{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.15);padding:8px 20px;border-radius:100px;text-decoration:none;transition:all .3s}
 .nav-cta:hover{color:#f0ece4;border-color:rgba(255,255,255,.35)}
+
+/* LANG TOGGLE */
+.lang-toggle{display:flex;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:3px;gap:2px}
+.lang-btn{font-size:10px;font-weight:700;letter-spacing:.08em;padding:5px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .25s;background:transparent;color:rgba(255,255,255,.35)}
+.lang-btn.active{background:#5A9E72;color:#fff}
 
 /* HERO */
 .hero{padding:120px 64px 100px;text-align:center;position:relative;overflow:hidden}
@@ -59,12 +65,9 @@ nav{padding:28px 64px;border-bottom:1px solid rgba(255,255,255,.07);display:flex
 .prod-card:hover{background:#2e2e2e;transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
 
 .prod-num{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:20px;display:block}
-
-/* product logo */
 .prod-logo-wrap{height:56px;display:flex;align-items:center;margin-bottom:16px}
 .prod-logo{max-height:52px;max-width:160px;object-fit:contain;filter:brightness(0) invert(1);opacity:.9}
 .prod-logo.colored{filter:none;opacity:1}
-
 .prod-name{font-weight:900;font-size:38px;letter-spacing:-.02em;line-height:.88;color:#f0ece4;margin-bottom:10px}
 .prod-name span{color:var(--ac)}
 .prod-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:18px;display:block}
@@ -116,18 +119,15 @@ nav{padding:28px 64px;border-bottom:1px solid rgba(255,255,255,.07);display:flex
 .oem-p strong{color:rgba(255,255,255,.75)}
 .oem-tags{display:flex;gap:7px;flex-wrap:wrap}
 .oem-tag{font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:3px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.35)}
-.oem-right{display:flex;flex-direction:column;gap:3px;min-width:180px}
-.oem-card{background:#272727;padding:20px 22px;border-left:2px solid #5A9E72}
-.oem-card:first-child{border-radius:8px 8px 0 0}
-.oem-card:last-child{border-radius:0 0 8px 8px}
-.oem-sv{font-weight:900;font-size:28px;color:#f0ece4;display:block;line-height:1}
-.oem-sl{font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:3px;display:block}
 
 footer{background:#111;padding:44px 64px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.06)}
 .ft-logo{font-weight:900;font-size:20px;letter-spacing:.04em;color:#f0ece4}
 .ft-logo span{color:#5A9E72}
 .ft-sub{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:3px}
 .ft-meta{font-size:8px;letter-spacing:.1em;color:rgba(255,255,255,.2);text-align:right;line-height:1.9}
+
+/* LANG TRANSITION */
+[data-en],[data-id]{transition:opacity .2s}
 
 @media(max-width:900px){
   nav,footer{padding:20px 24px}
@@ -140,6 +140,8 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
   .hero-stats{flex-wrap:wrap;gap:24px}
   .hstat{border-right:none;padding:0;margin:0;min-width:40%}
   .oem-right{flex-direction:row;flex-wrap:wrap}
+  .nav-right{gap:8px}
+  .lang-btn{padding:5px 9px}
 }
 </style>
 </head>
@@ -150,23 +152,32 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
     <div class="logo">NAU<span> Labs</span></div>
     <div class="logo-sub">Where Science Meets Jamu · Est. 2000</div>
   </div>
-  <a href="mailto:info@nau.co.id" class="nav-cta">Partner with Us</a>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-id" onclick="setLang('id')">ID</button>
+    </div>
+    <a href="mailto:info@nau.co.id" class="nav-cta" data-en="Partner with Us" data-id="Hubungi Kami">Partner with Us</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <span class="hero-eyebrow">NAU Labs — Natural Health Products</span>
   <h1 class="hero-h1">Nature.<br><span>Science.</span><br>Results.</h1>
-  <p class="hero-p">Indonesian herbal wisdom, formulated with modern science. Every product is <strong>standardized, measured,</strong> and built for people who demand more.</p>
+  <p class="hero-p">
+    <span data-en>Indonesian herbal wisdom, formulated with modern science. Every product is <strong>standardized, measured,</strong> and built for people who demand more.</span>
+    <span data-id style="display:none">Kearifan herbal Indonesia, diformulasikan dengan sains modern. Setiap produk <strong>terstandarisasi, terukur,</strong> dan dibuat untuk mereka yang menuntut lebih.</span>
+  </p>
   <div class="hero-actions">
-    <a href="#products" class="btn-green">See Our Products</a>
-    <a href="#science" class="btn-ghost">Our Science →</a>
+    <a href="#products" class="btn-green" data-en="See Our Products" data-id="Lihat Produk Kami">See Our Products</a>
+    <a href="#science" class="btn-ghost" data-en="Our Science →" data-id="Riset Kami →">Our Science →</a>
   </div>
   <div class="hero-stats">
-    <div class="hstat"><span class="hstat-v">24<span>+</span></span><span class="hstat-l">Years Manufacturing</span></div>
-    <div class="hstat"><span class="hstat-v">9<span>+</span></span><span class="hstat-l">University Partners</span></div>
-    <div class="hstat"><span class="hstat-v">2</span><span class="hstat-l">Production Facilities</span></div>
-    <div class="hstat"><span class="hstat-v">BPOM</span><span class="hstat-l">All Products Registered</span></div>
+    <div class="hstat"><span class="hstat-v">24<span>+</span></span><span class="hstat-l" data-en="Years Manufacturing" data-id="Tahun Produksi">Years Manufacturing</span></div>
+    <div class="hstat"><span class="hstat-v">9<span>+</span></span><span class="hstat-l" data-en="University Partners" data-id="Mitra Universitas">University Partners</span></div>
+    <div class="hstat"><span class="hstat-v">2</span><span class="hstat-l" data-en="Production Facilities" data-id="Fasilitas Produksi">Production Facilities</span></div>
+    <div class="hstat"><span class="hstat-v">BPOM</span><span class="hstat-l" data-en="All Products Registered" data-id="Semua Produk Terdaftar">All Products Registered</span></div>
   </div>
 </section>
 
@@ -192,23 +203,35 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
 
 <!-- PRODUCTS -->
 <section class="products" id="products">
-  <span class="sec-label">Our Products</span>
-  <h2 class="sec-h">Not just natural.<br><em>Proven.</em></h2>
+  <span class="sec-label" data-en="Our Products" data-id="Produk Kami">Our Products</span>
+  <h2 class="sec-h">
+    <span data-en>Not just natural.<br><em>Proven.</em></span>
+    <span data-id style="display:none">Bukan sekadar alami.<br><em>Terbukti.</em></span>
+  </h2>
 
   <div class="prod-grid">
 
     <!-- ERJ300 -->
     <div class="prod-card" style="--ac:#E8500A" onclick="window.location='erj300/'">
-      <span class="prod-num">01 · Available Now</span>
+      <span class="prod-num" data-en="01 · Available Now" data-id="01 · Tersedia Sekarang">01 · Available Now</span>
       <div class="prod-logo-wrap">
         <div class="prod-name">ERJ<span>300</span></div>
       </div>
       <span class="prod-tag">Royal Jelly · Lyophilized · 10-HDA</span>
-      <div class="prod-hook">The Queen Bee lives 40× longer on Royal Jelly. Here's why — in a sachet.</div>
-      <p class="prod-desc">300mg freeze-dried Royal Jelly, standardized at 6% 10-HDA. With Ginger, Temulawak, Lemon & Honey. 10ml travel-ready sachet.</p>
+      <div class="prod-hook">
+        <span data-en>The Queen Bee lives 40× longer on Royal Jelly. Here's why — in a sachet.</span>
+        <span data-id style="display:none">Ratu Lebah hidup 40× lebih lama dengan Royal Jelly. Inilah alasannya — dalam satu sachet.</span>
+      </div>
+      <p class="prod-desc">
+        <span data-en>300mg freeze-dried Royal Jelly, standardized at 6% 10-HDA. With Ginger, Temulawak, Lemon & Honey. 10ml travel-ready sachet.</span>
+        <span data-id style="display:none">300mg Royal Jelly beku-kering, terstandar 6% 10-HDA. Dengan Jahe, Temulawak, Lemon & Madu. Sachet 10ml siap dibawa kemana saja.</span>
+      </p>
       <div class="prod-more" id="more-erj">
         <div class="prod-more-inner">
-          <p>10-HDA is found exclusively in Royal Jelly — the compound behind the Queen Bee's extraordinary lifespan. ERJ300 standardizes it at 6%, measurable and consistent in every sachet.</p>
+          <p>
+            <span data-en>10-HDA is found exclusively in Royal Jelly — the compound behind the Queen Bee's extraordinary lifespan. ERJ300 standardizes it at 6%, measurable and consistent in every sachet.</span>
+            <span data-id style="display:none">10-HDA hanya ditemukan di Royal Jelly — senyawa di balik usia panjang Ratu Lebah yang luar biasa. ERJ300 menstandarisasinya di 6%, terukur dan konsisten di setiap sachet.</span>
+          </p>
           <div class="prod-chips">
             <span class="prod-chip hi">BPOM TR.256056821</span>
             <span class="prod-chip">Lyophilized</span>
@@ -219,25 +242,34 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
         </div>
       </div>
       <div class="prod-foot">
-        <button class="prod-toggle" onclick="event.stopPropagation();toggle('more-erj',this)">+ More Info</button>
-        <a class="prod-link" href="erj300/" onclick="event.stopPropagation()">View <span class="prod-arr">→</span></a>
+        <button class="prod-toggle" onclick="event.stopPropagation();toggleMore('more-erj',this)" data-more-en="+ More Info" data-more-id="+ Info Lengkap" data-less-en="− Less" data-less-id="− Tutup">+ More Info</button>
+        <a class="prod-link" href="erj300/" onclick="event.stopPropagation()" data-en="View" data-id="Lihat">View <span class="prod-arr">→</span></a>
       </div>
     </div>
 
     <!-- TuMIC -->
     <div class="prod-card" style="--ac:#E8730A" onclick="window.location='tumic/'">
-      <span class="prod-num">02 · Available Now</span>
+      <span class="prod-num" data-en="02 · Available Now" data-id="02 · Tersedia Sekarang">02 · Available Now</span>
       <div class="prod-logo-wrap">
         <div class="prod-name" style="font-size:42px">
           <span style="color:#f0ece4">Tu</span><span style="color:#E8730A">MIC</span>
         </div>
       </div>
       <span class="prod-tag">Purified Curcumin · Recovery & Anti-Inflammation</span>
-      <div class="prod-hook">Curcumin works. Raw turmeric delivers 3% of it. TuMIC delivers the rest.</div>
-      <p class="prod-desc">Pharmaceutical-grade purified curcumin for real anti-inflammation, real recovery, and real bioavailability — what your body actually absorbs.</p>
+      <div class="prod-hook">
+        <span data-en>Curcumin works. Raw turmeric delivers 3% of it. TuMIC delivers the rest.</span>
+        <span data-id style="display:none">Kurkumin itu bekerja. Kunyit mentah hanya memberikan 3%-nya. TuMIC memberikan sisanya.</span>
+      </div>
+      <p class="prod-desc">
+        <span data-en>Pharmaceutical-grade purified curcumin for real anti-inflammation, real recovery, and real bioavailability — what your body actually absorbs.</span>
+        <span data-id style="display:none">Kurkumin murni bermutu farmasi untuk anti-inflamasi nyata, pemulihan nyata, dan bioavailabilitas nyata — yang benar-benar diserap tubuhmu.</span>
+      </p>
       <div class="prod-more" id="more-tumic">
         <div class="prod-more-inner">
-          <p>Standard turmeric powder contains 2–5% curcumin, of which the body absorbs very little. TuMIC uses a purification process developed with university partners to deliver concentrated, bioavailable curcumin — the compound that actually does the work.</p>
+          <p>
+            <span data-en>Standard turmeric powder contains 2–5% curcumin, of which the body absorbs very little. TuMIC uses a purification process developed with university partners to deliver concentrated, bioavailable curcumin — the compound that actually does the work.</span>
+            <span data-id style="display:none">Bubuk kunyit standar mengandung 2–5% kurkumin, yang sangat sedikit diserap tubuh. TuMIC menggunakan proses pemurnian yang dikembangkan bersama mitra universitas untuk menghadirkan kurkumin pekat dan bioavailable — senyawa yang benar-benar bekerja.</span>
+          </p>
           <div class="prod-chips">
             <span class="prod-chip hi">BPOM Registered</span>
             <span class="prod-chip">High Bioavailability</span>
@@ -247,25 +279,34 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
         </div>
       </div>
       <div class="prod-foot">
-        <button class="prod-toggle" onclick="event.stopPropagation();toggle('more-tumic',this)">+ More Info</button>
-        <a class="prod-link" href="tumic/" onclick="event.stopPropagation()">View <span class="prod-arr">→</span></a>
+        <button class="prod-toggle" onclick="event.stopPropagation();toggleMore('more-tumic',this)" data-more-en="+ More Info" data-more-id="+ Info Lengkap" data-less-en="− Less" data-less-id="− Tutup">+ More Info</button>
+        <a class="prod-link" href="tumic/" onclick="event.stopPropagation()" data-en="View" data-id="Lihat">View <span class="prod-arr">→</span></a>
       </div>
     </div>
 
     <!-- HUGERLESS -->
     <div class="prod-card" style="--ac:#D4A017;cursor:default">
-      <span class="prod-num">03 · Launching Soon</span>
+      <span class="prod-num" data-en="03 · Launching Soon" data-id="03 · Segera Hadir">03 · Launching Soon</span>
       <div class="prod-logo-wrap">
         <div class="prod-name" style="font-size:34px;letter-spacing:-.03em">
           <span style="color:#f0ece4">HUGER</span><span style="color:#D4A017">LESS</span>
         </div>
       </div>
       <span class="prod-tag">Natural Appetite Control · Botanical GLP-1</span>
-      <div class="prod-hook">Indonesia's answer to Ozempic. No needle. No prescription. Just botany.</div>
-      <p class="prod-desc">A natural appetite blocker from Indonesian botanical extracts — targeting hunger signaling the way nature intended, without synthetic side effects.</p>
+      <div class="prod-hook">
+        <span data-en>Indonesia's answer to Ozempic. No needle. No prescription. Just botany.</span>
+        <span data-id style="display:none">Jawaban Indonesia untuk Ozempic. Tanpa jarum. Tanpa resep. Cukup botani.</span>
+      </div>
+      <p class="prod-desc">
+        <span data-en>A natural appetite blocker from Indonesian botanical extracts — targeting hunger signaling the way nature intended, without synthetic side effects.</span>
+        <span data-id style="display:none">Penghambat nafsu makan alami dari ekstrak botani Indonesia — menargetkan sinyal lapar sesuai cara alami, tanpa efek samping sintetis.</span>
+      </p>
       <div class="prod-more" id="more-hug">
         <div class="prod-more-inner">
-          <p>GLP-1 receptor agonists like Ozempic suppress appetite by mimicking a gut hormone. Hugerless uses botanicals that interact with similar satiety pathways — validated by research, designed for daily use without dependency.</p>
+          <p>
+            <span data-en>GLP-1 receptor agonists like Ozempic suppress appetite by mimicking a gut hormone. Hugerless uses botanicals that interact with similar satiety pathways — validated by research, designed for daily use without dependency.</span>
+            <span data-id style="display:none">Agonis reseptor GLP-1 seperti Ozempic menekan nafsu makan dengan meniru hormon usus. Hugerless menggunakan botani yang berinteraksi dengan jalur kenyang serupa — tervalidasi riset, dirancang untuk penggunaan harian tanpa ketergantungan.</span>
+          </p>
           <div class="prod-chips">
             <span class="prod-chip hi">Coming Soon</span>
             <span class="prod-chip">Appetite Blocker</span>
@@ -275,8 +316,8 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
         </div>
       </div>
       <div class="prod-foot">
-        <button class="prod-toggle" onclick="toggle('more-hug',this)">+ More Info</button>
-        <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2)">Notify Me</span>
+        <button class="prod-toggle" onclick="toggleMore('more-hug',this)" data-more-en="+ More Info" data-more-id="+ Info Lengkap" data-less-en="− Less" data-less-id="− Tutup">+ More Info</button>
+        <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2)" data-en="Notify Me" data-id="Beritahu Saya">Notify Me</span>
       </div>
     </div>
 
@@ -287,12 +328,28 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
 <section class="sci" id="science">
   <div class="sci-inner">
     <div>
-      <span class="sec-label">The NAU Difference</span>
-      <h2 class="sci-h">Real research.<br><em>Real results.</em></h2>
-      <p class="sci-p">Most herbal products rely on tradition alone. We respect tradition — but we <strong>validate it with science.</strong></p>
-      <p class="sci-p">Our scientists don't just consult. They co-develop. Every active compound has a published study, a standardized concentration, and a measurable outcome.</p>
-      <p class="sci-p"><strong>Not big mystic. Patent. Proven. Scalable.</strong></p>
-      <button class="collab-toggle" onclick="toggleCollab()">+ See Our University Partners <span id="collab-arr">↓</span></button>
+      <span class="sec-label" data-en="The NAU Difference" data-id="Keunggulan NAU">The NAU Difference</span>
+      <h2 class="sci-h">
+        <span data-en>Real research.<br><em>Real results.</em></span>
+        <span data-id style="display:none">Riset nyata.<br><em>Hasil nyata.</em></span>
+      </h2>
+      <p class="sci-p">
+        <span data-en>Most herbal products rely on tradition alone. We respect tradition — but we <strong>validate it with science.</strong></span>
+        <span data-id style="display:none">Kebanyakan produk herbal hanya mengandalkan tradisi. Kami menghormati tradisi — tapi kami <strong>memvalidasinya dengan sains.</strong></span>
+      </p>
+      <p class="sci-p">
+        <span data-en>Our scientists don't just consult. They co-develop. Every active compound has a published study, a standardized concentration, and a measurable outcome.</span>
+        <span data-id style="display:none">Ilmuwan kami tidak sekadar konsultasi. Mereka ikut mengembangkan. Setiap senyawa aktif memiliki studi publikasi, konsentrasi terstandar, dan hasil yang terukur.</span>
+      </p>
+      <p class="sci-p">
+        <span data-en><strong>Not big mystic. Patent. Proven. Scalable.</strong></span>
+        <span data-id style="display:none"><strong>Bukan mistik besar. Paten. Terbukti. Terukur.</strong></span>
+      </p>
+      <button class="collab-toggle" onclick="toggleCollab()">
+        <span data-en>+ See Our University Partners</span>
+        <span data-id style="display:none">+ Lihat Mitra Universitas Kami</span>
+        <span id="collab-arr">↓</span>
+      </button>
       <div class="collab-wrap" id="collab-wrap">
         <div class="collab-chips">
           <span class="collab-chip">ITB</span>
@@ -317,17 +374,17 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
       <div class="sci-stat">
         <span class="sci-stat-v">8<span>+</span></span>
         <span class="sci-stat-l">Products Developed</span>
-        <div class="sci-stat-d">Each starts with published research, ends with BPOM registration.</div>
+        <div class="sci-stat-d" data-en="Each starts with published research, ends with BPOM registration." data-id="Berawal dari riset publikasi, berakhir dengan registrasi BPOM.">Each starts with published research, ends with BPOM registration.</div>
       </div>
       <div class="sci-stat">
         <span class="sci-stat-v">24<span>+</span></span>
         <span class="sci-stat-l">Years of Formulation</span>
-        <div class="sci-stat-d">Two production facilities. Ciledug & Legok. Full GMP compliance.</div>
+        <div class="sci-stat-d" data-en="Two production facilities. Ciledug & Legok. Full GMP compliance." data-id="Dua fasilitas produksi. Ciledug & Legok. GMP penuh.">Two production facilities. Ciledug & Legok. Full GMP compliance.</div>
       </div>
       <div class="sci-stat">
         <span class="sci-stat-v">100<span>%</span></span>
         <span class="sci-stat-l">BPOM Registered</span>
-        <div class="sci-stat-d">Regulatory compliance built in from day one — not bolted on at the end.</div>
+        <div class="sci-stat-d" data-en="Regulatory compliance built in from day one — not bolted on at the end." data-id="Kepatuhan regulasi dibangun dari awal — bukan ditambahkan di akhir.">Regulatory compliance built in from day one — not bolted on at the end.</div>
       </div>
     </div>
   </div>
@@ -337,8 +394,14 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
 <section class="oem" id="oem">
   <div>
     <span class="sec-label">OEM / ODM</span>
-    <h2 class="oem-h">Have a formula<br><em>idea?</em></h2>
-    <p class="oem-p">Bring us your concept. We bring <strong>24 years of manufacturing</strong>, a network of Indonesia's best scientists, two production facilities, and full BPOM registration support.</p>
+    <h2 class="oem-h">
+      <span data-en>Have a formula<br><em>idea?</em></span>
+      <span data-id style="display:none">Punya ide<br><em>formula?</em></span>
+    </h2>
+    <p class="oem-p">
+      <span data-en>Bring us your concept. We bring <strong>24 years of manufacturing</strong>, a network of Indonesia's best scientists, two production facilities, and full BPOM registration support.</span>
+      <span data-id style="display:none">Bawa konsepmu ke kami. Kami hadirkan <strong>24 tahun pengalaman manufaktur</strong>, jaringan ilmuwan terbaik Indonesia, dua fasilitas produksi, dan dukungan penuh registrasi BPOM.</span>
+    </p>
     <div class="oem-tags">
       <span class="oem-tag">Custom Formula</span>
       <span class="oem-tag">Private Label</span>
@@ -346,9 +409,9 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
       <span class="oem-tag">BPOM Registration</span>
       <span class="oem-tag">Flexible MOQ</span>
     </div>
-    <a href="mailto:info@nau.co.id" class="btn-green" style="margin-top:28px;display:inline-block">Start a Conversation</a>
+    <a href="mailto:info@nau.co.id" class="btn-green" style="margin-top:28px;display:inline-block" data-en="Start a Conversation" data-id="Mulai Diskusi">Start a Conversation</a>
   </div>
-  </section>
+</section>
 
 <footer>
   <div>
@@ -363,11 +426,62 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
 </footer>
 
 <script>
-function toggle(id, btn) {
+var currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+
+  // Toggle active button
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+
+  // Swap [data-en] / [data-id] span pairs (hero-p, headings, paragraphs, etc.)
+  document.querySelectorAll('[data-en][data-id]').forEach(function(el) {
+    // Single-element with both attrs = text swap
+    el.textContent = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-id');
+  });
+
+  // Swap paired spans: <span data-en> ... </span><span data-id> ... </span>
+  document.querySelectorAll('span[data-en]:not([data-id]), span[data-id]:not([data-en])').forEach(function(el) {
+    var isEnSpan = el.hasAttribute('data-en') && !el.hasAttribute('data-id');
+    var isIdSpan = el.hasAttribute('data-id') && !el.hasAttribute('data-en');
+    if (isEnSpan) el.style.display = lang === 'en' ? '' : 'none';
+    if (isIdSpan) el.style.display = lang === 'id' ? '' : 'none';
+  });
+
+  // Swap paired divs/p the same way
+  document.querySelectorAll('div[data-en]:not([data-id]), div[data-id]:not([data-en])').forEach(function(el) {
+    var isEnEl = el.hasAttribute('data-en') && !el.hasAttribute('data-id');
+    var isIdEl = el.hasAttribute('data-id') && !el.hasAttribute('data-en');
+    if (isEnEl) el.style.display = lang === 'en' ? '' : 'none';
+    if (isIdEl) el.style.display = lang === 'id' ? '' : 'none';
+  });
+
+  // Update prod-toggle button text based on open state
+  document.querySelectorAll('.prod-toggle').forEach(function(btn) {
+    var moreId = btn.getAttribute('onclick').match(/'([^']+)'/);
+    if (!moreId) return;
+    var el = document.getElementById(moreId[1]);
+    if (!el) return;
+    var isOpen = el.classList.contains('open');
+    btn.textContent = isOpen
+      ? btn.getAttribute('data-less-' + lang)
+      : btn.getAttribute('data-more-' + lang);
+  });
+
+  // html lang attr
+  document.documentElement.lang = lang;
+}
+
+function toggleMore(id, btn) {
   var el = document.getElementById(id);
   el.classList.toggle('open');
-  btn.textContent = el.classList.contains('open') ? '− Less' : '+ More Info';
+  var isOpen = el.classList.contains('open');
+  btn.textContent = isOpen
+    ? btn.getAttribute('data-less-' + currentLang)
+    : btn.getAttribute('data-more-' + currentLang);
 }
+
 function toggleCollab() {
   var w = document.getElementById('collab-wrap');
   var a = document.getElementById('collab-arr');
