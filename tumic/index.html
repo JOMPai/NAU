@@ -269,19 +269,19 @@ nav.scrolled {
 }
 
 .ps-right {
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:flex;
+  flex-direction:column;
   gap:12px;
-  align-items:start;
 }
 .ps-img-main {
   position:relative;
-  grid-column:1 / 3;
 }
 .ps-img-hero {
   width:100%;border-radius:20px;
-  box-shadow:0 32px 80px rgba(26,18,8,.12);
+  box-shadow:0 32px 80px rgba(26,18,8,.14);
   display:block;
+  object-fit:cover;
+  max-height:380px;
 }
 .ps-img-badge {
   position:absolute;bottom:16px;right:16px;
@@ -298,22 +298,34 @@ nav.scrolled {
   font-size:8px;letter-spacing:.12em;text-transform:uppercase;
   opacity:.8;display:block;margin-top:2px;
 }
-.ps-img-secondary {
-  grid-column:1 / 3;
-  position:relative;
+
+/* Two smaller images side by side */
+.ps-img-row {
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
 }
-.ps-img-ben {
-  width:100%;border-radius:16px;
-  box-shadow:0 16px 40px rgba(26,18,8,.08);
-  display:block;
+.ps-img-thumb {
+  position:relative;overflow:hidden;border-radius:16px;
+  background:var(--cream-dark);
+}
+.ps-img-bottle {
+  background:var(--cream);
+  display:flex;align-items:center;justify-content:center;
+}
+.ps-img-small {
+  width:100%;display:block;border-radius:16px;
+  object-fit:cover;height:180px;
+}
+.ps-img-bottle-img {
+  object-fit:contain;
+  padding:16px;
 }
 .ps-img-tag {
-  position:absolute;bottom:12px;left:12px;
-  background:rgba(26,18,8,.75);
+  position:absolute;bottom:10px;left:10px;
+  background:rgba(26,18,8,.72);
   backdrop-filter:blur(8px);
-  color:#fff;padding:8px 14px;border-radius:8px;
+  color:#fff;padding:6px 12px;border-radius:6px;
   font-family:'DM Mono',monospace;
-  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;
 }
 
 /* ── INNOVATION SECTION ── */
@@ -679,7 +691,7 @@ footer{
     </div>
   </div>
   <div class="hero-right fade-up" style="transition-delay:.15s">
-    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663027054840/PjpoMPTvZ7CNmicaTfkDRc/tumic-hero-home-DAavqHDRP7ysNXo7NjCr6q.webp"
+    <img src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775181857/pomelli-image_2_6_bottle_f2yrgp.png"
          class="hero-img" alt="TuMIC Product">
     <div class="hero-stats">
       <div class="hs">
@@ -749,20 +761,27 @@ footer{
       </div>
     </div>
     <div class="ps-right fade-up" style="transition-delay:.15s">
-      <!-- Main hero product image -->
+      <!-- Lifestyle hero shot -->
       <div class="ps-img-main">
-        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663027054840/PjpoMPTvZ7CNmicaTfkDRc/tumic-hero-home-DAavqHDRP7ysNXo7NjCr6q.webp"
-             alt="TuMIC Product" class="ps-img-hero">
+        <img src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775181857/pomelli-image_5_bjgj3u.jpg"
+             alt="TuMIC Lifestyle" class="ps-img-hero">
         <div class="ps-img-badge mono">
           <span>20×</span>
           <small data-en="More Curcumin" data-id="Lebih Banyak Kurkumin">Lebih Banyak Kurkumin</small>
         </div>
       </div>
-      <!-- Benefits image as secondary -->
-      <div class="ps-img-secondary">
-        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663027054840/PjpoMPTvZ7CNmicaTfkDRc/tumic-hero-benefits-7ABvEnq7FqbwWdenf6gZrJ.webp"
-             alt="TuMIC Benefits" class="ps-img-ben">
-        <div class="ps-img-tag mono" data-en="Pour. Shake. Shot." data-id="Pour. Shake. Shot.">Pour. Shake. Shot.</div>
+      <!-- Two smaller shots side by side -->
+      <div class="ps-img-row">
+        <div class="ps-img-thumb">
+          <img src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775181857/pomelli-image_4_tl5xlu.jpg"
+               alt="TuMIC Detail" class="ps-img-small">
+          <div class="ps-img-tag mono">Pour. Shake. Shot.</div>
+        </div>
+        <div class="ps-img-thumb ps-img-bottle">
+          <img src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775181857/pomelli-image_2_6_bottle_f2yrgp.png"
+               alt="TuMIC Bottle" class="ps-img-small ps-img-bottle-img">
+          <div class="ps-img-tag mono">BPOM Registered</div>
+        </div>
       </div>
     </div>
   </div>
@@ -817,7 +836,7 @@ footer{
         Bukan obat ajaib. Bukan ramuan mistis. Hanya dosis tepat dari senyawa yang memang dibutuhkan tubuhmu — diformulasikan agar terserap.
       </p>
     </div>
-    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663027054840/PjpoMPTvZ7CNmicaTfkDRc/tumic-hero-benefits-7ABvEnq7FqbwWdenf6gZrJ.webp"
+    <img src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775181857/pomelli-image_4_tl5xlu.jpg"
          class="ben-img fade-up" alt="TuMIC Benefits" style="margin-bottom:40px">
     <div class="ben-grid">
       <div class="ben-card fade-up">
