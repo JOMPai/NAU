@@ -3,33 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ERJ300</title>
+<title>ERJ300 — Biological Energy. Measured by Science.</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#fff8f2;color:#1C1410;font-family:system-ui,-apple-system,sans-serif;overflow-x:hidden}
-
-/* HERO */
+body{background:#FFF8F2;color:#1C1410;font-family:system-ui,-apple-system,sans-serif;overflow-x:hidden}
 .hero{min-height:100vh;background:#0a0a0a;display:flex;flex-direction:column}
-nav{padding:28px 48px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;font-size:22px;letter-spacing:.03em;color:#fff}
-.logo span{color:#FF6B1A}
-.pills{display:flex;gap:8px}
-.pill{font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.4)}
-.pill.on{background:#E8500A;border-color:#E8500A;color:#fff}
-
+nav{padding:28px 48px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;background:#0a0a0a;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:900;font-size:22px;letter-spacing:.03em;color:#fff}
+.nav-logo span{color:#FF6B1A}
+.nav-right{display:flex;gap:12px;align-items:center}
+.lang-toggle{display:flex;background:rgba(255,255,255,.08);border-radius:100px;padding:3px;border:1px solid rgba(255,255,255,.12)}
+.lang-btn{font-size:10px;font-weight:700;letter-spacing:.1em;padding:6px 14px;border-radius:100px;border:none;cursor:pointer;transition:all .25s;background:transparent;color:rgba(255,255,255,.45);font-family:monospace}
+.lang-btn.active{background:#E8500A;color:#fff}
+.nav-pills{display:flex;gap:8px}
+.nav-pill{font-size:8px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.4)}
+.nav-pill.on{background:#E8500A;border-color:#E8500A;color:#fff}
 .hero-body{flex:1;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:60px 48px 80px;gap:20;max-width:1200px;margin:0 auto;width:100%}
 .hero-tag{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:24px}
 .hero-h1{font-weight:800;font-size:clamp(60px,9vw,110px);line-height:.9;letter-spacing:-.03em;color:#fff;margin-bottom:14px}
 .hero-sub{font-weight:300;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28)}
 .hero-p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.38);max-width:360px;margin:28px 0 40px;font-weight:300}
-.hero-p strong{color:rgba(255,255,255,.7);font-weight:500}
-.btns{display:flex;gap:10px}
+.hero-p strong{color:rgba(255,255,255,.75);font-weight:500}
+.hero-btns{display:flex;gap:10px}
 .btn-o{font-weight:500;font-size:13px;color:#fff;background:#E8500A;border:none;padding:12px 26px;border-radius:100px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .3s}
 .btn-o:hover{background:#FF6B1A}
-.btn-g{font-size:13px;color:rgba(255,255,255,.5);background:transparent;border:1px solid rgba(255,255,255,.14);padding:12px 26px;border-radius:100px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-g{font-size:13px;color:rgba(255,255,255,.5);background:transparent;border:1px solid rgba(255,255,255,.14);padding:12px 26px;border-radius:100px;text-decoration:none;display:inline-block;transition:all .3s}
 .btn-g:hover{border-color:rgba(255,255,255,.4);color:#fff}
-
 .hero-right{display:flex;flex-direction:column;align-items:center}
 .hero-img{width:100%;max-width:480px;display:block;filter:drop-shadow(0 40px 80px rgba(0,0,0,.85));transition:opacity .6s}
 .specs{display:flex;width:100%;max-width:480px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)}
@@ -37,21 +37,16 @@ nav{padding:28px 48px;border-bottom:1px solid rgba(255,255,255,.06);display:flex
 .spec:last-child{border-right:none}
 .spec-v{font-weight:700;font-size:18px;color:#fff;line-height:1;display:block}
 .spec-l{font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:5px;display:block}
-
-/* MARQUEE */
 .mq{background:#E8500A;padding:11px 0;overflow:hidden;white-space:nowrap}
 .mq-track{display:inline-flex;animation:marquee 22s linear infinite}
-.mq-item{font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#fff;padding:0 20px}
-.mq-dot{color:#F5C800}
+.mq-i{font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#fff;padding:0 20px}
+.mq-d{color:#F5C800}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* SECTIONS */
 .sec{padding:90px 48px}
 .sec-2col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .sec-bg-w{background:#fff}
-.sec-bg-ow{background:#fff8f2}
+.sec-bg-ow{background:#FFF8F2}
 .sec-bg-dk{background:#1C1410}
-
 .lbl{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#E8500A;margin-bottom:12px;display:block}
 .lbl-w{color:rgba(255,255,255,.4)}
 .disp{font-weight:900;font-size:clamp(44px,6vw,72px);line-height:.92;letter-spacing:-.02em;color:#1C1410;margin-bottom:18px}
@@ -62,17 +57,11 @@ nav{padding:28px 48px;border-bottom:1px solid rgba(255,255,255,.06);display:flex
 .bp strong{color:#1C1410}
 .bp-w{color:rgba(255,255,255,.45)}
 .bp-w strong{color:#fff}
-
-/* SACHET PHOTO */
 .sachet-img{width:90%;max-width:360px;display:block;filter:drop-shadow(-16px 20px 48px rgba(0,0,0,.18));transition:opacity .6s}
-
-/* TAGS */
 .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:24px}
 .tag{font-size:8px;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:3px;border:1px solid #F2EDE8;color:#9C8878}
 .tag.on{background:#E8500A;border-color:#E8500A;color:#fff}
-
-/* QUEEN CARD */
-.qcard{background:#1C1410;border-radius:14px;padding:36px;position:relative;overflow:hidden}
+.qcard{background:#1C1410;border-radius:14px;padding:36px}
 .qcard-t{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:#E8500A;margin-bottom:20px}
 .qvs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-bottom:24px}
 .qbee{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:14px 10px;text-align:center}
@@ -89,8 +78,6 @@ nav{padding:28px 48px;border-bottom:1px solid rgba(255,255,255,.06);display:flex
 .qbar-track{height:4px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden}
 .qbar-fill{height:100%;border-radius:3px;width:0;transition:width 1.6s ease}
 .qnote{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-size:12px;font-style:italic;color:rgba(255,255,255,.3);line-height:1.65}
-
-/* SCIENCE */
 .sci-formula{font-size:9px;letter-spacing:.1em;color:#E8500A;margin-bottom:14px;opacity:.65}
 .sci-mol{font-weight:900;font-size:clamp(72px,10vw,112px);letter-spacing:-.03em;line-height:.85;color:#fff}
 .sci-mol span{color:#FF6B1A}
@@ -109,43 +96,35 @@ nav{padding:28px 48px;border-bottom:1px solid rgba(255,255,255,.06);display:flex
 .pillar-b{font-size:12px;line-height:1.65;color:rgba(255,255,255,.38)}
 .pillar-tag{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#E8500A;margin-top:8px;display:inline-block}
 .pillar:nth-child(2) .pillar-tag{color:#F5C800}
-
-/* FORMULA */
 .ingr-table{margin-top:24px;display:flex;flex-direction:column}
-.ingr-row{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:14px 16px;border:1px solid #F2EDE8;border-bottom:none;border-left:3px solid transparent;transition:all .2s;position:relative}
-.ingr-row:hover{background:rgba(232,80,10,.02)}
-.ingr-row:first-child{border-radius:10px 10px 0 0}
-.ingr-row:last-child{border-bottom:1px solid #F2EDE8;border-radius:0 0 10px 10px}
-.ingr-row.star{background:rgba(232,80,10,.04);border-color:rgba(232,80,10,.18);border-left-color:#E8500A}
+.ingr{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:14px 16px;border:1px solid #F2EDE8;border-bottom:none;border-left:3px solid transparent;transition:all .2s}
+.ingr:hover{background:rgba(232,80,10,.02)}
+.ingr:first-child{border-radius:10px 10px 0 0}
+.ingr:last-child{border-bottom:1px solid #F2EDE8;border-radius:0 0 10px 10px}
+.ingr.star{background:rgba(232,80,10,.04);border-color:rgba(232,80,10,.18);border-left-color:#E8500A}
 .ingr-em{font-size:18px;text-align:center}
 .ingr-n{font-weight:700;font-size:16px;color:#1C1410}
-.ingr-s{font-size:7px;letter-spacing:.12em;color:#9C8878;margin-top:2px}
-.ingr-mg{font-weight:900;font-size:20px;color:#E8500A;line-height:1;text-align:right}
+.ingr-s{font-size:7px;letter-spacing:.1em;color:#9C8878;margin-top:2px}
+.ingr-mg{font-weight:900;font-size:18px;color:#E8500A;text-align:right;line-height:1}
 .ingr-u{font-size:7px;color:#9C8878;display:block;text-align:right}
-.freeze{margin-top:10px;background:#fff8f2;border-left:3px solid #E8500A;border-radius:0 8px 8px 0;padding:12px 16px;font-size:9px;line-height:1.75;color:#9C8878;letter-spacing:.04em}
+.freeze{margin-top:10px;background:#FFF8F2;border-left:3px solid #E8500A;border-radius:0 8px 8px 0;padding:12px 16px;font-size:9px;line-height:1.75;color:#9C8878;letter-spacing:.04em}
 .freeze strong{color:#1C1410}
-
-/* TASTE */
 .taste-card{background:#1C1410;border-radius:14px;padding:28px;margin-top:22px}
 .taste-t{font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:#E8500A;margin-bottom:18px}
 .t-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.t-lbl{font-size:8px;text-transform:uppercase;color:rgba(255,255,255,.35);width:44px;flex-shrink:0}
+.t-lbl{font-size:8px;text-transform:uppercase;color:rgba(255,255,255,.35);width:80px;flex-shrink:0}
 .t-track{flex:1;height:4px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden}
 .t-fill{height:100%;border-radius:3px;width:0;transition:width 1.6s ease}
 .t-pct{font-weight:700;font-size:13px;color:rgba(255,255,255,.28);width:32px;text-align:right}
-
-/* WHO */
 .who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:48px}
 .who-card{background:#fff;padding:28px 22px;position:relative;overflow:hidden;transition:all .3s;cursor:default}
-.who-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#E8500A;transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.who-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#E8500A;transform:scaleX(0);transform-origin:left;transition:.35s}
 .who-card:hover::after{transform:scaleX(1)}
 .who-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.07)}
 .who-n{font-weight:900;font-size:40px;color:rgba(232,80,10,.07);line-height:1;margin-bottom:4px}
 .who-icon{font-size:22px;display:block;margin-bottom:8px}
 .who-t{font-weight:700;font-size:16px;color:#1C1410;margin-bottom:6px}
 .who-d{font-size:12px;line-height:1.65;color:#9C8878}
-
-/* WHY */
 .diff-list{margin-top:28px;display:flex;flex-direction:column}
 .diff-item{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.05);align-items:start}
 .diff-item:last-child{border-bottom:none}
@@ -156,99 +135,114 @@ nav{padding:28px 48px;border-bottom:1px solid rgba(255,255,255,.06);display:flex
 .comp-table{width:100%;border-collapse:collapse}
 .comp-table th{font-size:8px;letter-spacing:.2em;text-transform:uppercase;padding:12px 14px;text-align:left;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.28)}
 .comp-table th.erj{color:#E8500A;text-align:center}
+.comp-table th.c2{text-align:center}
 .comp-table td{font-size:12px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.45)}
 .comp-table td.chk{color:#FF6B1A;font-size:15px;text-align:center}
 .comp-table td.crs{color:rgba(255,255,255,.1);font-size:15px;text-align:center}
 .comp-table tr:last-child td{border-bottom:none}
-
-/* CTA */
 .cta{background:#E8500A;padding:100px 48px;position:relative;overflow:hidden}
-.cta-geo1{position:absolute;top:-30%;right:-5%;width:50%;height:160%;background:#C43D00;clip-path:polygon(40% 0%,100% 0%,100% 100%,0% 100%)}
+.cta-geo{position:absolute;top:-30%;right:-5%;width:50%;height:160%;background:#C43D00;clip-path:polygon(40% 0%,100% 0%,100% 100%,0% 100%)}
 .cta-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
 .cta-h{font-weight:900;font-size:clamp(48px,7vw,88px);line-height:.9;letter-spacing:-.02em;color:#fff;margin-bottom:16px}
 .cta-p{font-size:14px;line-height:1.75;color:rgba(255,255,255,.68);max-width:400px;margin-bottom:28px}
 .cta-btns{display:flex;gap:12px;flex-wrap:wrap}
 .btn-w{font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#E8500A;background:#fff;border:none;padding:14px 32px;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .25s}
 .btn-w:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
-.btn-ow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);background:transparent;border:1px solid rgba(255,255,255,.35);padding:14px 26px;border-radius:4px;cursor:pointer;text-decoration:none;display:inline-block;transition:all .25s}
-.btn-ow:hover{border-color:#fff;color:#fff}
+.btn-ow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);background:transparent;border:1px solid rgba(255,255,255,.35);padding:14px 26px;border-radius:4px;text-decoration:none;display:inline-block}
 .cta-stats{display:flex;flex-direction:column;gap:14px}
 .cta-sv{font-weight:900;font-size:36px;color:#fff;line-height:1;display:block}
 .cta-sl{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);display:block;margin-top:2px}
 .cta-div{height:1px;background:rgba(255,255,255,.14);margin-top:12px}
-
-/* FOOTER */
 footer{background:#0F0A06;padding:40px 48px;display:flex;justify-content:space-between;align-items:center}
 .ft-logo{font-weight:900;font-size:26px;color:#fff}
 .ft-logo span{color:#E8500A}
 .ft-by{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.18);margin-top:4px}
 .ft-meta{font-size:8px;letter-spacing:.1em;color:rgba(255,255,255,.18);text-align:right;line-height:1.85}
-
+/* lang hide/show */
+.en-txt,.id-txt{transition:opacity .2s}
+body.lang-id .en-txt{display:none}
+body.lang-en .id-txt{display:none}
 @media(max-width:900px){
-  nav{padding:20px 24px}
+  nav,footer{padding:18px 24px}
   .hero-body,.sec-2col,.cta-inner{grid-template-columns:1fr;gap:40px}
   .hero-body{padding:40px 24px 60px}
   .sec{padding:60px 24px}
   .cta{padding:60px 24px}
   .who-grid{grid-template-columns:1fr 1fr}
-  footer{flex-direction:column;gap:16px;padding:40px 24px}
+  footer{flex-direction:column;gap:16px}
   .ft-meta{text-align:left}
+  .nav-pills{display:none}
 }
 </style>
 </head>
-<body>
+<body class="lang-en">
 
-<!-- HERO -->
 <section class="hero">
-  <nav>
-    <div class="logo">ERJ<span>300</span></div>
-    <div class="pills">
-      <span class="pill">10-HDA Standardized</span>
-      <span class="pill on">Travel-Ready</span>
+<nav>
+  <div class="nav-logo">ERJ<span>300</span></div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('id')">ID</button>
     </div>
-  </nav>
-  <div class="hero-body">
-    <div>
-      <div class="hero-tag">Royal Jelly · Lyophilized Grade</div>
-      <h1 class="hero-h1">ERJ300</h1>
-      <div class="hero-sub">Biological Energy · Measured by Science</div>
-      <p class="hero-p">The Queen Bee lives <strong>40× longer</strong> than worker bees—same DNA, different diet. ERJ300 delivers <strong>10-HDA</strong>, the key bioactive of Royal Jelly, standardized, freeze-dried, and ready wherever you go.</p>
-      <div class="btns">
-        <a href="#" class="btn-o">Order ERJ300</a>
-        <a href="#" class="btn-g">See the Science →</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <img id="heroImg" class="hero-img" alt="ERJ300 Box + Sachet" style="opacity:0">
-      <div class="specs">
-        <div class="spec"><span class="spec-v">300mg</span><span class="spec-l">Royal Jelly</span></div>
-        <div class="spec"><span class="spec-v">6%</span><span class="spec-l">10-HDA</span></div>
-        <div class="spec"><span class="spec-v">10ml</span><span class="spec-l">Per Sachet</span></div>
-        <div class="spec"><span class="spec-v">5×</span><span class="spec-l">Per Box</span></div>
-      </div>
+    <div class="nav-pills">
+      <span class="nav-pill">10-HDA Standardized</span>
+      <span class="nav-pill on">Travel-Ready</span>
     </div>
   </div>
+</nav>
+
+<div class="hero-body">
+  <div>
+    <div class="hero-tag">
+      <span class="en-txt">Royal Jelly · Lyophilized Grade</span>
+      <span class="id-txt">Royal Jelly · Grade Lyophilized</span>
+    </div>
+    <h1 class="hero-h1">ERJ300</h1>
+    <div class="hero-sub">
+      <span class="en-txt">Biological Energy · Measured by Science</span>
+      <span class="id-txt">Energi Biologis · Terukur oleh Sains</span>
+    </div>
+    <p class="hero-p">
+      <span class="en-txt">The Queen Bee lives <strong>40× longer</strong> than worker bees — similar DNA, different diet. ERJ300 delivers the key bioactive compound of Royal Jelly, standardized with the freeze-dry method, ready wherever you go.</span>
+      <span class="id-txt">Lebah Ratu hidup <strong>40× lebih lama</strong> dari lebah pekerja — DNA serupa, makanan berbeda. ERJ300 menghadirkan senyawa bioaktif utama Royal Jelly, yang sudah terstandar dengan metode freeze-dry, siap menemani ke mana pun kamu pergi.</span>
+    </p>
+    <div class="hero-btns">
+      <a href="#" class="btn-o en-txt">Order ERJ300</a>
+      <a href="#" class="btn-o id-txt">Pesan ERJ300</a>
+      <a href="#science" class="btn-g en-txt">See the Science →</a>
+      <a href="#science" class="btn-g id-txt">Lihat Risetnya →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img id="heroImg" class="hero-img" alt="ERJ300" style="opacity:0">
+    <div class="specs">
+      <div class="spec"><span class="spec-v">300mg</span><span class="spec-l en-txt">Royal Jelly</span><span class="spec-l id-txt">Royal Jelly</span></div>
+      <div class="spec"><span class="spec-v">6%</span><span class="spec-l">10-HDA</span></div>
+      <div class="spec"><span class="spec-v">10ml</span><span class="spec-l en-txt">Per Sachet</span><span class="spec-l id-txt">Per Sachet</span></div>
+      <div class="spec"><span class="spec-v">5×</span><span class="spec-l en-txt">Per Box</span><span class="spec-l id-txt">Per Kotak</span></div>
+    </div>
+  </div>
+</div>
 </section>
 
 <!-- MARQUEE -->
-<div class="mq">
-  <div class="mq-track">
-    <span class="mq-item">Royal Jelly Lyophilized <span class="mq-dot">◆</span></span>
-    <span class="mq-item">6%–10-HDA Standardized <span class="mq-dot">◆</span></span>
-    <span class="mq-item">Natural Stamina & Immunity <span class="mq-dot">◆</span></span>
-    <span class="mq-item">Travel-Ready Sachet <span class="mq-dot">◆</span></span>
-    <span class="mq-item">BPOM TR. 256056821 <span class="mq-dot">◆</span></span>
-    <span class="mq-item">Ginger · Temulawak · Lemon · Madu <span class="mq-dot">◆</span></span>
-    <span class="mq-item">Manufactured by NAU Labs <span class="mq-dot">◆</span></span>
-    <span class="mq-item">Royal Jelly Lyophilized <span class="mq-dot">◆</span></span>
-    <span class="mq-item">6%–10-HDA Standardized <span class="mq-dot">◆</span></span>
-    <span class="mq-item">Natural Stamina & Immunity <span class="mq-dot">◆</span></span>
-    <span class="mq-item">Travel-Ready Sachet <span class="mq-dot">◆</span></span>
-    <span class="mq-item">BPOM TR. 256056821 <span class="mq-dot">◆</span></span>
-    <span class="mq-item">Ginger · Temulawak · Lemon · Madu <span class="mq-dot">◆</span></span>
-    <span class="mq-item">Manufactured by NAU Labs <span class="mq-dot">◆</span></span>
-  </div>
-</div>
+<div class="mq"><div class="mq-track">
+  <span class="mq-i">Royal Jelly Lyophilized <span class="mq-d">◆</span></span>
+  <span class="mq-i">6%–10-HDA Standardized <span class="mq-d">◆</span></span>
+  <span class="mq-i">Natural Stamina & Immunity <span class="mq-d">◆</span></span>
+  <span class="mq-i">Travel-Ready Sachet <span class="mq-d">◆</span></span>
+  <span class="mq-i">BPOM TR. 256056821 <span class="mq-d">◆</span></span>
+  <span class="mq-i">Ginger · Temulawak · Lemon · Honey <span class="mq-d">◆</span></span>
+  <span class="mq-i">NAU Labs <span class="mq-d">◆</span></span>
+  <span class="mq-i">Royal Jelly Lyophilized <span class="mq-d">◆</span></span>
+  <span class="mq-i">6%–10-HDA Standardized <span class="mq-d">◆</span></span>
+  <span class="mq-i">Natural Stamina & Immunity <span class="mq-d">◆</span></span>
+  <span class="mq-i">Travel-Ready Sachet <span class="mq-d">◆</span></span>
+  <span class="mq-i">BPOM TR. 256056821 <span class="mq-d">◆</span></span>
+  <span class="mq-i">Ginger · Temulawak · Lemon · Honey <span class="mq-d">◆</span></span>
+  <span class="mq-i">NAU Labs <span class="mq-d">◆</span></span>
+</div></div>
 
 <!-- SPOTLIGHT -->
 <section class="sec sec-bg-w">
@@ -257,15 +251,27 @@ footer{background:#0F0A06;padding:40px 48px;display:flex;justify-content:space-b
       <img id="sachetImg" class="sachet-img" alt="ERJ300 Sachet" style="opacity:0">
     </div>
     <div>
-      <span class="lbl">The Product</span>
-      <h2 class="disp">One Sachet.<br><em>Full Power.</em></h2>
-      <p class="bp">10ml. No spoon, no water, no fridge. Each sachet delivers <strong>300mg lyophilized Royal Jelly</strong> standardized at 6% 10-HDA, with Ginger, Temulawak, Lemon, and Honey.</p>
+      <span class="lbl en-txt">The Product</span>
+      <span class="lbl id-txt">Produknya</span>
+      <h2 class="disp">
+        <span class="en-txt">One Sachet.<br><em>Full Power.</em></span>
+        <span class="id-txt">Satu Sachet.<br><em>Penuh Manfaat.</em></span>
+      </h2>
+      <p class="bp">
+        <span class="en-txt">10ml. No spoon, no water, no fridge. Each sachet delivers <strong>300mg lyophilized Royal Jelly</strong> standardized at 6% 10-HDA, with Ginger, Temulawak, Lemon, and Honey.</span>
+        <span class="id-txt">10ml. Tanpa sendok, tanpa air terpisah, tanpa kulkas. Setiap sachet menghadirkan <strong>300mg Royal Jelly lyophilized</strong> terstandar 6% 10-HDA, dengan Jahe, Temulawak, Lemon, dan Madu.</span>
+      </p>
       <div class="tags">
-        <span class="tag on">Direct from sachet</span>
-        <span class="tag">Mix warm water</span>
-        <span class="tag">5 sachets / box</span>
-        <span class="tag">BPOM Registered</span>
-        <span class="tag">HALAL Certified</span>
+        <span class="tag on en-txt">Direct from sachet</span>
+        <span class="tag on id-txt">Langsung dari sachet</span>
+        <span class="tag en-txt">Mix warm water</span>
+        <span class="tag id-txt">Campur air hangat</span>
+        <span class="tag en-txt">5 sachets / box</span>
+        <span class="tag id-txt">5 sachet / kotak</span>
+        <span class="tag en-txt">BPOM Registered</span>
+        <span class="tag id-txt">Terdaftar BPOM</span>
+        <span class="tag en-txt">HALAL Certified</span>
+        <span class="tag id-txt">Sertifikasi HALAL</span>
       </div>
     </div>
   </div>
@@ -275,83 +281,144 @@ footer{background:#0F0A06;padding:40px 48px;display:flex;justify-content:space-b
 <section class="sec sec-bg-ow">
   <div class="sec-2col">
     <div>
-      <span class="lbl">The Biology Behind It</span>
-      <h2 class="disp">Not a Myth.<br><em>It's Biology.</em></h2>
-      <p class="bp">Worker bees and Queen bees are born from <strong>identical DNA</strong>. Yet the Queen lives 40× longer, grows 2–3× bigger, and produces 2,000 eggs per day. The single variable: <strong>Royal Jelly</strong>—consumed exclusively, for life.</p>
+      <span class="lbl en-txt">The Biology Behind It</span>
+      <span class="lbl id-txt">Dasar Ilmiahnya</span>
+      <h2 class="disp">
+        <span class="en-txt">Not a Myth.<br><em>This is the Science!</em></span>
+        <span class="id-txt">Bukan Mitos.<br><em>Ini Fakta Ilmiahnya!</em></span>
+      </h2>
+      <p class="bp" style="margin-bottom:14px">
+        <span class="en-txt">Worker bees and Queen bees are born from <strong>similar DNA</strong>. Yet the Queen lives 40× longer, grows 2–3× bigger, and produces 2,000 eggs per day.</span>
+        <span class="id-txt">Lebah pekerja dan Lebah Ratu lahir dari <strong>DNA yang serupa</strong>. Tapi sang Ratu hidup 40× lebih lama, tubuhnya 2–3× lebih besar, dan bertelur 2.000 butir per hari.</span>
+      </p>
+      <p class="bp">
+        <span class="en-txt">The single variable: Royal Jelly — consumed exclusively, for life. ERJ300 extracts the key bioactive compound, standardized with freeze-dry, packed into a 10ml sachet you carry anywhere.</span>
+        <span class="id-txt">Satu-satunya variabel: Royal Jelly — dikonsumsi eksklusif, seumur hidup. ERJ300 menghadirkan senyawa bioaktif utamanya, terstandar dengan metode freeze-dry, dalam sachet 10ml yang bisa kamu bawa ke mana saja.</span>
+      </p>
     </div>
     <div class="qcard">
-      <div class="qcard-t">Queen Bee vs Worker Bee — Same DNA, Different Fate</div>
+      <div class="qcard-t en-txt">Queen Bee vs Worker Bee — Similar DNA, Different Fate</div>
+      <div class="qcard-t id-txt">Lebah Ratu vs Lebah Pekerja — DNA Serupa, Nasib Berbeda</div>
       <div class="qvs">
         <div class="qbee">
-          <span class="qbee-n">Worker Bee</span>
+          <span class="qbee-n en-txt">Worker Bee</span>
+          <span class="qbee-n id-txt">Lebah Pekerja</span>
           <div class="qbee-v">6</div>
-          <span class="qbee-u">weeks lifespan</span>
+          <span class="qbee-u en-txt">weeks lifespan</span>
+          <span class="qbee-u id-txt">minggu usia</span>
         </div>
         <div class="qvs-vs">vs</div>
         <div class="qbee q">
-          <span class="qbee-n">Queen Bee 👑</span>
+          <span class="qbee-n en-txt">Queen Bee 👑</span>
+          <span class="qbee-n id-txt">Lebah Ratu 👑</span>
           <div class="qbee-v">5</div>
-          <span class="qbee-u">years lifespan</span>
+          <span class="qbee-u en-txt">years lifespan</span>
+          <span class="qbee-u id-txt">tahun usia</span>
         </div>
       </div>
-      <div class="qbar"><div class="qbar-meta"><span class="qbar-l">Lifespan advantage</span><span class="qbar-v">40× longer</span></div><div class="qbar-track"><div class="qbar-fill" id="b1" style="background:linear-gradient(90deg,#E8500A,#FF6B1A)"></div></div></div>
-      <div class="qbar"><div class="qbar-meta"><span class="qbar-l">Body size difference</span><span class="qbar-v">+40–60% larger</span></div><div class="qbar-track"><div class="qbar-fill" id="b2" style="background:linear-gradient(90deg,#C49900,#F5C800)"></div></div></div>
-      <div class="qbar"><div class="qbar-meta"><span class="qbar-l">Reproductive output</span><span class="qbar-v">2,000 eggs/day</span></div><div class="qbar-track"><div class="qbar-fill" id="b3" style="background:linear-gradient(90deg,#E8500A,#FF6B1A)"></div></div></div>
-      <div class="qnote">"Same genes. Same hive. The only difference is what they're fed—for the rest of their lives."</div>
+      <div class="qbar"><div class="qbar-meta"><span class="qbar-l en-txt">Lifespan advantage</span><span class="qbar-l id-txt">Keunggulan usia</span><span class="qbar-v">40× longer</span></div><div class="qbar-track"><div class="qbar-fill" id="b1" style="background:linear-gradient(90deg,#E8500A,#FF6B1A)"></div></div></div>
+      <div class="qbar"><div class="qbar-meta"><span class="qbar-l en-txt">Body size difference</span><span class="qbar-l id-txt">Ukuran tubuh</span><span class="qbar-v">+40–60% larger</span></div><div class="qbar-track"><div class="qbar-fill" id="b2" style="background:linear-gradient(90deg,#C49900,#F5C800)"></div></div></div>
+      <div class="qbar"><div class="qbar-meta"><span class="qbar-l en-txt">Reproductive output</span><span class="qbar-l id-txt">Produksi telur</span><span class="qbar-v">2,000 eggs/day</span></div><div class="qbar-track"><div class="qbar-fill" id="b3" style="background:linear-gradient(90deg,#E8500A,#FF6B1A)"></div></div></div>
+      <div class="qnote">
+        <span class="en-txt">"Same genes. Same hive. The only difference is what they're fed — for the rest of their lives."</span>
+        <span class="id-txt">"Gen sama. Sarang sama. Yang berbeda hanya apa yang mereka makan — sepanjang hidup mereka."</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SCIENCE -->
-<section class="sec sec-bg-dk">
+<section class="sec sec-bg-dk" id="science">
   <div class="sec-2col">
     <div>
       <div class="sci-formula">CH₃–(CH₂)₅–CH(OH)–CH₂–CH=CH–COOH</div>
       <div class="sci-mol">10-<span>HDA</span></div>
-      <div class="sci-mol-sub">10-Hydroxy-2-Decenoic Acid · Found Only in Royal Jelly</div>
-      <p class="bp bp-w" style="margin-top:18px"><strong>Not found anywhere else in nature.</strong> Standardizing it is what separates ERJ300 from products that merely "contain Royal Jelly."</p>
+      <div class="sci-mol-sub en-txt">10-Hydroxy-2-Decenoic Acid · Found Only in Royal Jelly</div>
+      <div class="sci-mol-sub id-txt">10-Hydroxy-2-Decenoic Acid · Hanya Ditemukan dalam Royal Jelly</div>
+      <p class="bp bp-w" style="margin-top:18px">
+        <span class="en-txt"><strong>Not found anywhere else in nature.</strong> Standardizing it is what separates ERJ300 from products that merely "contain Royal Jelly."</span>
+        <span class="id-txt"><strong>Tidak ditemukan di tempat lain di alam.</strong> Menstandarisasinya adalah yang membedakan ERJ300 dari produk yang sekadar "mengandung Royal Jelly."</span>
+      </p>
       <div class="sci-callout">
         <div class="sci-callout-n">6%</div>
-        <div class="sci-callout-t"><strong>10-HDA Standardized</strong><br>Every sachet delivers a consistent, measurable bioactive dose.</div>
+        <div class="sci-callout-t">
+          <span class="en-txt"><strong>10-HDA Standardized</strong><br>Every sachet delivers a consistent, measurable bioactive dose.</span>
+          <span class="id-txt"><strong>10-HDA Terstandarisasi</strong><br>Setiap sachet menghadirkan dosis bioaktif yang konsisten dan terukur.</span>
+        </div>
       </div>
     </div>
     <div class="pillars">
-      <div class="pillar"><div class="pillar-h"><span class="pillar-icon">🛡️</span><div class="pillar-t">Immunomodulation</div></div><p class="pillar-b">Supports immune regulation at the cellular level—intelligent balance, not just stimulation.</p><span class="pillar-tag">→ Immune Regulation</span></div>
-      <div class="pillar"><div class="pillar-h"><span class="pillar-icon">🔥</span><div class="pillar-t">Anti-Inflammatory</div></div><p class="pillar-b">Anti-inflammatory activity via COX-2 pathway—similar to modern pharma mechanisms, but nature-derived.</p><span class="pillar-tag">→ Cellular Protection</span></div>
-      <div class="pillar"><div class="pillar-h"><span class="pillar-icon">⚡</span><div class="pillar-t">Cellular Adaptation</div></div><p class="pillar-b">Faster recovery from physical and oxidative stress—for athletes, travelers, and high-output professionals.</p><span class="pillar-tag">→ Recovery & Vitality</span></div>
+      <div class="pillar">
+        <div class="pillar-h"><span class="pillar-icon">🛡️</span><div class="pillar-t en-txt">Immunomodulation</div><div class="pillar-t id-txt">Imunomodulasi</div></div>
+        <p class="pillar-b en-txt">Supports immune regulation at the cellular level — intelligent balance, not just stimulation.</p>
+        <p class="pillar-b id-txt">Mendukung regulasi imun di tingkat sel — keseimbangan cerdas, bukan sekadar stimulasi.</p>
+        <span class="pillar-tag en-txt">→ Immune Regulation</span>
+        <span class="pillar-tag id-txt">→ Regulasi Imun</span>
+      </div>
+      <div class="pillar">
+        <div class="pillar-h"><span class="pillar-icon">🔥</span><div class="pillar-t en-txt">Anti-Inflammatory</div><div class="pillar-t id-txt">Anti-Inflamasi</div></div>
+        <p class="pillar-b en-txt">Anti-inflammatory activity via COX-2 pathway — similar to modern pharma mechanisms, but nature-derived.</p>
+        <p class="pillar-b id-txt">Aktivitas anti-inflamasi melalui jalur COX-2 — mirip mekanisme obat modern, tapi berasal dari alam.</p>
+        <span class="pillar-tag en-txt">→ Cellular Protection</span>
+        <span class="pillar-tag id-txt">→ Perlindungan Sel</span>
+      </div>
+      <div class="pillar">
+        <div class="pillar-h"><span class="pillar-icon">⚡</span><div class="pillar-t en-txt">Cellular Adaptation</div><div class="pillar-t id-txt">Adaptasi Seluler</div></div>
+        <p class="pillar-b en-txt">Supports faster recovery from physical and oxidative stress — for athletes, travelers, and professionals.</p>
+        <p class="pillar-b id-txt">Mendukung pemulihan lebih cepat dari stres fisik dan oksidatif — untuk atlet, pelancong, dan para profesional.</p>
+        <span class="pillar-tag en-txt">→ Recovery & Vitality</span>
+        <span class="pillar-tag id-txt">→ Pemulihan & Vitalitas</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FORMULA -->
-<section class="sec sec-bg-w">
+<section class="sec sec-bg-w" style="align-items:start">
   <div class="sec-2col" style="align-items:start">
     <div>
-      <span class="lbl">Active Formula</span>
-      <h2 class="disp">Every Sachet,<br><em>Measured.</em></h2>
-      <p class="bp">10ml. Four active ingredients. No filler. No compromise.</p>
+      <span class="lbl en-txt">Active Formula</span>
+      <span class="lbl id-txt">Formula Aktif</span>
+      <h2 class="disp">
+        <span class="en-txt">Every Sachet,<br><em>Measured.</em></span>
+        <span class="id-txt">Setiap Sachet,<br><em>Terukur.</em></span>
+      </h2>
+      <p class="bp en-txt">10ml. Four active ingredients. No filler. No compromise.</p>
+      <p class="bp id-txt">10ml. Empat bahan aktif. Tanpa pengisi. Tanpa kompromi.</p>
       <div class="ingr-table">
-        <div class="ingr-row star"><div class="ingr-em">👑</div><div><div class="ingr-n">Royal Jelly Lyophilized</div><div class="ingr-s">6%–10-HDA · ≈1000mg raw equivalent</div></div><div><div class="ingr-mg">300</div><span class="ingr-u">mg</span></div></div>
-        <div class="ingr-row"><div class="ingr-em">🫚</div><div><div class="ingr-n">Ginger Extract</div><div class="ingr-s">Zingiber officinale Rhizoma</div></div><div><div class="ingr-mg">300</div><span class="ingr-u">mg</span></div></div>
-        <div class="ingr-row"><div class="ingr-em">🌿</div><div><div class="ingr-n">Temulawak Extract</div><div class="ingr-s">Curcuma xanthorrhiza Rhizoma</div></div><div><div class="ingr-mg">200</div><span class="ingr-u">mg</span></div></div>
-        <div class="ingr-row"><div class="ingr-em">🍋</div><div><div class="ingr-n">Lemon Extract</div><div class="ingr-s">Citrus limon Fructus</div></div><div><div class="ingr-mg">200</div><span class="ingr-u">mg</span></div></div>
-        <div class="ingr-row"><div class="ingr-em">🍯</div><div><div class="ingr-n">Natural Honey Base</div><div class="ingr-s">Carrier · Palatability · Synergy</div></div><div><div class="ingr-mg" style="font-size:13px">ad</div><span class="ingr-u">10ml</span></div></div>
+        <div class="ingr star"><div class="ingr-em">👑</div><div><div class="ingr-n">Royal Jelly Lyophilized</div><div class="ingr-s en-txt">6%–10-HDA · ≈1000mg raw equivalent</div><div class="ingr-s id-txt">6%–10-HDA · ≈setara 1000mg RJ mentah</div></div><div><div class="ingr-mg">300</div><span class="ingr-u">mg</span></div></div>
+        <div class="ingr"><div class="ingr-em">🫚</div><div><div class="ingr-n en-txt">Ginger Extract</div><div class="ingr-n id-txt">Ekstrak Jahe</div><div class="ingr-s">Zingiber officinale Rhizoma</div></div><div><div class="ingr-mg">300</div><span class="ingr-u">mg</span></div></div>
+        <div class="ingr"><div class="ingr-em">🌿</div><div><div class="ingr-n en-txt">Temulawak Extract</div><div class="ingr-n id-txt">Ekstrak Temulawak</div><div class="ingr-s">Curcuma xanthorrhiza Rhizoma</div></div><div><div class="ingr-mg">200</div><span class="ingr-u">mg</span></div></div>
+        <div class="ingr"><div class="ingr-em">🍋</div><div><div class="ingr-n en-txt">Lemon Extract</div><div class="ingr-n id-txt">Ekstrak Lemon</div><div class="ingr-s">Citrus limon Fructus</div></div><div><div class="ingr-mg">200</div><span class="ingr-u">mg</span></div></div>
+        <div class="ingr"><div class="ingr-em">🍯</div><div><div class="ingr-n en-txt">Natural Honey Base</div><div class="ingr-n id-txt">Madu Alami</div><div class="ingr-s en-txt">Carrier · Palatability · Synergy</div><div class="ingr-s id-txt">Pembawa · Kelezatan · Sinergi</div></div><div><div class="ingr-mg" style="font-size:13px">ad</div><span class="ingr-u">10ml</span></div></div>
       </div>
-      <div class="freeze"><strong>Why Lyophilized?</strong> Freeze-drying preserves 10-HDA's bioactive structure—better bioavailability, consistent potency.</div>
+      <div class="freeze">
+        <span class="en-txt"><strong>Why Freeze-dry?</strong> This process preserves 10-HDA's bioactive structure that heat destroys — better bioavailability, consistent potency shelf-to-shelf.</span>
+        <span class="id-txt"><strong>Kenapa Freeze-dry?</strong> Proses ini mempertahankan struktur bioaktif 10-HDA yang rusak oleh panas — bioavailabilitas lebih baik, potensi lebih konsisten di setiap sachet.</span>
+      </div>
     </div>
     <div>
-      <span class="lbl">Sensory Profile</span>
-      <h2 class="disp" style="font-size:clamp(36px,4vw,52px)">Three Layers<br><em>of Taste.</em></h2>
-      <p class="bp">Honey sweet. Ginger warm. Lemon fresh.</p>
+      <span class="lbl en-txt">Sensory Profile</span>
+      <span class="lbl id-txt">Profil Rasa</span>
+      <h2 class="disp" style="font-size:clamp(36px,4vw,52px)">
+        <span class="en-txt">Three Layers<br><em>of Taste.</em></span>
+        <span class="id-txt">Tiga Lapisan<br><em>Rasa.</em></span>
+      </h2>
+      <p class="bp en-txt">Honey sweet. Ginger warm. Lemon fresh.</p>
+      <p class="bp id-txt">Manis dari madu. Hangat dari jahe. Segar dari lemon.</p>
       <div class="taste-card">
-        <div class="taste-t">Taste Architecture — per sachet</div>
-        <div class="t-row"><span class="t-lbl">Sweet</span><div class="t-track"><div class="t-fill" id="t1" style="background:linear-gradient(90deg,#C49900,#F5C800)"></div></div><span class="t-pct">75%</span></div>
-        <div class="t-row"><span class="t-lbl">Warm</span><div class="t-track"><div class="t-fill" id="t2" style="background:linear-gradient(90deg,#C43D00,#FF6B1A)"></div></div><span class="t-pct">65%</span></div>
-        <div class="t-row"><span class="t-lbl">Fresh</span><div class="t-track"><div class="t-fill" id="t3" style="background:linear-gradient(90deg,#2E9B6A,#60CFA0)"></div></div><span class="t-pct">45%</span></div>
+        <div class="taste-t en-txt">Taste Architecture — per sachet</div>
+        <div class="taste-t id-txt">Profil Rasa — per sachet</div>
+        <div class="t-row"><span class="t-lbl en-txt">Sweet</span><span class="t-lbl id-txt">Manis</span><div class="t-track"><div class="t-fill" id="t1" style="background:linear-gradient(90deg,#C49900,#F5C800)"></div></div><span class="t-pct">75%</span></div>
+        <div class="t-row"><span class="t-lbl en-txt">Warm</span><span class="t-lbl id-txt">Hangat</span><div class="t-track"><div class="t-fill" id="t2" style="background:linear-gradient(90deg,#C43D00,#FF6B1A)"></div></div><span class="t-pct">65%</span></div>
+        <div class="t-row"><span class="t-lbl en-txt">Fresh</span><span class="t-lbl id-txt">Segar</span><div class="t-track"><div class="t-fill" id="t3" style="background:linear-gradient(90deg,#2E9B6A,#60CFA0)"></div></div><span class="t-pct">45%</span></div>
         <div class="tags" style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)">
-          <span class="tag on">Direct from sachet</span>
-          <span class="tag" style="border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35)">Mix warm water</span>
-          <span class="tag" style="border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35)">No refrigeration</span>
+          <span class="tag on en-txt">Direct from sachet</span>
+          <span class="tag on id-txt">Langsung dari sachet</span>
+          <span class="tag" style="border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35)" class="en-txt">Mix warm water</span>
+          <span class="tag" style="border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35)" class="id-txt">Campur air hangat</span>
+          <span class="tag" style="border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35)" class="en-txt">No refrigeration</span>
+          <span class="tag" style="border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35)" class="id-txt">Tanpa kulkas</span>
         </div>
       </div>
     </div>
@@ -360,18 +427,25 @@ footer{background:#0F0A06;padding:40px 48px;display:flex;justify-content:space-b
 
 <!-- WHO -->
 <section class="sec sec-bg-ow">
-  <div style="text-align:center;max-width:540px;margin:0 auto">
-    <span class="lbl" style="display:block">Who It's For</span>
-    <h2 class="disp" style="margin:0 auto 14px">Built for People<br><em>Who Move.</em></h2>
-    <p class="bp" style="text-align:center;margin:0 auto">From airport lounges to mountain trails. ERJ300 fits in your back pocket.</p>
+  <div style="text-align:center;max-width:560px;margin:0 auto">
+    <span class="lbl en-txt" style="display:block">Who It's For</span>
+    <span class="lbl id-txt" style="display:block">Untuk Siapa</span>
+    <h2 class="disp" style="margin:0 auto 14px">
+      <span class="en-txt">Built for People<br><em>Who Move.</em></span>
+      <span class="id-txt">Dibuat untuk Mereka<br><em>yang Bergerak.</em></span>
+    </h2>
+    <p class="bp" style="text-align:center;margin:14px auto 0">
+      <span class="en-txt">From airport lounges to mountain trails. ERJ300 fits in your back pocket.</span>
+      <span class="id-txt">Dari lounge bandara sampai jalur pendakian. ERJ300 muat di saku belakang.</span>
+    </p>
   </div>
-  <div class="who-grid">
-    <div class="who-card" style="border-radius:12px 0 0 0"><div class="who-n">01</div><span class="who-icon">✈️</span><div class="who-t">Travelers & Flyers</div><p class="who-d">Jet lag, climate shifts, transit stress—ERJ300 fits in a carry-on pocket.</p></div>
-    <div class="who-card"><div class="who-n">02</div><span class="who-icon">💼</span><div class="who-t">Executives & Professionals</div><p class="who-d">Long days, tight deadlines. Instant stamina without caffeine or the crash.</p></div>
-    <div class="who-card" style="border-radius:0 12px 0 0"><div class="who-n">03</div><span class="who-icon">🏃</span><div class="who-t">Athletes & Endurance</div><p class="who-d">Natural pre-workout or post-race recovery—biological support for performance.</p></div>
-    <div class="who-card" style="border-radius:0 0 0 12px"><div class="who-n">04</div><span class="who-icon">🤒</span><div class="who-t">Post-Illness Recovery</div><p class="who-d">The body needs extra support after sickness. Royal Jelly helps rebuild faster.</p></div>
-    <div class="who-card"><div class="who-n">05</div><span class="who-icon">🌡️</span><div class="who-t">Seasonal Changes</div><p class="who-d">Season transitions are peak vulnerability windows. Your first line of defense.</p></div>
-    <div class="who-card" style="border-radius:0 0 12px 0"><div class="who-n">06</div><span class="who-icon">⚡</span><div class="who-t">Active Men & Vitality</div><p class="who-d">Vitality, endurance, cellular adaptation—operating at full biological capacity.</p></div>
+  <div class="who-grid" style="margin-top:48px">
+    <div class="who-card" style="border-radius:12px 0 0 0"><div class="who-n">01</div><span class="who-icon">✈️</span><div class="who-t en-txt">Travelers & Frequent Flyers</div><div class="who-t id-txt">Traveler & Pengguna Pesawat</div><p class="who-d en-txt">Jet lag, climate shifts, transit stress — ERJ300 is immunity ammunition that fits in a carry-on pocket.</p><p class="who-d id-txt">Jet lag, perubahan iklim, stres transit — ERJ300 adalah amunisi imun yang muat di tas kabin.</p></div>
+    <div class="who-card"><div class="who-n">02</div><span class="who-icon">💼</span><div class="who-t en-txt">Executives & Professionals</div><div class="who-t id-txt">Eksekutif & Profesional</div><p class="who-d en-txt">Long days, tight deadlines. Instant stamina without caffeine or the crash.</p><p class="who-d id-txt">Hari panjang, deadline ketat. Stamina instan tanpa kafein, tanpa crash.</p></div>
+    <div class="who-card" style="border-radius:0 12px 0 0"><div class="who-n">03</div><span class="who-icon">🏃</span><div class="who-t en-txt">Athletes & Endurance</div><div class="who-t id-txt">Atlet & Penggemar Endurance</div><p class="who-d en-txt">Natural pre-workout or post-race recovery — biological support for performance.</p><p class="who-d id-txt">Pre-workout alami atau pemulihan pasca pertandingan — dukungan biologis untuk performa.</p></div>
+    <div class="who-card" style="border-radius:0 0 0 12px"><div class="who-n">04</div><span class="who-icon">🤒</span><div class="who-t en-txt">Post-Illness Recovery</div><div class="who-t id-txt">Pemulihan Pasca Sakit</div><p class="who-d en-txt">The body needs extra support after sickness. Royal Jelly helps the immune system rebuild faster.</p><p class="who-d id-txt">Tubuh butuh dukungan ekstra setelah sakit. Royal Jelly membantu sistem imun pulih lebih cepat.</p></div>
+    <div class="who-card"><div class="who-n">05</div><span class="who-icon">🌡️</span><div class="who-t en-txt">Seasonal Changes</div><div class="who-t id-txt">Pergantian Musim</div><p class="who-d en-txt">Season transitions are peak vulnerability windows. ERJ300 is your first line of defense.</p><p class="who-d id-txt">Transisi musim adalah momen paling rentan. ERJ300 adalah garis pertahanan pertamamu.</p></div>
+    <div class="who-card" style="border-radius:0 0 12px 0"><div class="who-n">06</div><span class="who-icon">⚡</span><div class="who-t en-txt">Active Men & Vitality</div><div class="who-t id-txt">Pria Aktif & Pencari Vitalitas</div><p class="who-d en-txt">Vitality, endurance, cellular adaptation — operating at full biological capacity.</p><p class="who-d id-txt">Vitalitas, ketahanan, adaptasi seluler — hidup dan bergerak dengan kapasitas penuh.</p></div>
   </div>
 </section>
 
@@ -379,29 +453,30 @@ footer{background:#0F0A06;padding:40px 48px;display:flex;justify-content:space-b
 <section class="sec sec-bg-dk">
   <div class="sec-2col" style="align-items:start">
     <div>
-      <span class="lbl lbl-w">Why ERJ300</span>
-      <h2 class="disp disp-w">Not Just<br><em>"Contains<br>Royal Jelly."</em></h2>
-      <p class="bp bp-w">Most products claim Royal Jelly—but can't tell you how much, how concentrated, or how bioactive. ERJ300 can.</p>
+      <span class="lbl lbl-w en-txt">Why ERJ300</span>
+      <span class="lbl lbl-w id-txt">Kenapa ERJ300</span>
+      <h2 class="disp disp-w">
+        <span class="en-txt">Not Just<br><em>"Contains<br>Royal Jelly."</em></span>
+        <span class="id-txt">Bukan Sekadar<br><em>"Mengandung<br>Royal Jelly."</em></span>
+      </h2>
+      <p class="bp bp-w">
+        <span class="en-txt">Most products claim Royal Jelly — but can't tell you how much, how concentrated, or how bioactive. ERJ300 can.</span>
+        <span class="id-txt">Kebanyakan produk mengklaim mengandung Royal Jelly — tapi tak bisa bilang berapa banyak, seberapa pekat, atau seberapa bioaktif. ERJ300 bisa.</span>
+      </p>
       <div class="diff-list">
-        <div class="diff-item"><div class="diff-n">01</div><div><div class="diff-t">Standardized 6%–10-HDA</div><p class="diff-b">A measured, consistent bioactive marker per sachet—every time.</p></div></div>
-        <div class="diff-item"><div class="diff-n">02</div><div><div class="diff-t">Lyophilized = Optimal Bioavailability</div><p class="diff-b">Freeze-drying preserves structures that heat destroys.</p></div></div>
-        <div class="diff-item"><div class="diff-n">03</div><div><div class="diff-t">Indonesian Herbal Synergy</div><p class="diff-b">Ginger, Temulawak, and Lemon amplify 10-HDA from complementary biological angles.</p></div></div>
-        <div class="diff-item"><div class="diff-n">04</div><div><div class="diff-t">Travel-Ready. Zero Compromise.</div><p class="diff-b">10ml. No spoon, no water, no fridge. One sachet—ready when you are.</p></div></div>
+        <div class="diff-item"><div class="diff-n">01</div><div><div class="diff-t en-txt">Standardized 6%–10-HDA</div><div class="diff-t id-txt">Terstandar 6%–10-HDA</div><p class="diff-b en-txt">A measured, consistent bioactive marker per sachet — every time.</p><p class="diff-b id-txt">Penanda bioaktif yang terukur dan konsisten di setiap sachet — setiap saat.</p></div></div>
+        <div class="diff-item"><div class="diff-n">02</div><div><div class="diff-t en-txt">Freeze-dry = Optimal Bioavailability</div><div class="diff-t id-txt">Freeze-dry = Bioavailabilitas Optimal</div><p class="diff-b en-txt">Preserves structures that heat destroys — fundamentally different from raw liquid Royal Jelly.</p><p class="diff-b id-txt">Mempertahankan struktur yang rusak oleh panas — berbeda fundamental dari Royal Jelly mentah.</p></div></div>
+        <div class="diff-item"><div class="diff-n">03</div><div><div class="diff-t en-txt">Indonesian Herbal Synergy</div><div class="diff-t id-txt">Sinergi Herbal Indonesia</div><p class="diff-b en-txt">Ginger, Temulawak, and Lemon amplify 10-HDA's mechanisms from complementary biological angles.</p><p class="diff-b id-txt">Jahe, Temulawak, dan Lemon memperkuat mekanisme 10-HDA dari sudut biologis yang saling melengkapi.</p></div></div>
+        <div class="diff-item"><div class="diff-n">04</div><div><div class="diff-t en-txt">Travel-Ready. Zero Compromise.</div><div class="diff-t id-txt">Siap Dibawa. Tanpa Kompromi.</div><p class="diff-b en-txt">10ml. No spoon, no water, no fridge. One sachet — ready when you are.</p><p class="diff-b id-txt">10ml. Tanpa sendok, tanpa air terpisah, tanpa kulkas. Satu sachet — siap kapan pun kamu butuh.</p></div></div>
       </div>
     </div>
     <div class="comp-card">
       <table class="comp-table">
-        <thead><tr><th>Feature</th><th style="text-align:center">Generic RJ</th><th class="erj">ERJ300</th></tr></thead>
-        <tbody>
-          <tr><td>10-HDA Standardized</td><td class="crs">✗</td><td class="chk">✓</td></tr>
-          <tr><td>Lyophilized (Freeze-dried)</td><td class="crs">✗</td><td class="chk">✓</td></tr>
-          <tr><td>Measured dose per sachet</td><td class="crs">✗</td><td class="chk">✓</td></tr>
-          <tr><td>Active herbal synergy</td><td class="crs">✗</td><td class="chk">✓</td></tr>
-          <tr><td>Travel-ready sachet</td><td class="crs">✗</td><td class="chk">✓</td></tr>
-          <tr><td>No refrigeration needed</td><td class="crs">✗</td><td class="chk">✓</td></tr>
-          <tr><td>BPOM Registered</td><td class="crs">✗</td><td class="chk">✓</td></tr>
-          <tr><td>HALAL Certified</td><td class="crs">✗</td><td class="chk">✓</td></tr>
-        </tbody>
+        <thead><tr>
+          <th class="en-txt">Feature</th><th class="en-txt c2">Generic RJ</th><th class="erj en-txt">ERJ300</th>
+          <th class="id-txt">Fitur</th><th class="id-txt c2">RJ Biasa</th><th class="erj id-txt">ERJ300</th>
+        </tr></thead>
+        <tbody id="tableBody"></tbody>
       </table>
     </div>
   </div>
@@ -409,30 +484,36 @@ footer{background:#0F0A06;padding:40px 48px;display:flex;justify-content:space-b
 
 <!-- CTA -->
 <section class="cta">
-  <div class="cta-geo1"></div>
+  <div class="cta-geo"></div>
   <div class="cta-inner">
     <div>
-      <h2 class="cta-h">Ready to<br>Run<br>Stronger?</h2>
-      <p class="cta-p">ERJ300 isn't a supplement you take because you're afraid of getting sick. It's a decision to live at full biological capacity.</p>
+      <h2 class="cta-h">
+        <span class="en-txt">Ready to<br>Run<br>Stronger?</span>
+        <span class="id-txt">Siap Tampil<br>Penuh Energi?</span>
+      </h2>
+      <p class="cta-p en-txt">ERJ300 isn't a supplement you take because you're afraid of getting sick. It's a decision to live and move at full biological capacity.</p>
+      <p class="cta-p id-txt">ERJ300 bukan suplemen yang kamu minum karena takut sakit. Ini keputusan untuk hidup dan bergerak dengan optimal.</p>
       <div class="cta-btns">
-        <a href="#" class="btn-w">Order ERJ300 Now</a>
-        <a href="#" class="btn-ow">View Full Research</a>
+        <a href="#" class="btn-w en-txt">Order ERJ300 Now</a>
+        <a href="#" class="btn-w id-txt">Pesan ERJ300 Sekarang</a>
+        <a href="#" class="btn-ow en-txt">View Full Research</a>
+        <a href="#" class="btn-ow id-txt">Lihat Riset Lengkap</a>
       </div>
     </div>
     <div class="cta-stats">
       <div><span class="cta-sv">300mg</span><span class="cta-sl">Royal Jelly Lyophilized</span><div class="cta-div"></div></div>
-      <div><span class="cta-sv">6%</span><span class="cta-sl">10-HDA Standardized</span><div class="cta-div"></div></div>
-      <div><span class="cta-sv">≈1000mg</span><span class="cta-sl">Raw RJ Equivalent</span><div class="cta-div"></div></div>
-      <div><span class="cta-sv">5 sachet</span><span class="cta-sl">Per Box · 10ml each</span></div>
+      <div><span class="cta-sv">6%</span><span class="cta-sl en-txt">10-HDA Standardized</span><span class="cta-sl id-txt">10-HDA Terstandar</span><div class="cta-div"></div></div>
+      <div><span class="cta-sv">≈1000mg</span><span class="cta-sl en-txt">Raw RJ Equivalent</span><span class="cta-sl id-txt">Setara RJ Mentah</span><div class="cta-div"></div></div>
+      <div><span class="cta-sv">5 sachet</span><span class="cta-sl en-txt">Per Box · 10ml each</span><span class="cta-sl id-txt">Per Kotak · 10ml</span></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div>
     <div class="ft-logo">ERJ<span>300</span></div>
-    <div class="ft-by">Manufactured by NAU Labs · Natura Alamindo · nau.co.id</div>
+    <div class="ft-by en-txt">Manufactured by NAU Labs · Natura Alamindo · nau.co.id</div>
+    <div class="ft-by id-txt">Diproduksi oleh NAU Labs · Natura Alamindo · nau.co.id</div>
   </div>
   <div class="ft-meta">
     Royal Jelly Lyophilized · 6%–10-HDA<br>
@@ -442,16 +523,40 @@ footer{background:#0F0A06;padding:40px 48px;display:flex;justify-content:space-b
 </footer>
 
 <script>
-// Animate bars on scroll
-function animateBars() {
+// Language toggle
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.textContent.toLowerCase() === lang);
+  });
+}
+
+// Table rows bilingual
+var tableRows = {
+  en: ["10-HDA Standardized","Freeze-dry Process","Measured dose per sachet","Active herbal synergy","Travel-ready sachet","No refrigeration needed","BPOM Registered","HALAL Certified"],
+  id: ["10-HDA Terstandarisasi","Proses Freeze-dry","Dosis terukur per sachet","Sinergi herbal aktif","Sachet siap bawa","Tanpa kulkas","Terdaftar BPOM","Sertifikasi HALAL"]
+};
+var tbody = document.getElementById('tableBody');
+for (var i = 0; i < tableRows.en.length; i++) {
+  tbody.innerHTML += '<tr>' +
+    '<td class="en-txt">'+tableRows.en[i]+'</td>' +
+    '<td class="crs en-txt">✗</td>' +
+    '<td class="chk en-txt">✓</td>' +
+    '<td class="id-txt">'+tableRows.id[i]+'</td>' +
+    '<td class="crs id-txt">✗</td>' +
+    '<td class="chk id-txt">✓</td>' +
+  '</tr>';
+}
+
+// Animate bars
+setTimeout(function() {
   document.getElementById('b1').style.width = '95%';
   document.getElementById('b2').style.width = '62%';
   document.getElementById('b3').style.width = '88%';
   document.getElementById('t1').style.width = '75%';
   document.getElementById('t2').style.width = '65%';
   document.getElementById('t3').style.width = '45%';
-}
-setTimeout(animateBars, 600);
+}, 600);
 
 // Load images
 function loadImg(url, id) {
@@ -459,19 +564,12 @@ function loadImg(url, id) {
   var x = new XMLHttpRequest();
   x.open('GET', url, true);
   x.responseType = 'blob';
-  x.onload = function() {
-    img.src = URL.createObjectURL(x.response);
-    img.style.opacity = '1';
-  };
-  x.onerror = function() {
-    img.src = url;
-    img.style.opacity = '1';
-  };
+  x.onload = function() { img.src = URL.createObjectURL(x.response); img.style.opacity='1'; };
+  x.onerror = function() { img.src = url; img.style.opacity='1'; };
   x.send();
 }
-
-loadImg('https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775105338/erJ300_Flyer_o5gpdu.png', 'heroImg');
-loadImg('https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775105552/erJ300_Flyer_2_ihjuat.png', 'sachetImg');
+loadImg('https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775105338/erJ300_Flyer_o5gpdu.png','heroImg');
+loadImg('https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775105552/erJ300_Flyer_2_ihjuat.png','sachetImg');
 </script>
 </body>
 </html>
