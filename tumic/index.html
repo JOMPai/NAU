@@ -4,157 +4,636 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TuMIC — Recovery, Simplified.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+:root {
+  --orange: #E8500A;
+  --orange-light: #F06B28;
+  --orange-deep: #C94200;
+  --yellow: #F5C800;
+  --cream: #FAF6EF;
+  --cream-dark: #F0E8DC;
+  --warm-grey: #E8E0D4;
+  --warm-grey-mid: #C8BFB2;
+  --ink: #1A1208;
+  --ink-mid: #3D3020;
+  --ink-light: rgba(26,18,8,.45);
+  --ink-xlight: rgba(26,18,8,.22);
+  --white: #FFFFFF;
+}
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#fff;color:#111;font-family:system-ui,-apple-system,sans-serif;overflow-x:hidden}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+}
 
-/* NAV */
-nav{padding:20px 60px;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;width:100%;z-index:100;transition:all .35s}
-nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.07)}
-.logo{font-weight:900;font-size:22px;color:#fff;letter-spacing:-.01em;transition:color .35s}
-nav.scrolled .logo{color:#111}
-.logo-mic{color:#E8500A}
-.nav-cta{font-size:12px;font-weight:700;padding:9px 22px;border-radius:100px;text-decoration:none;transition:all .3s;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px)}
-nav.scrolled .nav-cta{background:#E8500A;color:#fff;border-color:#E8500A}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,80,10,.3)}
+/* ── TYPOGRAPHY ── */
+.bebas { font-family:'Bebas Neue',sans-serif; }
+.mono  { font-family:'DM Mono',monospace; }
 
-/* HERO */
-.hero{min-height:100vh;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 40px 60px;position:relative;overflow:hidden}
-.hero-bg-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(232,80,10,.18) 0%,transparent 65%);pointer-events:none}
-.hero-label{font-size:9px;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:22px;display:block}
-.hero-h1{font-weight:900;font-size:clamp(42px,7vw,86px);line-height:.92;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
-.hero-h1 span{color:#E8500A}
-.hero-sub{font-size:16px;line-height:1.75;color:rgba(255,255,255,.5);max-width:520px;font-weight:300;margin:0 auto 16px}
-.hero-sub strong{color:rgba(255,255,255,.8);font-weight:500}
-.ritual{display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border:1px solid rgba(255,255,255,.1);border-radius:100px;margin-bottom:36px;font-size:13px;color:rgba(255,255,255,.6)}
-.ritual-dot{color:#E8500A}
-.hero-btns{display:flex;gap:12px;justify-content:center;margin-bottom:64px}
-.btn-o{font-weight:700;font-size:14px;color:#fff;background:#E8500A;padding:14px 36px;border-radius:100px;text-decoration:none;transition:all .3s;display:inline-block}
-.btn-o:hover{background:#FF6B1A;box-shadow:0 6px 24px rgba(232,80,10,.5);transform:translateY(-1px)}
-.btn-g{font-size:14px;color:rgba(255,255,255,.5);background:transparent;border:1px solid rgba(255,255,255,.15);padding:14px 28px;border-radius:100px;text-decoration:none;transition:all .3s;display:inline-block}
-.btn-g:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+/* ── NAV ── */
+nav {
+  position:fixed;top:0;width:100%;z-index:200;
+  padding:16px 60px;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:all .35s;
+}
+nav.scrolled {
+  background:rgba(250,246,239,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,18,8,.08);
+}
+.logo {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:26px;letter-spacing:.04em;
+  color:var(--ink);
+}
+.logo-mic { color:var(--orange); }
+.logo-sub {
+  font-size:8px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-light);margin-top:1px;
+  font-family:'DM Mono',monospace;
+}
 
-/* product photo */
-.hero-img-wrap{position:relative;width:100%;max-width:560px;margin:0 auto}
-.hero-img{width:100%;display:block;filter:drop-shadow(0 40px 80px rgba(232,80,10,.25)) drop-shadow(0 0 40px rgba(0,0,0,.6))}
+.nav-right { display:flex;gap:10px;align-items:center; }
 
-/* hero stats */
-.hero-stats{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.08);padding-top:36px;width:100%;max-width:560px;margin:0 auto}
-.hs{flex:1;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
+/* Language toggle */
+.lang-toggle {
+  display:flex;gap:0;border:1.5px solid rgba(26,18,8,.15);
+  border-radius:100px;overflow:hidden;
+  font-family:'DM Mono',monospace;
+}
+.lang-btn {
+  font-size:11px;font-weight:500;letter-spacing:.08em;
+  padding:6px 14px;cursor:pointer;border:none;
+  background:transparent;color:var(--ink-light);
+  transition:all .2s;
+}
+.lang-btn.active {
+  background:var(--orange);color:#fff;
+}
+
+.nav-cta {
+  font-size:12px;font-weight:700;
+  padding:9px 22px;border-radius:100px;
+  text-decoration:none;transition:all .3s;
+  background:var(--orange);color:#fff;
+  border:none;
+}
+.nav-cta:hover{background:var(--orange-light);transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,80,10,.3)}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  background:var(--orange);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:120px 60px 80px;
+  position:relative;overflow:hidden;
+  gap:40px;
+}
+
+/* Grain texture */
+.hero::before {
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.6;
+}
+
+.hero-left { position:relative;z-index:2; }
+
+.hero-eyebrow {
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:100px;
+  background:rgba(255,255,255,.15);
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.8);
+  margin-bottom:24px;
+}
+.hero-eyebrow-dot { color:rgba(255,255,255,.4); }
+
+.hero-h1 {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(72px,9vw,118px);
+  line-height:.88;
+  letter-spacing:.01em;
+  color:#fff;
+  margin-bottom:20px;
+}
+.hero-h1 em {
+  display:block;
+  font-style:italic;
+  color:var(--yellow);
+}
+
+.hero-sub {
+  font-size:16px;line-height:1.75;
+  color:rgba(255,255,255,.75);
+  max-width:420px;
+  font-weight:300;
+  margin-bottom:14px;
+}
+.hero-sub strong { color:#fff;font-weight:500; }
+
+.ritual-line {
+  display:flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;
+  font-size:12px;letter-spacing:.1em;
+  color:rgba(255,255,255,.55);
+  margin-bottom:36px;
+}
+.ritual-sep { color:rgba(255,255,255,.25); }
+
+.hero-btns { display:flex;gap:12px;align-items:center; }
+.btn-primary {
+  font-weight:700;font-size:14px;
+  color:var(--orange);background:#fff;
+  padding:14px 36px;border-radius:100px;
+  text-decoration:none;transition:all .3s;
+  display:inline-block;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.2)}
+.btn-secondary {
+  font-size:14px;color:rgba(255,255,255,.7);
+  background:transparent;border:1.5px solid rgba(255,255,255,.25);
+  padding:14px 28px;border-radius:100px;
+  text-decoration:none;transition:all .3s;display:inline-block;
+}
+.btn-secondary:hover{color:#fff;border-color:rgba(255,255,255,.6)}
+
+/* Hero right — product image */
+.hero-right {
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+}
+.hero-img {
+  width:100%;max-width:460px;
+  filter:drop-shadow(0 40px 80px rgba(0,0,0,.35));
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
+/* Hero stats */
+.hero-stats {
+  display:flex;gap:0;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);
+  border-radius:14px;
+  padding:20px 0;
+  width:100%;max-width:460px;
+  margin-top:28px;
+}
+.hs {
+  flex:1;text-align:center;
+  border-right:1px solid rgba(255,255,255,.15);
+}
 .hs:last-child{border-right:none}
-.hs-v{font-weight:900;font-size:22px;color:#fff;display:block;line-height:1}
-.hs-v span{color:#E8500A}
-.hs-l{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:5px;display:block}
+.hs-v {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:26px;color:#fff;display:block;line-height:1;
+  letter-spacing:.03em;
+}
+.hs-v span{color:var(--yellow)}
+.hs-l {
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);margin-top:4px;display:block;
+}
 
-/* MARQUEE */
-.mq{background:#E8500A;padding:10px 0;overflow:hidden;white-space:nowrap}
+/* ── MARQUEE ── */
+.mq {
+  background:var(--ink);
+  padding:11px 0;overflow:hidden;white-space:nowrap;
+}
 .mq-track{display:inline-flex;animation:mq 22s linear infinite}
-.mq-i{font-weight:700;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.85);padding:0 22px}
-.mq-d{color:rgba(255,255,255,.4)}
+.mq-i {
+  font-family:'DM Mono',monospace;
+  font-weight:500;font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);padding:0 22px;
+}
+.mq-d{color:var(--orange)}
 @keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* SECTIONS */
-.section{padding:100px 60px;max-width:1100px;margin:0 auto}
-.s-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#E8500A;margin-bottom:12px;display:block}
-.s-h{font-weight:900;font-size:clamp(36px,5vw,58px);line-height:.92;letter-spacing:-.02em;color:#111;margin-bottom:18px}
-.s-h em{font-style:italic;color:#E8500A}
-.s-p{font-size:15px;line-height:1.8;color:rgba(0,0,0,.5);max-width:540px;font-weight:300}
-.s-p strong{color:#111}
+/* ── PRODUCT SHOWCASE ── */
+.product-showcase {
+  background:var(--white);
+  padding:100px 60px;
+  border-bottom:1px solid var(--warm-grey);
+}
+.ps-inner {
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+.ps-h {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(48px,6vw,80px);
+  line-height:.88;letter-spacing:.01em;
+  color:var(--ink);margin-bottom:16px;
+}
+.ps-h em{color:var(--orange);font-style:italic}
+.ps-p {
+  font-size:15px;line-height:1.8;
+  color:var(--ink-light);font-weight:300;
+  margin-bottom:32px;max-width:380px;
+}
+.ps-specs {
+  display:grid;grid-template-columns:1fr 1fr;gap:3px;
+}
+.ps-spec {
+  background:var(--cream);
+  padding:16px 18px;display:flex;flex-direction:column;gap:4px;
+}
+.ps-spec:nth-child(1){border-radius:10px 0 0 0}
+.ps-spec:nth-child(2){border-radius:0 10px 0 0}
+.ps-spec:nth-child(3){border-radius:0 0 0 10px}
+.ps-spec:nth-child(4){border-radius:0 0 10px 0}
+.ps-spec-v {
+  font-family:'DM Mono',monospace;
+  font-weight:500;font-size:14px;color:var(--orange);letter-spacing:.04em;
+}
+.ps-spec-l {
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-light);
+}
 
-/* BENEFITS */
-.ben-wrap{background:#f8f5f0;padding:100px 60px}
+.ps-right {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  align-items:start;
+}
+.ps-img-main {
+  position:relative;
+  grid-column:1 / 3;
+}
+.ps-img-hero {
+  width:100%;border-radius:20px;
+  box-shadow:0 32px 80px rgba(26,18,8,.12);
+  display:block;
+}
+.ps-img-badge {
+  position:absolute;bottom:16px;right:16px;
+  background:var(--orange);color:#fff;
+  padding:10px 16px;border-radius:10px;
+  text-align:center;
+}
+.ps-img-badge span {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;line-height:1;display:block;letter-spacing:.03em;
+}
+.ps-img-badge small {
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:.12em;text-transform:uppercase;
+  opacity:.8;display:block;margin-top:2px;
+}
+.ps-img-secondary {
+  grid-column:1 / 3;
+  position:relative;
+}
+.ps-img-ben {
+  width:100%;border-radius:16px;
+  box-shadow:0 16px 40px rgba(26,18,8,.08);
+  display:block;
+}
+.ps-img-tag {
+  position:absolute;bottom:12px;left:12px;
+  background:rgba(26,18,8,.75);
+  backdrop-filter:blur(8px);
+  color:#fff;padding:8px 14px;border-radius:8px;
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+}
+
+/* ── INNOVATION SECTION ── */
+.innovation {
+  background:var(--cream-dark);
+  padding:100px 60px;
+  position:relative;overflow:hidden;
+}
+.innovation::before {
+  content:'TRADITION';
+  position:absolute;top:-20px;right:-20px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:220px;color:rgba(26,18,8,.04);
+  line-height:1;pointer-events:none;letter-spacing:-.02em;
+}
+.innov-inner{max-width:1100px;margin:0 auto}
+.sec-label {
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:14px;display:block;
+}
+.innov-h {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,7vw,96px);
+  line-height:.88;letter-spacing:.01em;
+  color:var(--ink);margin-bottom:40px;
+}
+.innov-grid {
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;
+}
+.innov-p {
+  font-size:15px;line-height:1.85;
+  color:var(--ink-light);font-weight:300;
+  margin-bottom:14px;
+}
+.innov-p strong{color:var(--ink);font-weight:500}
+.innov-right{display:flex;flex-direction:column;gap:3px}
+.innov-card {
+  background:var(--white);
+  padding:22px 24px;
+  border-left:3px solid var(--orange);
+  border-radius:0;
+  transition:all .3s;
+}
+.innov-card:first-child{border-radius:12px 12px 0 0}
+.innov-card:last-child{border-radius:0 0 12px 12px}
+.innov-card:hover{transform:translateX(5px);box-shadow:4px 0 20px rgba(232,80,10,.1)}
+.innov-card:nth-child(2){border-left-color:var(--yellow)}
+.ic-t{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px}
+.ic-b{font-size:13px;line-height:1.6;color:var(--ink-light)}
+
+/* ── BENEFITS ── */
+.benefits {
+  background:var(--white);
+  padding:100px 60px;
+}
 .ben-inner{max-width:1100px;margin:0 auto}
-.ben-row{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:60px}
-.ben-img{width:100%;border-radius:20px;display:block;box-shadow:0 24px 60px rgba(0,0,0,.1)}
-.ben-list{display:flex;flex-direction:column;gap:3px}
-.ben-item{background:#fff;padding:28px 26px;border-left:3px solid #E8500A;transition:all .3s}
-.ben-item:first-child{border-radius:12px 12px 0 0}
-.ben-item:last-child{border-radius:0 0 12px 12px}
-.ben-item:hover{transform:translateX(5px);box-shadow:4px 0 20px rgba(232,80,10,.1)}
-.ben-item:nth-child(2){border-left-color:#F5C800}
-.ben-item:nth-child(3){border-left-color:#5A9E72}
-.bi-icon{font-size:22px;margin-bottom:8px;display:block}
-.bi-t{font-weight:700;font-size:17px;color:#111;margin-bottom:5px}
-.bi-b{font-size:13px;line-height:1.65;color:rgba(0,0,0,.45)}
+.ben-top {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:center;margin-bottom:60px;
+}
+.ben-h {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,6vw,80px);
+  line-height:.88;letter-spacing:.01em;color:var(--ink);
+}
+.ben-h em{color:var(--orange);font-style:italic}
+.ben-sub{font-size:15px;line-height:1.8;color:var(--ink-light);font-weight:300}
+.ben-img{
+  width:100%;border-radius:20px;
+  box-shadow:0 24px 60px rgba(26,18,8,.1);
+}
 
-/* SCIENCE */
-.sci-wrap{background:#111;padding:100px 60px}
-.sci-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.sci-big{font-weight:900;font-size:clamp(80px,13vw,148px);line-height:.85;letter-spacing:-.04em;color:#E8500A}
-.sci-big-sub{font-weight:700;font-size:16px;color:rgba(255,255,255,.35);margin-top:8px;letter-spacing:-.01em}
+.ben-grid {
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3px;
+}
+.ben-card {
+  background:var(--cream);
+  padding:40px 32px;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.ben-card:first-child{border-radius:16px 0 0 16px}
+.ben-card:last-child{border-radius:0 16px 16px 0}
+.ben-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:3px;background:var(--orange);
+  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.ben-card:hover::after{transform:scaleX(1)}
+.ben-card:hover{background:var(--cream-dark);transform:translateY(-5px);box-shadow:0 20px 48px rgba(26,18,8,.08)}
+.ben-card:nth-child(2)::after{background:var(--yellow)}
+.ben-card:nth-child(3)::after{background:#5A9E72}
+.ben-icon{font-size:32px;display:block;margin-bottom:16px}
+.ben-t{font-weight:700;font-size:20px;color:var(--ink);margin-bottom:8px}
+.ben-b{font-size:13px;line-height:1.7;color:var(--ink-light)}
+
+/* ── SCIENCE ── */
+.science {
+  background:var(--orange);
+  padding:100px 60px;
+  position:relative;overflow:hidden;
+}
+.science::before {
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.sci-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
+.sci-label-w{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin-bottom:10px;display:block;
+}
+.sci-big {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(100px,14vw,168px);
+  line-height:.82;letter-spacing:-.02em;color:#fff;
+}
+.sci-big-accent{color:var(--yellow)}
+.sci-big-sub{
+  font-size:15px;color:rgba(255,255,255,.55);
+  font-weight:300;margin-top:12px;line-height:1.6;
+}
+.sci-big-sub strong{color:rgba(255,255,255,.85);font-weight:500}
+
 .sci-cards{display:flex;flex-direction:column;gap:3px}
-.sci-card{background:#1a1a1a;padding:20px 22px;border-left:2px solid #E8500A;transition:all .3s}
-.sci-card:first-child{border-radius:8px 8px 0 0}
-.sci-card:last-child{border-radius:0 0 8px 8px}
-.sci-card:hover{background:#222;transform:translateX(4px)}
+.sci-card{
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);
+  padding:22px 24px;
+  border-left:2px solid rgba(255,255,255,.3);
+  transition:all .3s;
+}
+.sci-card:first-child{border-radius:12px 12px 0 0}
+.sci-card:last-child{border-radius:0 0 12px 12px}
+.sci-card:hover{background:rgba(255,255,255,.2);transform:translateX(4px)}
 .sc-t{font-weight:700;font-size:14px;color:#fff;margin-bottom:3px}
-.sc-b{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5}
-.sci-label{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#E8500A;margin-bottom:12px;display:block}
-.sci-h{font-weight:900;font-size:clamp(36px,4vw,52px);line-height:.92;letter-spacing:-.02em;color:#fff;margin-bottom:20px}
-.sci-h em{color:#F5C800;font-style:italic}
+.sc-b{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
 
-/* HOW */
-.how-wrap{background:#fff;padding:100px 60px;border-top:1px solid rgba(0,0,0,.06)}
-.how-inner{max-width:1100px;margin:0 auto}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:56px}
-.step{background:#f8f5f0;padding:44px 32px;transition:all .3s;position:relative;overflow:hidden}
-.step:first-child{border-radius:16px 0 0 16px}
-.step:last-child{border-radius:0 16px 16px 0}
-.step::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:#E8500A;transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.step:hover::after{transform:scaleX(1)}
-.step:hover{background:#f0ece4;transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.08)}
-.step-n{font-weight:900;font-size:56px;color:rgba(232,80,10,.08);line-height:1;display:block;margin-bottom:10px}
-.step-icon{font-size:36px;display:block;margin-bottom:16px}
-.step-t{font-weight:900;font-size:22px;color:#111;margin-bottom:8px}
-.step-b{font-size:13px;line-height:1.65;color:rgba(0,0,0,.45)}
+/* ── RITUAL (POUR SHAKE SHOT) ── */
+.ritual-section {
+  background:var(--ink);
+  padding:100px 60px;
+  position:relative;overflow:hidden;
+}
+.ritual-bg-text {
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(120px,18vw,220px);
+  white-space:nowrap;
+  color:rgba(255,255,255,.025);
+  pointer-events:none;letter-spacing:.1em;
+}
+.ritual-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.ritual-top{margin-bottom:60px}
+.ritual-label-w{
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:12px;display:block;
+}
+.ritual-h {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,5vw,72px);
+  color:#fff;line-height:.9;
+}
+.ritual-h em{color:var(--orange);font-style:italic}
 
-/* SOCIAL */
-.social-wrap{background:#f8f5f0;padding:80px 60px;border-top:1px solid rgba(0,0,0,.06)}
+.ritual-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.r-step{
+  background:#252015;
+  padding:52px 36px;
+  position:relative;overflow:hidden;
+  transition:all .3s;
+}
+.r-step:first-child{border-radius:16px 0 0 16px}
+.r-step:last-child{border-radius:0 16px 16px 0}
+.r-step::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:3px;background:var(--orange);
+  transform:scaleX(0);transform-origin:left;transition:transform .5s;
+}
+.r-step:hover::after{transform:scaleX(1)}
+.r-step:hover{background:#2e2516;transform:translateY(-5px)}
+
+.r-word {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(48px,6vw,80px);
+  letter-spacing:.04em;
+  color:#fff;display:block;margin-bottom:12px;line-height:1;
+}
+.r-word span{color:var(--orange)}
+.r-icon{font-size:36px;display:block;margin-bottom:16px}
+.r-desc{font-size:13px;line-height:1.7;color:rgba(255,255,255,.35)}
+.r-step-n{
+  position:absolute;top:20px;right:24px;
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:rgba(255,255,255,.1);
+  letter-spacing:.1em;
+}
+
+/* ── SOCIAL ── */
+.social {
+  background:var(--cream-dark);
+  padding:80px 60px;
+}
 .soc-inner{max-width:1100px;margin:0 auto;text-align:center}
-.soc-h{font-weight:900;font-size:clamp(30px,4vw,48px);line-height:.9;letter-spacing:-.02em;color:#111;margin-bottom:10px}
-.soc-h em{color:#E8500A;font-style:italic}
-.soc-p{font-size:14px;color:rgba(0,0,0,.4);margin-bottom:44px}
+.soc-h {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(44px,6vw,80px);
+  line-height:.88;letter-spacing:.01em;
+  color:var(--ink);margin-bottom:10px;
+}
+.soc-h em{color:var(--orange);font-style:italic}
+.soc-p{font-size:14px;color:var(--ink-light);margin-bottom:44px;line-height:1.7}
 .soc-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.soc-btn{display:flex;align-items:center;gap:12px;padding:16px 28px;border-radius:14px;text-decoration:none;transition:all .3s;font-weight:600;font-size:14px}
-.soc-ig{background:#fff;color:#111;box-shadow:0 2px 16px rgba(0,0,0,.08)}
-.soc-ig:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.12)}
-.soc-sp{background:#EE4D2D;color:#fff}
-.soc-sp:hover{background:#d94526;transform:translateY(-2px);box-shadow:0 8px 24px rgba(238,77,45,.35)}
-.soc-tt{background:#111;color:#fff}
-.soc-tt:hover{background:#222;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.soc-btn{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 28px;border-radius:14px;
+  text-decoration:none;transition:all .3s;
+  font-weight:600;font-size:14px;
+}
+.soc-sp{background:var(--orange);color:#fff}
+.soc-sp:hover{background:var(--orange-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,80,10,.3)}
+.soc-ig{background:var(--white);color:var(--ink);box-shadow:0 2px 16px rgba(26,18,8,.08)}
+.soc-ig:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,18,8,.12)}
+.soc-tt{background:var(--ink);color:#fff}
+.soc-tt:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,18,8,.25)}
 .soc-icon{font-size:22px}
 .soc-name{display:flex;flex-direction:column;text-align:left}
 .soc-handle{font-size:10px;opacity:.5;font-weight:400;letter-spacing:.05em}
 
-/* CTA */
-.cta{background:#E8500A;padding:120px 60px;text-align:center;position:relative;overflow:hidden}
-.cta::before{content:'';position:absolute;top:-30%;right:-10%;width:600px;height:600px;background:rgba(255,255,255,.05);border-radius:50%}
+/* ── CTA ── */
+.cta-section {
+  background:var(--orange-deep);
+  padding:120px 60px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;
+  top:-20%;right:-10%;
+  width:600px;height:600px;
+  background:rgba(255,255,255,.04);
+  border-radius:50%;
+}
+.cta-section::after{
+  content:'';position:absolute;
+  bottom:-20%;left:-10%;
+  width:400px;height:400px;
+  background:rgba(0,0,0,.06);
+  border-radius:50%;
+}
 .cta-inner{max-width:560px;margin:0 auto;position:relative;z-index:2}
-.cta-h{font-weight:900;font-size:clamp(44px,7vw,84px);line-height:.88;letter-spacing:-.03em;color:#fff;margin-bottom:18px}
-.cta-h em{color:#F5C800;font-style:italic}
-.cta-p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.7);margin-bottom:44px;font-weight:300}
+.cta-h {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(60px,9vw,110px);
+  line-height:.84;letter-spacing:.01em;
+  color:#fff;margin-bottom:18px;
+}
+.cta-h em{color:var(--yellow);font-style:italic}
+.cta-p{
+  font-size:16px;line-height:1.75;
+  color:rgba(255,255,255,.7);margin-bottom:44px;font-weight:300;
+}
 .cta-p strong{color:#fff}
-.btn-cta{font-weight:700;font-size:15px;color:#E8500A;background:#fff;padding:16px 44px;border-radius:100px;text-decoration:none;display:inline-block;transition:all .3s}
+.btn-cta{
+  font-weight:700;font-size:15px;
+  color:var(--orange);background:#fff;
+  padding:16px 44px;border-radius:100px;
+  text-decoration:none;display:inline-block;transition:all .3s;
+}
 .btn-cta:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,0,0,.2)}
-.cta-note{font-size:11px;color:rgba(255,255,255,.35);margin-top:22px;letter-spacing:.06em}
+.cta-note{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:rgba(255,255,255,.3);
+  margin-top:22px;letter-spacing:.08em;
+}
 
-/* FOOTER */
-footer{background:#111;padding:44px 60px;display:flex;justify-content:space-between;align-items:center}
-.ft-logo{font-weight:900;font-size:20px;color:#fff}
-.ft-mic{color:#E8500A}
-.ft-sub{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:3px}
-.ft-meta{font-size:8px;letter-spacing:.08em;color:rgba(255,255,255,.2);text-align:right;line-height:1.9}
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);
+  padding:44px 60px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.ft-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;letter-spacing:.04em;color:#fff;
+}
+.ft-mic{color:var(--orange)}
+.ft-sub{
+  font-family:'DM Mono',monospace;
+  font-size:7px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.2);margin-top:3px;
+}
+.ft-meta{
+  font-family:'DM Mono',monospace;
+  font-size:8px;letter-spacing:.08em;
+  color:rgba(255,255,255,.2);text-align:right;line-height:1.9;
+}
 
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
-  nav,footer{padding:18px 24px}
-  .hero{padding:90px 24px 60px}
-  .section,.ben-wrap,.sci-wrap,.how-wrap,.social-wrap,.cta{padding:70px 24px}
-  .ben-row,.sci-inner{grid-template-columns:1fr;gap:36px}
-  .steps{grid-template-columns:1fr;gap:3px}
-  .step:first-child,.step:last-child{border-radius:16px}
-  footer{flex-direction:column;gap:14px}
-  .ft-meta{text-align:left}
+  nav,footer{padding:16px 24px}
+  .hero{grid-template-columns:1fr;padding:100px 24px 60px;text-align:center}
+  .hero-right{margin-top:40px}
+  .hero-sub{max-width:100%;margin:0 auto 14px}
+  .ritual-line,.hero-btns{justify-content:center}
+  .innovation,.benefits,.science,.ritual-section,.social,.cta-section{padding:70px 24px}
+  .innov-grid,.sci-inner,.ben-top,.ps-inner{grid-template-columns:1fr;gap:40px}
+  .product-showcase{padding:70px 24px}
+  .ben-grid,.ritual-steps{grid-template-columns:1fr;gap:3px}
+  .ben-card:first-child,.ben-card:last-child,
+  .r-step:first-child,.r-step:last-child{border-radius:16px}
+  footer{flex-direction:column;gap:16px;text-align:center}
+  .ft-meta{text-align:center}
 }
 </style>
 </head>
@@ -162,154 +641,281 @@ footer{background:#111;padding:44px 60px;display:flex;justify-content:space-betw
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="logo">Tu<span class="logo-mic">MIC</span></div>
-  <a href="https://shopee.co.id/tumic639" target="_blank" class="nav-cta">Get TuMIC →</a>
+  <div>
+    <div class="logo">Tu<span class="logo-mic">MIC</span></div>
+    <div class="logo-sub mono">Purified Curcumin · By NAU Labs</div>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('id')" id="btn-id">ID</button>
+    </div>
+    <a href="https://shopee.co.id/tumic639" target="_blank" class="nav-cta" data-en="Get TuMIC →" data-id="Dapatkan TuMIC →">Get TuMIC →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg-glow"></div>
-  <span class="hero-label">Purified Curcumin · Powder-in-Bottle Shot</span>
-  <h1 class="hero-h1">Recovery, <span>Simplified.</span></h1>
-  <p class="hero-sub">A modern Jamu shot for people who move. Precisely dosed, <strong>20× more curcumin</strong> than traditional jamu or cold press — and designed to actually absorb.</p>
-  <div class="ritual">
-    <span>🫙 Pour</span><span class="ritual-dot">·</span>
-    <span>🫧 Shake</span><span class="ritual-dot">·</span>
-    <span>⚡ Shot</span>
+  <div class="hero-left fade-up">
+    <div class="hero-eyebrow mono">
+      <span>Purified Curcumin</span>
+      <span class="hero-eyebrow-dot">◆</span>
+      <span>Powder-in-Bottle Shot</span>
+    </div>
+    <h1 class="hero-h1 bebas">
+      Recovery,<em>Simplified.</em>
+    </h1>
+    <p class="hero-sub" data-en="A modern Jamu shot for people who move. Precisely dosed, <strong>20× more curcumin</strong> than traditional jamu or cold press — and designed to actually absorb." data-id="Jamu modern untuk kamu yang aktif bergerak. Dosis tepat, <strong>20× lebih banyak kurkumin</strong> dari jamu tradisional atau cold press — dan diformulasikan agar benar-benar terserap tubuh.">
+      A modern Jamu shot for people who move. Precisely dosed, <strong>20× more curcumin</strong> than traditional jamu or cold press — and designed to actually absorb.
+    </p>
+    <div class="ritual-line mono">
+      <span>🫙 Pour</span><span class="ritual-sep">·</span>
+      <span>🫧 Shake</span><span class="ritual-sep">·</span>
+      <span>⚡ Shot</span>
+    </div>
+    <div class="hero-btns">
+      <a href="https://shopee.co.id/tumic639" target="_blank" class="btn-primary" data-en="Order Now" data-id="Order Now">Order Now</a>
+      <a href="#benefits" class="btn-secondary" data-en="Learn More" data-id="Learn More">Learn More</a>
+    </div>
   </div>
-  <div class="hero-btns">
-    <a href="https://shopee.co.id/tumic639" target="_blank" class="btn-o">Order Now</a>
-    <a href="#benefits" class="btn-g">Learn More</a>
-  </div>
-  <div class="hero-img-wrap">
+  <div class="hero-right fade-up" style="transition-delay:.15s">
     <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663027054840/PjpoMPTvZ7CNmicaTfkDRc/tumic-hero-home-DAavqHDRP7ysNXo7NjCr6q.webp"
          class="hero-img" alt="TuMIC Product">
-  </div>
-  <div class="hero-stats">
-    <div class="hs"><span class="hs-v">20<span>×</span></span><span class="hs-l">More Curcumin</span></div>
-    <div class="hs"><span class="hs-v">2000<span>%</span></span><span class="hs-l">Bioavailability</span></div>
-    <div class="hs"><span class="hs-v">BPOM</span><span class="hs-l">Registered</span></div>
-    <div class="hs"><span class="hs-v">HALAL</span><span class="hs-l">Certified</span></div>
+    <div class="hero-stats">
+      <div class="hs">
+        <span class="hs-v bebas">20<span>×</span></span>
+        <span class="hs-l mono" data-en="More Curcumin" data-id="Lebih Banyak Kurkumin">More Curcumin</span>
+      </div>
+      <div class="hs">
+        <span class="hs-v bebas">2000<span>%</span></span>
+        <span class="hs-l mono" data-en="Penyerapan" data-id="Penyerapan">Penyerapan</span>
+      </div>
+      <div class="hs">
+        <span class="hs-v bebas" style="font-size:18px">BPOM</span>
+        <span class="hs-l mono">Registered</span>
+      </div>
+      <div class="hs">
+        <span class="hs-v bebas" style="font-size:18px">HALAL</span>
+        <span class="hs-l mono">Certified</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- MARQUEE -->
 <div class="mq">
   <div class="mq-track">
-    <span class="mq-i">TuMIC <span class="mq-d">◆</span></span>
-    <span class="mq-i">20× More Curcumin <span class="mq-d">◆</span></span>
-    <span class="mq-i">Pour. Shake. Shot. <span class="mq-d">◆</span></span>
-    <span class="mq-i">BPOM Registered <span class="mq-d">◆</span></span>
-    <span class="mq-i">Formulated with STFI <span class="mq-d">◆</span></span>
-    <span class="mq-i">HALAL Certified <span class="mq-d">◆</span></span>
-    <span class="mq-i">Recovery · Immunity · Clarity <span class="mq-d">◆</span></span>
-    <span class="mq-i">TuMIC <span class="mq-d">◆</span></span>
-    <span class="mq-i">20× More Curcumin <span class="mq-d">◆</span></span>
-    <span class="mq-i">Pour. Shake. Shot. <span class="mq-d">◆</span></span>
-    <span class="mq-i">BPOM Registered <span class="mq-d">◆</span></span>
-    <span class="mq-i">Formulated with STFI <span class="mq-d">◆</span></span>
-    <span class="mq-i">HALAL Certified <span class="mq-d">◆</span></span>
-    <span class="mq-i">Recovery · Immunity · Clarity <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">TuMIC <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">20× More Curcumin <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">Pour. Shake. Shot. <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">BPOM Registered <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">Formulated with STFI <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">HALAL Certified <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">Recovery · Immunity · Clarity <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">TuMIC <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">20× More Curcumin <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">Pour. Shake. Shot. <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">BPOM Registered <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">Formulated with STFI <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">HALAL Certified <span class="mq-d">◆</span></span>
+    <span class="mq-i mono">Recovery · Immunity · Clarity <span class="mq-d">◆</span></span>
   </div>
 </div>
 
+<!-- PRODUCT PHOTO SECTION -->
+<section class="product-showcase">
+  <div class="ps-inner">
+    <div class="ps-left fade-up">
+      <span class="sec-label mono" data-en="The Product" data-id="Produknya">Produknya</span>
+      <h2 class="ps-h bebas" data-en="One bottle.<br><em>One ritual.</em>" data-id="Satu botol.<br><em>Satu ritual.</em>">Satu botol.<br><em>Satu ritual.</em></h2>
+      <p class="ps-p" data-en="Powder-in-bottle format. Already inside, waiting for water. No mess. No prep. No cold chain." data-id="Format serbuk dalam botol. Sudah ada di dalam, tinggal tambah air. Tidak berantakan. Tidak perlu persiapan. Tanpa cold chain.">Format serbuk dalam botol. Sudah ada di dalam, tinggal tambah air. Tidak berantakan. Tidak perlu persiapan. Tanpa cold chain.</p>
+      <div class="ps-specs">
+        <div class="ps-spec">
+          <span class="ps-spec-v mono">Purified</span>
+          <span class="ps-spec-l mono" data-en="Curcumin Type" data-id="Jenis Curkumin">Jenis Curkumin</span>
+        </div>
+        <div class="ps-spec">
+          <span class="ps-spec-v mono">+ Piperine</span>
+          <span class="ps-spec-l mono" data-en="Absorption Booster" data-id="Penyerap Lebih Baik">Penyerap Lebih Baik</span>
+        </div>
+        <div class="ps-spec">
+          <span class="ps-spec-v mono">BPOM</span>
+          <span class="ps-spec-l mono">Registered</span>
+        </div>
+        <div class="ps-spec">
+          <span class="ps-spec-v mono">HALAL</span>
+          <span class="ps-spec-l mono">Certified</span>
+        </div>
+      </div>
+    </div>
+    <div class="ps-right fade-up" style="transition-delay:.15s">
+      <!-- Main hero product image -->
+      <div class="ps-img-main">
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663027054840/PjpoMPTvZ7CNmicaTfkDRc/tumic-hero-home-DAavqHDRP7ysNXo7NjCr6q.webp"
+             alt="TuMIC Product" class="ps-img-hero">
+        <div class="ps-img-badge mono">
+          <span>20×</span>
+          <small data-en="More Curcumin" data-id="Lebih Banyak Kurkumin">Lebih Banyak Kurkumin</small>
+        </div>
+      </div>
+      <!-- Benefits image as secondary -->
+      <div class="ps-img-secondary">
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663027054840/PjpoMPTvZ7CNmicaTfkDRc/tumic-hero-benefits-7ABvEnq7FqbwWdenf6gZrJ.webp"
+             alt="TuMIC Benefits" class="ps-img-ben">
+        <div class="ps-img-tag mono" data-en="Pour. Shake. Shot." data-id="Pour. Shake. Shot.">Pour. Shake. Shot.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY TUMIC -->
+<section class="innovation" id="science">
+  <div class="innov-inner">
+    <span class="sec-label mono" data-en="Why TuMIC Exists" data-id="Kenapa TuMIC Ada">Kenapa TuMIC Ada</span>
+    <h2 class="innov-h bebas fade-up" data-en="Why<br>TuMIC?" data-id="Kenapa<br>TuMIC?">Kenapa<br>TuMIC?</h2>
+    <div class="innov-grid">
+      <div>
+        <p class="innov-p fade-up" data-en="Turmeric has been used for recovery for thousands of years. Science confirmed it works. But the problem? Your body absorbs almost none of it from raw form — and traditional jamu is simply not designed for modern life." data-id="Kunyit sudah dipakai untuk pemulihan selama ribuan tahun. Sains sudah membuktikannya. Tapi masalahnya? Tubuhmu hampir tidak menyerap apa pun dari bentuk mentahnya — dan jamu tradisional memang tidak dirancang untuk kehidupan modern.">
+          Kunyit sudah dipakai untuk pemulihan selama ribuan tahun. Sains sudah membuktikannya. Tapi masalahnya? Tubuhmu hampir tidak menyerap apa pun dari bentuk mentahnya — dan jamu tradisional memang tidak dirancang untuk kehidupan modern.
+        </p>
+        <p class="innov-p fade-up" data-en="TuMIC exists for one reason: <strong>to make the benefit real.</strong> Not just present in the bottle — actually absorbed, actually working." data-id="TuMIC ada karena satu alasan: <strong>agar manfaatnya nyata.</strong> Bukan cuma ada di dalam botol — tapi benar-benar terserap, benar-benar bekerja.">
+          TuMIC ada karena satu alasan: <strong>agar manfaatnya nyata.</strong> Bukan cuma ada di dalam botol — tapi benar-benar terserap, benar-benar bekerja.
+        </p>
+        <p class="innov-p fade-up" style="padding:16px 20px;background:var(--white);border-radius:10px;border-left:3px solid var(--orange)"
+           data-en="<strong>Raw turmeric drink:</strong> you get ~3% curcumin, your body absorbs ~5% of that. <strong>TuMIC:</strong> purified curcumin + Piperine. 2000% more absorption. Same ritual — completely different result."
+           data-id="<strong>Minuman kunyit biasa:</strong> kamu dapat ~3% curkumin, tubuh menyerap ~5% dari itu. <strong>TuMIC:</strong> kurkumin murni + Piperine. Penyerapan 2000% lebih tinggi. Ritual yang sama — hasil yang jauh berbeda.">
+          <strong>Minuman kunyit biasa:</strong> kamu dapat ~3% curkumin, tubuh menyerap ~5% dari itu. <strong>TuMIC:</strong> kurkumin murni + Piperine. Penyerapan 2000% lebih tinggi. Ritual yang sama — hasil yang jauh berbeda.
+        </p>
+      </div>
+      <div class="innov-right fade-up">
+        <div class="innov-card">
+          <div class="ic-t" data-en="❌ Raw Turmeric Drink" data-id="❌ Minuman Kunyit Biasa">❌ Minuman Kunyit Biasa</div>
+          <p class="ic-b" data-en="Low curcumin content. Almost zero absorption. Needs prep, cold storage, daily effort." data-id="Kandungan curkumin rendah. Penyerapan hampir nol. Butuh persiapan, kulkas, effort setiap hari.">Kandungan curkumin rendah. Penyerapan hampir nol. Butuh persiapan, kulkas, effort setiap hari.</p>
+        </div>
+        <div class="innov-card">
+          <div class="ic-t" data-en="❌ Generic Curcumin Supplements" data-id="❌ Suplemen Kurkumin Biasa">❌ Suplemen Kurkumin Biasa</div>
+          <p class="ic-b" data-en="Often skip Piperine. Low bioavailability. You pay, your body barely receives." data-id="Sering tidak ada Piperine. Bioavailabilitas rendah. Kamu bayar, tubuhmu hampir tidak dapat apa-apa.">Sering tidak ada Piperine. Bioavailabilitas rendah. Kamu bayar, tubuhmu hampir tidak dapat apa-apa.</p>
+        </div>
+        <div class="innov-card" style="border-left-color:var(--orange);background:var(--orange);color:#fff">
+          <div class="ic-t" style="color:#fff" data-en="✅ TuMIC" data-id="✅ TuMIC">✅ TuMIC</div>
+          <p class="ic-b" style="color:rgba(255,255,255,.8)" data-en="Purified curcumin + Piperine. BPOM registered. No fridge. 3 seconds. Developed with STFI." data-id="Kurkumin murni + Piperine. Terdaftar BPOM. Tanpa kulkas. 3 detik. Dikembangkan bersama STFI.">Kurkumin murni + Piperine. Terdaftar BPOM. Tanpa kulkas. 3 detik. Dikembangkan bersama STFI.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BENEFITS -->
-<section class="ben-wrap" id="benefits">
+<section class="benefits" id="benefits">
   <div class="ben-inner">
-    <span class="s-label">What TuMIC Does</span>
-    <h2 class="s-h">Three benefits.<br><em>One shot.</em></h2>
-    <div class="ben-row">
-      <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663027054840/PjpoMPTvZ7CNmicaTfkDRc/tumic-hero-benefits-7ABvEnq7FqbwWdenf6gZrJ.webp"
-           class="ben-img" alt="TuMIC Benefits">
-      <div class="ben-list">
-        <div class="ben-item">
-          <span class="bi-icon">🔥</span>
-          <div class="bi-t">Recover Faster</div>
-          <p class="bi-b">Curcumin inhibits COX-2 and NF-κB — the same pathways targeted by modern anti-inflammatories. Less soreness, faster return to peak.</p>
-        </div>
-        <div class="ben-item">
-          <span class="bi-icon">🛡️</span>
-          <div class="bi-t">Stronger Immunity</div>
-          <p class="bi-b">Curcumin acts as an immunomodulator — intelligently regulates your immune response, not just stimulates it.</p>
-        </div>
-        <div class="ben-item">
-          <span class="bi-icon">🧠</span>
-          <div class="bi-t">Clearer Mind</div>
-          <p class="bi-b">Supports BDNF production — the protein that keeps brain cells healthy. Less fog, more focus.</p>
-        </div>
+    <div class="ben-top">
+      <div>
+        <span class="sec-label mono" data-en="What TuMIC Does" data-id="What TuMIC Does">What TuMIC Does</span>
+        <h2 class="ben-h bebas fade-up">Three benefits.<br><em>One shot.</em></h2>
+      </div>
+      <p class="ben-sub fade-up" data-en="Not a magic cure. Not a mystical potion. Just a precise dose of the compound your body actually needs — formulated to be absorbed." data-id="Bukan obat ajaib. Bukan ramuan mistis. Hanya dosis tepat dari senyawa yang memang dibutuhkan tubuhmu — diformulasikan agar terserap.">
+        Bukan obat ajaib. Bukan ramuan mistis. Hanya dosis tepat dari senyawa yang memang dibutuhkan tubuhmu — diformulasikan agar terserap.
+      </p>
+    </div>
+    <img src="https://d2xsxph8kpxj0f.cloudfront.net/310419663027054840/PjpoMPTvZ7CNmicaTfkDRc/tumic-hero-benefits-7ABvEnq7FqbwWdenf6gZrJ.webp"
+         class="ben-img fade-up" alt="TuMIC Benefits" style="margin-bottom:40px">
+    <div class="ben-grid">
+      <div class="ben-card fade-up">
+        <span class="ben-icon">🔥</span>
+        <div class="ben-t" data-en="Recover Faster" data-id="Pulih Lebih Cepat">Pulih Lebih Cepat</div>
+        <p class="ben-b" data-en="Curcumin inhibits COX-2 and NF-κB — the same pathways targeted by modern anti-inflammatories. Less soreness, faster return to peak." data-id="Curkumin menghambat COX-2 dan NF-κB — jalur yang sama yang ditarget obat anti-inflamasi modern. Nyeri berkurang, performa kembali lebih cepat.">Curkumin menghambat COX-2 dan NF-κB — jalur yang sama yang ditarget obat anti-inflamasi modern. Nyeri berkurang, performa kembali lebih cepat.</p>
+      </div>
+      <div class="ben-card fade-up" style="transition-delay:.1s">
+        <span class="ben-icon">🛡️</span>
+        <div class="ben-t" data-en="Stronger Immunity" data-id="Imunitas Lebih Kuat">Imunitas Lebih Kuat</div>
+        <p class="ben-b" data-en="Curcumin acts as an immunomodulator — intelligently regulates your immune response, not just stimulates it." data-id="Curkumin bekerja sebagai imunomodulator — mengatur respons imun tubuh secara cerdas, bukan sekadar menstimulasi.">Curkumin bekerja sebagai imunomodulator — mengatur respons imun tubuh secara cerdas, bukan sekadar menstimulasi.</p>
+      </div>
+      <div class="ben-card fade-up" style="transition-delay:.2s">
+        <span class="ben-icon">🧠</span>
+        <div class="ben-t" data-en="Clearer Mind" data-id="Pikiran Lebih Jernih">Pikiran Lebih Jernih</div>
+        <p class="ben-b" data-en="Supports BDNF production — the protein that keeps brain cells healthy. Less fog, more focus." data-id="Mendukung produksi BDNF — protein yang menjaga kesehatan sel otak. Pikiran lebih jernih, fokus lebih tajam.">Mendukung produksi BDNF — protein yang menjaga kesehatan sel otak. Pikiran lebih jernih, fokus lebih tajam.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SCIENCE -->
-<section class="sci-wrap" id="science">
+<section class="science">
   <div class="sci-inner">
-    <div>
-      <span class="sci-label">The Numbers</span>
-      <div class="sci-big">20×</div>
-      <div class="sci-big-sub">more curcumin than cold press shots<br>or traditional jamu kunyit</div>
+    <div class="fade-up">
+      <span class="sci-label-w mono" data-en="The Numbers" data-id="Faktanya">Faktanya</span>
+      <div class="sci-big bebas">
+        <span class="sci-big-accent">20</span>×
+      </div>
+      <p class="sci-big-sub" data-en="more curcumin than cold press shots or <strong>traditional jamu kunyit</strong>" data-id="lebih banyak kurkumin dari cold press shot atau <strong>jamu kunyit tradisional</strong>">
+        lebih banyak kurkumin dari cold press shot atau <strong>jamu kunyit tradisional</strong>
+      </p>
     </div>
     <div>
-      <span class="sci-label">Why It Works</span>
-      <h2 class="sci-h">Purified.<br><em>Not raw.</em></h2>
-      <div class="sci-cards">
+      <span class="sci-label-w mono" data-en="Why It Works" data-id="Mengapa Efektif">Mengapa Efektif</span>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,5vw,68px);line-height:.88;color:#fff;margin-bottom:24px;letter-spacing:.01em">
+        Purified.<br><em style="color:var(--yellow);font-style:italic">Not raw.</em>
+      </h2>
+      <div class="sci-cards fade-up">
         <div class="sci-card">
           <div class="sc-t">Purified Curcumin</div>
-          <p class="sc-b">Not raw powder. Not cold press juice. Concentrated curcumin — the compound that does the work.</p>
+          <p class="sc-b" data-en="Not raw powder. Not cold press juice. Concentrated curcumin — the compound that does the work." data-id="Bukan serbuk mentah. Bukan cold press juice. Kurkumin pekat — senyawa yang benar-benar bekerja di tubuh.">Bukan serbuk mentah. Bukan cold press juice. Kurkumin pekat — senyawa yang benar-benar bekerja di tubuh.</p>
         </div>
         <div class="sci-card">
-          <div class="sc-t">Piperine — 2000% More Absorption</div>
-          <p class="sc-b">Black pepper extract dramatically increases how much curcumin your body actually absorbs. Most products skip this.</p>
+          <div class="sc-t">Piperine — 2000% Penyerapan</div>
+          <p class="sc-b" data-en="Black pepper extract dramatically increases how much curcumin your body actually absorbs. Most products skip this." data-id="Ekstrak lada hitam meningkatkan penyerapan kurkumin secara drastis. Kebanyakan produk melewatkan ini.">Ekstrak lada hitam meningkatkan penyerapan kurkumin secara drastis. Kebanyakan produk melewatkan ini.</p>
         </div>
         <div class="sci-card">
-          <div class="sc-t">Developed with STFI</div>
-          <p class="sc-b">Sekolah Tinggi Farmasi Indonesia. Real pharmaceutical science behind every bottle.</p>
+          <div class="sc-t" data-en="Developed with STFI" data-id="Dikembangkan bersama STFI">Dikembangkan bersama STFI</div>
+          <p class="sc-b" data-en="Sekolah Tinggi Farmasi Indonesia. Real pharmaceutical science behind every bottle." data-id="Sekolah Tinggi Farmasi Indonesia. Ilmu farmasi nyata di balik setiap botol.">Sekolah Tinggi Farmasi Indonesia. Ilmu farmasi nyata di balik setiap botol.</p>
         </div>
         <div class="sci-card">
-          <div class="sc-t">No Cold Chain. No Preservatives.</div>
-          <p class="sc-b">Powder stays potent until the moment you drink it. Travel anywhere, no fridge needed.</p>
+          <div class="sc-t" data-en="No Cold Chain. No Preservatives." data-id="Tanpa Cold Chain. Tanpa Pengawet.">Tanpa Cold Chain. Tanpa Pengawet.</div>
+          <p class="sc-b" data-en="Powder stays potent until the moment you drink it. Travel anywhere, no fridge needed." data-id="Serbuk tetap aktif sampai saat diminum. Bawa ke mana saja, tanpa kulkas.">Serbuk tetap aktif sampai saat diminum. Bawa ke mana saja, tanpa kulkas.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW -->
-<section class="how-wrap" id="how">
-  <div class="how-inner">
-    <span class="s-label">How It Works</span>
-    <h2 class="s-h">New ritual.<br><em>3 seconds.</em></h2>
-    <div class="steps">
-      <div class="step">
-        <span class="step-n">01</span>
-        <span class="step-icon">🫙</span>
-        <div class="step-t">Pour</div>
-        <p class="step-b">Add water to the bottle. Purified curcumin powder is already inside, ready to activate.</p>
+<!-- RITUAL -->
+<section class="ritual-section" id="how">
+  <div class="ritual-bg-text bebas">POUR SHAKE SHOT</div>
+  <div class="ritual-inner">
+    <div class="ritual-top">
+      <span class="ritual-label-w mono" data-en="How It Works" data-id="Cara Pakainya">Cara Pakainya</span>
+      <h2 class="ritual-h bebas">New ritual.<br><em>3 seconds.</em></h2>
+    </div>
+    <div class="ritual-steps">
+      <div class="r-step fade-up">
+        <span class="r-step-n mono">01</span>
+        <span class="r-icon">🫙</span>
+        <span class="r-word bebas">POUR<span>.</span></span>
+        <p class="r-desc" data-en="Add water to the bottle. Purified curcumin powder is already inside, ready to activate." data-id="Tambahkan air ke dalam botol. Serbuk kurkumin murni sudah ada di dalam, siap diaktifkan.">Tambahkan air ke dalam botol. Serbuk kurkumin murni sudah ada di dalam, siap diaktifkan.</p>
       </div>
-      <div class="step">
-        <span class="step-n">02</span>
-        <span class="step-icon">🫧</span>
-        <div class="step-t">Shake</div>
-        <p class="step-b">Shake 5 seconds. Piperine activates. Curcumin dissolves into a bioavailable solution.</p>
+      <div class="r-step fade-up" style="transition-delay:.1s">
+        <span class="r-step-n mono">02</span>
+        <span class="r-icon">🫧</span>
+        <span class="r-word bebas">SHAKE<span>.</span></span>
+        <p class="r-desc" data-en="Shake 5 seconds. Piperine activates. Curcumin dissolves into a bioavailable solution." data-id="Kocok 5 detik. Piperine aktif. Kurkumin larut menjadi solusi yang siap diserap tubuh.">Kocok 5 detik. Piperine aktif. Kurkumin larut menjadi solusi yang siap diserap tubuh.</p>
       </div>
-      <div class="step">
-        <span class="step-n">03</span>
-        <span class="step-icon">⚡</span>
-        <div class="step-t">Shot</div>
-        <p class="step-b">Drink it. Curcumin starts absorbing in 30 minutes. No prep, no mess, anywhere.</p>
+      <div class="r-step fade-up" style="transition-delay:.2s">
+        <span class="r-step-n mono">03</span>
+        <span class="r-icon">⚡</span>
+        <span class="r-word bebas">SHOT<span>.</span></span>
+        <p class="r-desc" data-en="Drink it. Curcumin starts absorbing in 30 minutes. No prep, no mess, anywhere." data-id="Langsung minum. Kurkumin mulai diserap dalam 30 menit. Tanpa persiapan, tanpa repot, di mana saja.">Langsung minum. Kurkumin mulai diserap dalam 30 menit. Tanpa persiapan, tanpa repot, di mana saja.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SOCIAL -->
-<section class="social-wrap">
+<section class="social">
   <div class="soc-inner">
-    <span class="s-label" style="display:block">Find Us</span>
-    <h2 class="soc-h">Order, Follow,<br><em>Join us.</em></h2>
-    <p class="soc-p">Get TuMIC on Shopee. Follow the journey on Instagram & TikTok.</p>
-    <div class="soc-row">
+    <span class="sec-label mono" data-en="Find Us" data-id="Temukan Kami">Temukan Kami</span>
+    <h2 class="soc-h bebas fade-up">Order, Follow,<br><em>Join us.</em></h2>
+    <p class="soc-p fade-up" data-en="Get TuMIC on Shopee. Follow the journey on Instagram & TikTok." data-id="Beli TuMIC di Shopee. Ikuti perjalanan kami di Instagram & TikTok.">Beli TuMIC di Shopee. Ikuti perjalanan kami di Instagram & TikTok.</p>
+    <div class="soc-row fade-up">
       <a href="https://shopee.co.id/tumic639" target="_blank" class="soc-btn soc-sp">
         <span class="soc-icon">🛒</span>
         <div class="soc-name"><span>Shopee</span><span class="soc-handle">tumic639</span></div>
@@ -327,21 +933,23 @@ footer{background:#111;padding:44px 60px;display:flex;justify-content:space-betw
 </section>
 
 <!-- CTA -->
-<section class="cta">
-  <div class="cta-inner">
-    <h2 class="cta-h">Ready to<br><em>recover?</em></h2>
-    <p class="cta-p">Stop guessing with generic supplements. <strong>Clear dose. Clear science. Clear results.</strong></p>
-    <a href="https://shopee.co.id/tumic639" target="_blank" class="btn-cta">Get TuMIC Now</a>
-    <div class="cta-note">BPOM Registered · HALAL Certified · Formulated with STFI · Made in Indonesia</div>
+<section class="cta-section">
+  <div class="cta-inner fade-up">
+    <h2 class="cta-h bebas">Ready to<br><em>recover?</em></h2>
+    <p class="cta-p" data-en="Stop guessing with generic supplements. <strong>Clear dose. Clear science. Clear results.</strong>" data-id="Berhenti coba-coba dengan suplemen biasa. <strong>Dosis jelas. Sains jelas. Hasil jelas.</strong>">
+      Berhenti coba-coba dengan suplemen biasa. <strong>Dosis jelas. Sains jelas. Hasil jelas.</strong>
+    </p>
+    <a href="https://shopee.co.id/tumic639" target="_blank" class="btn-cta" data-en="Get TuMIC Now" data-id="Beli TuMIC Sekarang">Beli TuMIC Sekarang</a>
+    <div class="cta-note mono">BPOM Registered · HALAL Certified · Formulated with STFI · Made in Indonesia</div>
   </div>
 </section>
 
 <footer>
   <div>
-    <div class="ft-logo">Tu<span class="ft-mic">MIC</span></div>
-    <div class="ft-sub">By NAU Labs · Natura Alamindo</div>
+    <div class="ft-logo bebas">Tu<span class="ft-mic">MIC</span></div>
+    <div class="ft-sub mono">By NAU Labs · Natura Alamindo</div>
   </div>
-  <div class="ft-meta">
+  <div class="ft-meta mono">
     Purified Curcumin · BPOM Registered<br>
     HALAL Certified · Made in Indonesia<br>
     © 2025 CV. Natura Alamindo
@@ -349,9 +957,35 @@ footer{background:#111;padding:44px 60px;display:flex;justify-content:space-betw
 </footer>
 
 <script>
+// ── SCROLL NAV ──
 window.addEventListener('scroll',function(){
   document.getElementById('nav').classList.toggle('scrolled',scrollY>50);
 });
+
+// ── FADE ON SCROLL ──
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible')}
+  });
+},{threshold:0.12});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+// ── BILINGUAL TOGGLE ──
+let currentLang = 'id'; // default shown is ID (since copy is already in ID)
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.getElementById('btn-id').classList.toggle('active', lang==='id');
+
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    const val = el.getAttribute('data-'+lang);
+    if(val) el.innerHTML = val;
+  });
+}
+
+// Init — set to ID on load since copy defaults are ID
+setLang('id');
 </script>
 </body>
 </html>
