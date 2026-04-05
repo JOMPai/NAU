@@ -285,8 +285,8 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
     </div>
 
     <!-- HUGERLESS -->
-    <div class="prod-card" style="--ac:#D4A017;cursor:default">
-      <span class="prod-num" data-en="03 · Launching Soon" data-id="03 · Segera Hadir">03 · Launching Soon</span>
+    <div class="prod-card" style="--ac:#D4A017" onclick="window.location='hugerless/'">
+      <span class="prod-num" data-en="03 · Available Now" data-id="03 · Tersedia Sekarang">03 · Available Now</span>
       <div class="prod-logo-wrap">
         <div class="prod-name" style="font-size:34px;letter-spacing:-.03em">
           <span style="color:#f0ece4">HUGER</span><span style="color:#D4A017">LESS</span>
@@ -308,7 +308,7 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
             <span data-id style="display:none">Agonis reseptor GLP-1 seperti Ozempic menekan nafsu makan dengan meniru hormon usus. Hugerless menggunakan botani yang berinteraksi dengan jalur kenyang serupa — tervalidasi riset, dirancang untuk penggunaan harian tanpa ketergantungan.</span>
           </p>
           <div class="prod-chips">
-            <span class="prod-chip hi">Coming Soon</span>
+            <span class="prod-chip hi">BPOM Registered</span>
             <span class="prod-chip">Appetite Blocker</span>
             <span class="prod-chip">Natural GLP-1</span>
             <span class="prod-chip">Weight Management</span>
@@ -316,8 +316,8 @@ footer{background:#111;padding:44px 64px;display:flex;justify-content:space-betw
         </div>
       </div>
       <div class="prod-foot">
-        <button class="prod-toggle" onclick="toggleMore('more-hug',this)" data-more-en="+ More Info" data-more-id="+ Info Lengkap" data-less-en="− Less" data-less-id="− Tutup">+ More Info</button>
-        <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.2)" data-en="Notify Me" data-id="Beritahu Saya">Notify Me</span>
+        <button class="prod-toggle" onclick="event.stopPropagation();toggleMore('more-hug',this)" data-more-en="+ More Info" data-more-id="+ Info Lengkap" data-less-en="− Less" data-less-id="− Tutup">+ More Info</button>
+        <a class="prod-link" href="hugerless/" onclick="event.stopPropagation()" data-en="View" data-id="Lihat">View <span class="prod-arr">→</span></a>
       </div>
     </div>
 
