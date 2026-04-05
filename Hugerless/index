@@ -1,1 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUGERLESS — Natural Appetite Control Formula</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- Barlow Condensed is the closest free web substitute for Gotham Bold -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white:   #ffffff;
+    --offwhite:#f7f4ef;
+    --amber:   #f5a623;
+    --amber-d: #c47d0e;
+    --charcoal:#2d2d2d;
+    --gray:    #888888;
+    --lgray:   #c8c8c8;
+    --border:  #e8e4de;
+  }
 
+  /* Gotham Bold substitute — Barlow Condensed Bold */
+  .gotham {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background: var(--white);
+    color: var(--charcoal);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── LANGUAGE SYSTEM ── */
+  body.lang-en .id { display:none !important; }
+  body.lang-id .en { display:none !important; }
+
+  /* ── NAV ── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    background:rgba(255,255,255,0.97);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    padding:0 20px; height:56px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+
+  .nav-logo img {
+    height:28px; width:auto; display:block;
+  }
+
+  .nav-right { display:flex; align-items:center; gap:10px; }
+
+  .lang-toggle {
+    display:flex; align-items:center;
+    background:#f0ede8; border-radius:999px; padding:3px; gap:2px;
+  }
+  .lang-btn {
+    padding:5px 12px; border-radius:999px; border:none; cursor:pointer;
+    font-family:'Barlow',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:1px; text-transform:uppercase;
+    background:transparent; color:var(--gray);
+    transition:background 0.2s, color 0.2s;
+  }
+  .lang-btn.active { background:var(--amber); color:var(--charcoal); }
+
+  .nav-btn {
+    background:var(--amber); color:var(--charcoal);
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700; font-size:12px; letter-spacing:2px;
+    text-transform:uppercase; text-decoration:none;
+    padding:9px 18px; transition:background 0.2s; white-space:nowrap;
+  }
+  .nav-btn:hover { background:var(--amber-d); }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top:56px; min-height:100svh;
+    display:flex; flex-direction:column; justify-content:center;
+    background:var(--offwhite); position:relative; overflow:hidden;
+  }
+  /* Subtle geometric corner — amber/gray only, no mosaic strip */
+  .hero::after {
+    content:'';
+    position:absolute; top:0; right:0;
+    width:200px; height:200px;
+    background:linear-gradient(135deg,
+      rgba(245,166,35,0.12) 0%,
+      rgba(200,200,200,0.06) 40%,
+      transparent 70%);
+    pointer-events:none;
+  }
+
+  .hero-inner {
+    max-width:540px; margin:0 auto;
+    padding:60px 20px 44px;
+    position:relative; z-index:2; text-align:center;
+  }
+
+  .hero-eyebrow {
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--white); border:1px solid var(--border);
+    padding:5px 12px; margin-bottom:24px;
+    opacity:0; animation:fadeUp 0.6s 0.1s forwards;
+  }
+  .eyebrow-dot { width:5px; height:5px; background:var(--amber); transform:rotate(45deg); display:inline-block; }
+  .eyebrow-text { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:600; }
+
+  .hero-h1 {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    font-size:clamp(60px,16vw,100px);
+    line-height:0.9; letter-spacing:2px; color:var(--charcoal);
+    margin-bottom:14px;
+    opacity:0; animation:fadeUp 0.6s 0.25s forwards;
+    text-transform:uppercase;
+  }
+  .hero-h1 .amber { color:var(--amber); display:block; }
+
+  .hero-tagline {
+    font-family:'DM Serif Display',serif; font-style:italic;
+    font-size:clamp(16px,4vw,21px); color:var(--gray);
+    line-height:1.45; margin-bottom:26px;
+    opacity:0; animation:fadeUp 0.6s 0.4s forwards;
+  }
+
+  .hero-insight {
+    background:var(--white); border-left:3px solid var(--amber);
+    padding:14px 16px; text-align:left; margin-bottom:28px;
+    font-size:15px; line-height:1.75; color:var(--charcoal);
+    opacity:0; animation:fadeUp 0.6s 0.54s forwards;
+  }
+  .hero-insight strong { font-weight:700; }
+
+  .hero-cta-group {
+    display:flex; flex-direction:column; gap:10px; align-items:center;
+    opacity:0; animation:fadeUp 0.6s 0.68s forwards;
+  }
+  .btn-main {
+    display:block; width:100%; max-width:300px;
+    background:var(--amber); color:var(--charcoal);
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700; font-size:14px; letter-spacing:3px;
+    text-transform:uppercase; text-decoration:none;
+    padding:17px 28px; text-align:center; transition:background 0.2s, transform 0.2s;
+  }
+  .btn-main:hover { background:var(--amber-d); transform:translateY(-1px); }
+  .btn-ghost {
+    font-size:12px; color:var(--gray); text-decoration:none;
+    display:flex; align-items:center; gap:6px; transition:color 0.2s; letter-spacing:1px;
+  }
+  .btn-ghost:hover { color:var(--charcoal); }
+
+  .hero-trust {
+    display:flex; justify-content:center; gap:14px; flex-wrap:wrap;
+    margin-top:32px; padding-top:24px; border-top:1px solid var(--border);
+    opacity:0; animation:fadeUp 0.6s 0.82s forwards;
+  }
+  .trust-item { display:flex; align-items:center; gap:5px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--gray); font-weight:600; }
+
+  /* ── MARQUEE ── */
+  .marquee { background:var(--charcoal); padding:10px 0; overflow:hidden; white-space:nowrap; }
+  .mtrack { display:inline-flex; animation:marquee 30s linear infinite; }
+  .mtrack span {
+    font-family:'Barlow Condensed',sans-serif; font-weight:700;
+    font-size:13px; letter-spacing:3px; color:var(--white); padding:0 24px;
+    text-transform:uppercase;
+  }
+  .mtrack .dot { color:var(--amber); padding:0 6px; }
+
+  /* ── SECTIONS ── */
+  section { padding:64px 20px; }
+  .sec-wrap { max-width:640px; margin:0 auto; }
+
+  .sec-label { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .sec-label-line { width:20px; height:2px; background:var(--amber); }
+  .sec-label-text {
+    font-size:10px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--amber); font-weight:700;
+    font-family:'Barlow Condensed',sans-serif;
+  }
+
+  /* Titles always English — use Barlow Condensed Bold */
+  .sec-h2 {
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800; text-transform:uppercase;
+    font-size:clamp(28px,7vw,46px); line-height:1.05;
+    color:var(--charcoal); margin-bottom:14px; letter-spacing:1px;
+  }
+  .sec-h2 em { font-style:italic; color:var(--amber); }
+
+  /* Body — normal Barlow */
+  .sec-body { font-size:15px; line-height:1.8; color:var(--gray); margin-bottom:8px; }
+  .sec-body strong { color:var(--charcoal); font-weight:600; }
+
+  /* ── PROBLEM ── */
+  .problem { background:var(--white); }
+
+  .problem-facts { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:28px; }
+  .fact-card { background:var(--offwhite); border:1px solid var(--border); padding:18px 14px; }
+  .fact-card.accent { background:var(--amber); border-color:var(--amber); }
+  .fact-rank {
+    font-size:9px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--lgray); margin-bottom:5px; font-weight:700;
+    font-family:'Barlow Condensed',sans-serif;
+  }
+  .fact-card.accent .fact-rank { color:rgba(45,45,45,0.45); }
+  .fact-title {
+    font-family:'Barlow Condensed',sans-serif; font-weight:800;
+    font-size:20px; text-transform:uppercase;
+    color:var(--charcoal); line-height:1; margin-bottom:5px;
+  }
+  .fact-desc { font-size:12px; line-height:1.55; color:var(--gray); }
+  .fact-card.accent .fact-desc { color:rgba(45,45,45,0.65); }
+
+  .problem-connect {
+    margin-top:16px; padding:18px 20px; padding-left:24px;
+    background:var(--charcoal); color:var(--white);
+    font-size:14px; line-height:1.75; position:relative;
+  }
+  .problem-connect::before {
+    content:''; position:absolute; top:0; left:0; bottom:0; width:4px;
+    background:var(--amber);
+  }
+  .problem-connect strong { color:var(--amber); }
+
+  /* ── PRODUCT SECTION ── */
+  .what { background:var(--offwhite); }
+
+  .etymology-tag {
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--white); border:1px solid var(--border);
+    padding:8px 14px; margin-bottom:18px;
+    font-size:12px; color:var(--gray);
+  }
+  .etymology-tag strong { color:var(--charcoal); font-weight:700; }
+  .etymology-tag .div { color:var(--lgray); }
+  .etym-diamond { width:10px; height:10px; background:var(--amber); transform:rotate(45deg); display:inline-block; flex-shrink:0; }
+
+  /* REAL PRODUCT IMAGE */
+  .product-img-wrap {
+    position:relative; margin:28px auto; max-width:300px; text-align:center;
+  }
+  .product-real-img {
+    width:100%; max-height:320px; object-fit:contain;
+    display:block; margin:0 auto;
+    animation:float 3.5s ease-in-out infinite;
+    filter:drop-shadow(0 16px 32px rgba(0,0,0,0.15));
+    position:relative; z-index:2;
+  }
+
+  .what-points { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+  .what-point {
+    display:flex; gap:12px; align-items:flex-start;
+    padding:16px 14px; background:var(--white); border:1px solid var(--border);
+    transition:border-color 0.2s; position:relative;
+  }
+  .what-point:hover { border-color:var(--amber); }
+  .what-point::before {
+    content:''; position:absolute; top:0; left:0; width:3px; height:100%;
+    background:var(--lgray); transition:background 0.2s;
+  }
+  .what-point:hover::before { background:var(--amber); }
+  .wp-icon { width:30px; height:30px; background:var(--amber); display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; }
+  .wp-title { font-weight:700; font-size:13px; color:var(--charcoal); margin-bottom:3px; font-family:'Barlow Condensed',sans-serif; letter-spacing:0.5px; text-transform:uppercase; font-size:14px; }
+  .wp-desc { font-size:13px; line-height:1.6; color:var(--gray); }
+
+  /* ── HOW IT WORKS ── */
+  .how { background:var(--white); }
+  .steps { border:1px solid var(--border); margin-top:26px; }
+  .step { display:flex; border-bottom:1px solid var(--border); }
+  .step:last-child { border-bottom:none; }
+  .step-n {
+    width:46px; min-height:64px; background:var(--charcoal); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Barlow Condensed',sans-serif; font-weight:800;
+    font-size:24px; color:var(--amber);
+  }
+  .step-body { padding:16px 14px; flex:1; }
+  .step-title {
+    font-weight:700; font-size:14px; color:var(--charcoal); margin-bottom:4px;
+    font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.5px;
+  }
+  .step-desc { font-size:13px; color:var(--gray); line-height:1.6; }
+  .step-desc strong { color:var(--charcoal); font-weight:600; }
+
+  .how-note {
+    margin-top:16px; padding:15px;
+    background:var(--offwhite); border-left:3px solid var(--charcoal);
+    font-size:13px; line-height:1.75; color:var(--gray); font-style:italic;
+  }
+  .how-note strong { color:var(--charcoal); font-style:normal; font-weight:700; }
+
+  /* ── INGREDIENTS ── */
+  .ingredients { background:var(--offwhite); }
+  .ing-cards { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:22px; }
+  .ing-card {
+    background:var(--white); border:1px solid var(--border);
+    padding:18px 14px; transition:border-color 0.2s; position:relative; overflow:hidden;
+  }
+  .ing-card:hover { border-color:var(--amber); }
+  .ing-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--amber) 50%, var(--lgray) 50%);
+    opacity:0.6;
+  }
+  .ing-icon { font-size:18px; margin-bottom:7px; margin-top:3px; }
+  .ing-name {
+    font-family:'Barlow Condensed',sans-serif; font-weight:800;
+    font-size:18px; letter-spacing:1px; color:var(--charcoal); line-height:1; margin-bottom:1px;
+    text-transform:uppercase;
+  }
+  .ing-latin { font-size:10px; color:var(--amber); font-style:italic; margin-bottom:8px; }
+  .ing-dose {
+    font-family:'Barlow Condensed',sans-serif; font-weight:800;
+    font-size:30px; color:var(--amber); line-height:1;
+  }
+  .ing-dose span { font-size:13px; color:var(--lgray); font-weight:400; }
+  .ing-dose-lbl { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--lgray); margin-bottom:6px; font-weight:600; }
+  .ing-desc { font-size:12px; color:var(--gray); line-height:1.6; }
+
+  .science-cite {
+    margin-top:16px; padding:15px;
+    background:var(--white); border:1px solid var(--border); border-left:3px solid var(--charcoal);
+  }
+  .cite-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--lgray); margin-bottom:6px; font-weight:700; font-family:'Barlow Condensed',sans-serif; }
+  .cite-text { font-size:12px; line-height:1.7; color:var(--gray); font-style:italic; }
+  .cite-src { font-size:10px; color:var(--lgray); margin-top:6px; }
+
+  /* ── USAGE STRIP ── */
+  .usage-strip { background:var(--charcoal); padding:52px 20px; }
+  .usage-inner { max-width:640px; margin:0 auto; }
+  .usage-tag {
+    font-size:10px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--amber); margin-bottom:6px; font-weight:700;
+    font-family:'Barlow Condensed',sans-serif;
+  }
+  .usage-h {
+    font-family:'Barlow Condensed',sans-serif; font-weight:800;
+    font-size:clamp(32px,8vw,52px); text-transform:uppercase;
+    color:var(--white); letter-spacing:2px; line-height:1; margin-bottom:28px;
+  }
+  .usage-h em { color:var(--amber); font-style:normal; }
+  .usage-items { display:flex; flex-direction:column; gap:10px; }
+  .usage-item {
+    display:flex; align-items:center; gap:12px; padding:13px 14px;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.07);
+  }
+  .ui-num {
+    font-family:'Barlow Condensed',sans-serif; font-weight:800;
+    font-size:26px; color:var(--amber); min-width:34px; line-height:1;
+  }
+  .ui-text { font-size:14px; color:rgba(255,255,255,0.65); line-height:1.5; }
+  .ui-text strong { color:var(--white); font-weight:600; }
+
+  /* ── PROOF ── */
+  .proof { background:var(--white); }
+  .proof-cards { display:flex; flex-direction:column; gap:10px; margin-top:22px; }
+  .proof-card {
+    padding:22px 18px; border:1px solid var(--border); position:relative; transition:border-color 0.2s;
+  }
+  .proof-card:hover { border-color:var(--amber); }
+  .proof-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:var(--lgray); transition:background 0.2s; }
+  .proof-card:hover::before { background:var(--amber); }
+  .proof-label {
+    font-size:9px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--lgray); margin-bottom:9px; font-weight:700;
+    font-family:'Barlow Condensed',sans-serif;
+  }
+  .proof-text { font-size:14px; line-height:1.75; color:var(--charcoal); font-family:'DM Serif Display',serif; font-style:italic; }
+  .proof-text strong { font-style:normal; color:var(--amber-d); }
+  .proof-meta { font-size:11px; color:var(--lgray); margin-top:9px; }
+  .proof-disclaimer { margin-top:16px; font-size:11px; color:var(--lgray); line-height:1.6; font-style:italic; text-align:center; }
+
+  /* ── ORDER ── */
+  .order { background:var(--offwhite); }
+  .order-inner { max-width:460px; margin:0 auto; }
+  .order-box { background:var(--white); border:1px solid var(--border); overflow:hidden; margin-top:22px; }
+  .order-box-top { background:var(--charcoal); padding:24px 22px; position:relative; overflow:hidden; }
+  .order-box-top::after {
+    content:''; position:absolute; top:0; right:0; bottom:0; width:60px;
+    background:linear-gradient(to left, rgba(245,166,35,0.08), transparent);
+    pointer-events:none;
+  }
+  /* White logo in dark header */
+  .order-logo { height:36px; width:auto; display:block; position:relative; z-index:1; }
+  .obt-sub { font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:1px; margin-top:6px; text-transform:uppercase; font-weight:600; font-family:'Barlow Condensed',sans-serif; }
+
+  .order-body { padding:20px; }
+  .order-specs { border:1px solid var(--border); margin-bottom:16px; }
+  .os-row { display:flex; justify-content:space-between; align-items:center; padding:9px 12px; border-bottom:1px solid var(--border); }
+  .os-row:last-child { border-bottom:none; }
+  .os-lbl { color:var(--gray); text-transform:uppercase; letter-spacing:1px; font-size:10px; font-weight:600; }
+  .os-val { color:var(--charcoal); font-weight:600; font-size:13px; }
+
+  .order-certs { display:flex; gap:7px; margin-bottom:16px; flex-wrap:wrap; }
+  .cert { padding:5px 9px; border:1px solid var(--border); font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--gray); display:flex; align-items:center; gap:4px; font-weight:600; }
+
+  .order-checklist { display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
+  .ocl-item { display:flex; gap:8px; align-items:flex-start; font-size:13px; color:var(--gray); line-height:1.5; }
+  .ocl-check { width:16px; height:16px; background:var(--amber); display:flex; align-items:center; justify-content:center; font-size:8px; color:var(--charcoal); font-weight:700; flex-shrink:0; margin-top:2px; }
+
+  .btn-order {
+    display:flex; width:100%; background:var(--amber); color:var(--charcoal);
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700; font-size:15px; letter-spacing:3px; text-transform:uppercase;
+    text-decoration:none; padding:17px; align-items:center; justify-content:center; gap:9px;
+    transition:background 0.2s;
+  }
+  .btn-order:hover { background:var(--amber-d); }
+  .order-sub-note { text-align:center; margin-top:9px; font-size:10px; color:var(--lgray); letter-spacing:1px; font-weight:600; }
+
+  /* ── FAQ ── */
+  .faq { background:var(--white); }
+  .faq-inner { max-width:600px; margin:0 auto; }
+  .faq-list { margin-top:26px; border-top:1px solid var(--border); }
+  .faq-item { border-bottom:1px solid var(--border); }
+  .faq-q {
+    width:100%; background:none; border:none; padding:16px 0;
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    cursor:pointer; text-align:left;
+    font-family:'Barlow',sans-serif; font-size:14px; font-weight:600;
+    color:var(--charcoal); transition:color 0.2s;
+  }
+  .faq-q:hover { color:var(--amber); }
+  .faq-plus { width:20px; height:20px; border:1px solid var(--lgray); display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--amber); flex-shrink:0; transition:transform 0.3s,border-color 0.2s; }
+  .faq-item.open .faq-plus { transform:rotate(45deg); border-color:var(--amber); }
+  .faq-a { max-height:0; overflow:hidden; transition:max-height 0.35s ease,padding 0.25s; font-size:13px; color:var(--gray); line-height:1.8; }
+  .faq-item.open .faq-a { max-height:260px; padding-bottom:16px; }
+
+  /* ── FOOTER ── */
+  footer { background:var(--charcoal); padding:44px 20px; text-align:center; position:relative; overflow:hidden; }
+  footer::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--amber) 0%, var(--amber) 40%, var(--lgray) 40%, var(--lgray) 70%, transparent 70%);
+  }
+  .footer-logo img { height:32px; width:auto; display:block; margin:0 auto 8px; }
+  .footer-tag { font-size:10px; color:rgba(255,255,255,0.28); letter-spacing:3px; text-transform:uppercase; margin-bottom:18px; font-weight:600; }
+  .footer-legal { font-size:10px; color:rgba(255,255,255,0.22); line-height:1.7; max-width:460px; margin:0 auto 14px; }
+  .footer-nau { font-size:10px; color:rgba(255,255,255,0.3); }
+  .footer-nau strong { color:rgba(255,255,255,0.48); }
+
+  /* ── STICKY ── */
+  .sticky {
+    position:fixed; bottom:0; left:0; right:0; z-index:150;
+    background:var(--charcoal); border-top:2px solid var(--amber);
+    padding:9px 18px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+    transform:translateY(100%); transition:transform 0.35s;
+  }
+  .sticky.show { transform:translateY(0); }
+  .sticky-logo img { height:22px; width:auto; display:block; }
+  .sticky-sub { font-size:9px; color:rgba(255,255,255,0.3); letter-spacing:1px; font-weight:600; }
+  .sticky-btn {
+    background:var(--amber); color:var(--charcoal);
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase;
+    text-decoration:none; padding:9px 16px; white-space:nowrap; flex-shrink:0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease,transform 0.6s ease; }
+  .reveal.in { opacity:1; transform:translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width:440px) {
+    .hero-h1 { font-size:58px; }
+    .problem-facts { grid-template-columns:1fr; }
+    .ing-cards { grid-template-columns:1fr; }
+    .nav-btn span { display:none; }
+    .nav-btn::after { content:'Order'; }
+  }
+</style>
+</head>
+<body class="lang-en">
+
+<!-- NAV -->
+<nav>
+  <!-- Black logo on white nav -->
+  <a href="#" class="nav-logo">
+    <img src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775385616/Logo_s48w80.png" alt="HUGERLESS">
+  </a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-id" onclick="setLang('id')">ID</button>
+    </div>
+    <a href="#order" class="nav-btn">
+      <span class="en">Order Now</span>
+      <span class="id">Pesan</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span class="eyebrow-text">Natural · Research-Backed · Halal Certified</span>
+    </div>
+
+    <h1 class="hero-h1">
+      YOU CONTROL
+      <span class="amber">WHEN YOU EAT.</span>
+    </h1>
+
+    <p class="hero-tagline">
+      <span class="en">Not your hunger. You.</span>
+      <span class="id">Bukan nafsu makanmu. Kamu yang pegang kendali.</span>
+    </p>
+
+    <div class="hero-insight">
+      <p class="en">Most weight loss fails not because of laziness — but because <strong>hunger takes control.</strong> When you're not truly hungry, you decide when to eat, what to eat, and how much. HUGERLESS gives you that control back.</p>
+      <p class="id">Kebanyakan program penurunan berat badan gagal bukan karena malas — tapi karena <strong>nafsu makan yang berkuasa.</strong> Ketika lapar tak lagi mendikte, kamulah yang menentukan kapan makan, apa yang dimakan, dan seberapa banyak. HUGERLESS mengembalikan kendali itu ke tanganmu.</p>
+    </div>
+
+    <div class="hero-cta-group">
+      <a href="#order" class="btn-main">
+        <span class="en">Order Now →</span>
+        <span class="id">Pesan Sekarang →</span>
+      </a>
+      <a href="#how" class="btn-ghost">
+        <span class="en">↓ See how it works</span>
+        <span class="id">↓ Lihat cara kerjanya</span>
+      </a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="trust-item">🌙 Halal</div>
+      <div class="trust-item">🏛️ BPOM TR</div>
+      <div class="trust-item en">🔬 Research-Backed</div>
+      <div class="trust-item id">🔬 Berbasis Riset</div>
+      <div class="trust-item en">🌿 100% Natural</div>
+      <div class="trust-item id">🌿 100% Alami</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="mtrack">
+    <span class="en">You Control When You Eat</span><span class="id">Kamu yang Menentukan</span><span class="dot">◆</span>
+    <span class="en">Natural Appetite Control</span><span class="id">Kendalikan Nafsu Makan</span><span class="dot">◆</span>
+    <span class="en">Make Fasting Easy</span><span class="id">Puasa Jadi Ringan</span><span class="dot">◆</span>
+    <span>Cassava Leaf · Green Tea</span><span class="dot">◆</span>
+    <span>Halal · BPOM · Jamu</span><span class="dot">◆</span>
+    <span class="en">You Control When You Eat</span><span class="id">Kamu yang Menentukan</span><span class="dot">◆</span>
+    <span class="en">Natural Appetite Control</span><span class="id">Kendalikan Nafsu Makan</span><span class="dot">◆</span>
+    <span class="en">Make Fasting Easy</span><span class="id">Puasa Jadi Ringan</span><span class="dot">◆</span>
+    <span>Cassava Leaf · Green Tea</span><span class="dot">◆</span>
+    <span>Halal · BPOM · Jamu</span><span class="dot">◆</span>
+  </div>
+</div>
+
+<!-- THE FIRST BATTLE -->
+<section class="problem">
+  <div class="sec-wrap">
+    <div class="sec-label reveal"><div class="sec-label-line"></div><div class="sec-label-text">The First Battle</div></div>
+
+    <h2 class="sec-h2 reveal">To lose weight,<br>fix <em>this first</em></h2>
+
+    <p class="sec-body reveal en"><strong>What you eat matters more than how much you exercise.</strong> But controlling what you eat is almost impossible when hunger is running the show. Most people never reach step two.</p>
+    <p class="sec-body reveal id"><strong>Apa yang kamu makan jauh lebih menentukan dari seberapa sering berolahraga.</strong> Tapi mengontrol asupan hampir mustahil ketika nafsu makan yang berkuasa. Kebanyakan orang tak pernah sampai ke langkah berikutnya.</p>
+
+    <div class="problem-facts">
+      <div class="fact-card accent reveal">
+        <div class="fact-rank en">Battle #1 · Primary</div>
+        <div class="fact-rank id">Prioritas Utama</div>
+        <div class="fact-title">Food Intake</div>
+        <div class="fact-desc en">Appetite & what you eat is the primary driver of weight — before exercise, before anything.</div>
+        <div class="fact-desc id">Nafsu makan dan pola makan adalah penentu utama berat badan — sebelum olahraga, sebelum segalanya.</div>
+      </div>
+      <div class="fact-card reveal">
+        <div class="fact-rank">Battle #2</div>
+        <div class="fact-title">Exercise</div>
+        <div class="fact-desc en">Physical activity amplifies results — but only once food intake is under control.</div>
+        <div class="fact-desc id">Aktivitas fisik memperkuat hasil — namun hanya setelah pola makan terkendali.</div>
+      </div>
+      <div class="fact-card reveal">
+        <div class="fact-rank">Battle #3</div>
+        <div class="fact-title">Sleep & Stress</div>
+        <div class="fact-desc en">Poor sleep and stress spike hunger hormones — making Battle #1 even harder.</div>
+        <div class="fact-desc id">Kurang tidur dan stres memicu lonjakan hormon lapar — membuat pertarungan pertama semakin berat.</div>
+      </div>
+      <div class="fact-card reveal">
+        <div class="fact-rank en">The Real Problem</div>
+        <div class="fact-rank id">Akar Masalahnya</div>
+        <div class="fact-title">Hunger Wins</div>
+        <div class="fact-desc en">Biological hunger signals are too powerful to overcome by willpower alone — for most people.</div>
+        <div class="fact-desc id">Sinyal lapar biologis terlalu kuat untuk dilawan hanya dengan tekad dan kemauan keras.</div>
+      </div>
+    </div>
+
+    <div class="problem-connect reveal">
+      <span class="en"><strong>HUGERLESS</strong> was built for this. Not to replace discipline — but to make appetite stop calling the shots.</span>
+      <span class="id"><strong>HUGERLESS</strong> hadir untuk momen ini. Bukan menggantikan disiplin — tapi menghentikan nafsu makan dari posisi pengendali.</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS HUGERLESS -->
+<section class="what">
+  <div class="sec-wrap">
+    <div class="sec-label reveal"><div class="sec-label-line"></div><div class="sec-label-text">The Product</div></div>
+
+    <h2 class="sec-h2 reveal">What is <em>HUGERLESS?</em></h2>
+
+    <!-- Etymology implicit -->
+    <div class="etymology-tag reveal">
+      <span class="etym-diamond"></span>
+      <span><strong>hunger</strong> <span class="div">+</span> <strong>less</strong> = <strong>HUGERLESS</strong></span>
+      <span class="div en">· less hunger. you choose when to eat.</span>
+      <span class="div id">· kurangi lapar. kamulah yang menentukan kapan makan.</span>
+    </div>
+
+    <p class="sec-body reveal en">A <strong>natural appetite control supplement</strong> in capsule form — developed from purified cassava leaf extract by our research partner lab. The humble everyday vegetable, elevated into a world-class nutraceutical.</p>
+    <p class="sec-body reveal id">Suplemen <strong>pengendali nafsu makan alami</strong> berbentuk kapsul — dikembangkan dari ekstrak murni daun singkong bersama mitra riset kami. Sayuran sederhana sehari-hari, diangkat menjadi nutrasetika berkelas dunia.</p>
+
+    <!-- REAL PRODUCT PHOTO with extract -->
+    <div class="product-img-wrap reveal">
+      <img
+        src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775385557/Hugerless_with_extract_w4gyqa.png"
+        alt="HUGERLESS — Natural Appetite Control Formula"
+        class="product-real-img"
+      >
+    </div>
+
+    <div class="what-points">
+      <div class="what-point reveal">
+        <div class="wp-icon">🌿</div>
+        <div>
+          <div class="wp-title">Born from an Everyday Vegetable</div>
+          <div class="wp-desc en">Cassava leaf — eaten daily across Indonesia — contains phytochemicals hiding in plain sight. HUGERLESS purifies and concentrates this potential into every capsule.</div>
+          <div class="wp-desc id">Daun singkong — yang dimakan jutaan orang setiap hari — menyimpan fitokimia yang selama ini tersembunyi di depan mata. HUGERLESS memurnikan dan memusatkan potensi itu dalam setiap kapsul.</div>
+        </div>
+      </div>
+      <div class="what-point reveal">
+        <div class="wp-icon">🔬</div>
+        <div>
+          <div class="wp-title">Research Partner Formula</div>
+          <div class="wp-desc en">Developed in collaboration with our research partner lab. Both ingredients are supported by published peer-reviewed scientific journals.</div>
+          <div class="wp-desc id">Dikembangkan bersama mitra riset kami. Kedua bahan aktif didukung jurnal ilmiah yang telah dipublikasikan dan melalui tinjauan sejawat.</div>
+        </div>
+      </div>
+      <div class="what-point reveal">
+        <div class="wp-icon">⚡</div>
+        <div>
+          <div class="wp-title">No Stimulants. No Jitteriness.</div>
+          <div class="wp-desc en">Works through natural metabolic pathways. No racing heart, no crashes. Energy stays stable even when eating significantly less.</div>
+          <div class="wp-desc id">Bekerja melalui jalur metabolisme alami. Tidak ada jantung berdebar, tidak ada rasa lemas. Energi tetap stabil meski asupan makan jauh berkurang.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="sec-wrap">
+    <div class="sec-label reveal"><div class="sec-label-line"></div><div class="sec-label-text">Mechanism</div></div>
+    <h2 class="sec-h2 reveal">How it works in your body</h2>
+
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-body">
+          <div class="step-title">Take before meals</div>
+          <div class="step-desc en">1 capsule, 30 minutes before eating. The extracts begin releasing into your digestive system.</div>
+          <div class="step-desc id">1 kapsul, 30 menit sebelum makan. Ekstrak mulai bekerja di sistem pencernaan.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-body">
+          <div class="step-title">Natural appetite signals shift</div>
+          <div class="step-desc en">Phytochemicals interact with <strong>GLP-1 hormone pathways</strong> — the same system targeted by Ozempic — naturally reducing hunger signals. No synthetic compounds.</div>
+          <div class="step-desc id">Fitokimia berinteraksi dengan <strong>jalur hormon GLP-1</strong> — sistem yang sama yang ditarget Ozempic — secara alami meredam sinyal lapar. Tanpa senyawa sintetis.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-body">
+          <div class="step-title">You decide when to eat</div>
+          <div class="step-desc en">When hunger stops dictating, you're in control. You eat because you choose to — not because your body is demanding it. Food becomes a decision, not a craving.</div>
+          <div class="step-desc id">Ketika lapar tak lagi memerintah, kamulah yang berkuasa. Kamu makan karena memilih — bukan karena tubuh menuntut. Makanan jadi keputusan, bukan sekadar dorongan.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-body">
+          <div class="step-title">Intermittent fasting becomes effortless</div>
+          <div class="step-desc en">Fasting windows of 16, 18, even 24 hours that once felt impossible become manageable. Energy remains stable throughout — no hunger-induced irritability.</div>
+          <div class="step-desc id">Jendela puasa 16, 18, bahkan 24 jam yang dulu terasa berat kini terasa ringan. Energi tetap terjaga — tanpa mudah marah karena lapar.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="how-note reveal">
+      <span class="en"><strong>On Ozempic:</strong> Ozempic (semaglutide) is a synthetic GLP-1 receptor agonist — a pharmaceutical drug given by injection. HUGERLESS activates a similar natural pathway through plant phytochemicals. It is a food supplement, not a drug.</span>
+      <span class="id"><strong>Tentang Ozempic:</strong> Ozempic (semaglutide) adalah agonis reseptor GLP-1 sintetis — obat farmasi yang diberikan melalui suntikan. HUGERLESS mengaktifkan jalur serupa secara alami lewat fitokimia tanaman. Ini suplemen makanan, bukan obat.</span>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ingredients">
+  <div class="sec-wrap">
+    <div class="sec-label reveal"><div class="sec-label-line"></div><div class="sec-label-text">Formula</div></div>
+    <h2 class="sec-h2 reveal">Two ingredients.<br>One <em>clear purpose.</em></h2>
+
+    <div class="ing-cards">
+      <div class="ing-card reveal">
+        <div class="ing-icon">🌿</div>
+        <div class="ing-name">Cassava Leaf</div>
+        <div class="ing-latin">Manihot Utilisima Folium</div>
+        <div class="ing-dose">350<span> mg</span></div>
+        <div class="ing-dose-lbl en">per capsule</div>
+        <div class="ing-dose-lbl id">per kapsul</div>
+        <div class="ing-desc en">Purified extract rich in polyphenols. Research shows effects on body weight, blood glucose, and lipid metabolism.</div>
+        <div class="ing-desc id">Ekstrak murni kaya polifenol. Riset menunjukkan efek pada berat badan, kadar gula darah, dan metabolisme lemak.</div>
+      </div>
+      <div class="ing-card reveal">
+        <div class="ing-icon">🍵</div>
+        <div class="ing-name">Green Tea</div>
+        <div class="ing-latin">Camellia Sinensis Folium</div>
+        <div class="ing-dose">200<span> mg</span></div>
+        <div class="ing-dose-lbl en">per capsule</div>
+        <div class="ing-dose-lbl id">per kapsul</div>
+        <div class="ing-desc en">EGCG-rich extract. Clinical trials show significant reduction in body weight and BMI over 8 weeks.</div>
+        <div class="ing-desc id">Kaya EGCG. Uji klinis menunjukkan penurunan berat badan dan BMI yang signifikan dalam 8 minggu.</div>
+      </div>
+    </div>
+
+    <div class="science-cite reveal">
+      <div class="cite-label en">Scientific Basis</div>
+      <div class="cite-label id">Dasar Ilmiah</div>
+      <div class="cite-text en">Manihot esculenta leaf extract significantly prevented body weight gain and improved lipid metabolism markers in published preclinical research. Green tea EGCG supplementation for 8 weeks produced significant decreases in body weight and BMI in a randomized controlled human trial.</div>
+      <div class="cite-text id">Ekstrak daun Manihot esculenta secara signifikan mencegah kenaikan berat badan dan memperbaiki penanda metabolisme lemak dalam riset yang dipublikasikan. Suplementasi EGCG teh hijau selama 8 minggu menghasilkan penurunan berat badan dan BMI signifikan dalam uji klinis acak terkontrol.</div>
+      <div class="cite-src">Journal of Food Nutrition and Metabolism, 2023 · Journal of the American College of Nutrition, 2010</div>
+    </div>
+  </div>
+</section>
+
+<!-- USAGE STRIP -->
+<div class="usage-strip">
+  <div class="usage-inner">
+    <div class="usage-tag en">How to Use</div>
+    <div class="usage-tag id">Aturan Pakai</div>
+    <div class="usage-h en">SIMPLE.<br><em>CONSISTENT.</em><br>EFFECTIVE.</div>
+    <div class="usage-h id">MUDAH.<br><em>KONSISTEN.</em><br>TERBUKTI.</div>
+    <div class="usage-items">
+      <div class="usage-item reveal">
+        <div class="ui-num">2–3×</div>
+        <div class="ui-text en"><strong>Daily</strong> — 30 min before each meal</div>
+        <div class="ui-text id"><strong>Sehari</strong> — 30 menit sebelum makan</div>
+      </div>
+      <div class="usage-item reveal">
+        <div class="ui-num">1</div>
+        <div class="ui-text en"><strong>Capsule per dose</strong> — 550mg dual extract</div>
+        <div class="ui-text id"><strong>Kapsul per dosis</strong> — 550mg ekstrak ganda</div>
+      </div>
+      <div class="usage-item reveal">
+        <div class="ui-num">IF</div>
+        <div class="ui-text en"><strong>Stack with intermittent fasting</strong> for strongest results</div>
+        <div class="ui-text id"><strong>Kombinasikan dengan puasa intermiten</strong> untuk hasil maksimal</div>
+      </div>
+      <div class="usage-item reveal">
+        <div class="ui-num">30</div>
+        <div class="ui-text en"><strong>Capsules per bottle</strong> — approx. 1 month supply</div>
+        <div class="ui-text id"><strong>Kapsul per botol</strong> — sekitar 1 bulan pemakaian</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EARLY EXPERIENCES -->
+<section class="proof">
+  <div class="sec-wrap">
+    <div class="sec-label reveal"><div class="sec-label-line"></div><div class="sec-label-text">Early Experiences</div></div>
+    <h2 class="sec-h2 reveal">Real people.<br><em>Real experiences.</em></h2>
+    <p class="sec-body reveal en">HUGERLESS is in early development. What follows are genuine first-hand accounts — not marketing figures.</p>
+    <p class="sec-body reveal id">HUGERLESS masih dalam tahap pengembangan awal. Berikut adalah pengalaman langsung yang jujur — bukan angka pemasaran.</p>
+
+    <div class="proof-cards">
+      <div class="proof-card reveal">
+        <div class="proof-label en">Personal Experience · Founder</div>
+        <div class="proof-label id">Pengalaman Pribadi · Pendiri</div>
+        <div class="proof-text en">"By day 3 or 4, I felt my appetite disappear. I wasn't fighting hunger — it simply <strong>wasn't there.</strong> I completed extended fasts without noticing. I reached a weight I hadn't seen in 25 years."</div>
+        <div class="proof-text id">"Di hari ke-3 atau 4, nafsu makan saya seperti menghilang. Saya tidak perlu melawan rasa lapar — karena <strong>laparnya memang tidak datang.</strong> Saya menyelesaikan puasa panjang tanpa terasa. Berat badan mencapai angka yang tidak pernah saya lihat dalam 25 tahun."</div>
+        <div class="proof-meta">Business Executive · Male · 40s · Jakarta</div>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-label en">Observation · Colleague</div>
+        <div class="proof-label id">Pengamatan · Rekan Kerja</div>
+        <div class="proof-text en">"I'm naturally thin and snack constantly. Within 7 days I was eating <strong>one portion where I normally ate two or three.</strong> It was noticeably different."</div>
+        <div class="proof-text id">"Badan saya kurus dan terbiasa ngemil terus. Dalam 7 hari, saya cukup makan <strong>satu porsi — padahal biasanya dua sampai tiga.</strong> Bedanya terasa dengan jelas."</div>
+        <div class="proof-meta en">Office Setting · Male · Lean Build</div>
+        <div class="proof-meta id">Lingkungan Kantor · Pria · Bertubuh Kurus</div>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-label en">Group Observation · ~10 People</div>
+        <div class="proof-label id">Pengamatan Kelompok · ~10 Orang</div>
+        <div class="proof-text en">"The consistent observation: <strong>reduced appetite within 4–5 days,</strong> with no energy loss or adverse effects reported across everyone who tried it."</div>
+        <div class="proof-text id">"Pengamatan yang konsisten: <strong>nafsu makan berkurang dalam 4–5 hari,</strong> tanpa ada laporan penurunan energi atau efek yang tidak nyaman dari siapapun yang mencobanya."</div>
+        <div class="proof-meta en">Informal early group · Jakarta area</div>
+        <div class="proof-meta id">Kelompok awal informal · area Jakarta</div>
+      </div>
+    </div>
+
+    <p class="proof-disclaimer reveal en">* Informal first-hand accounts from early product development. Formal clinical trials are a planned next step. Individual results vary.</p>
+    <p class="proof-disclaimer reveal id">* Pengalaman informal dari masa pengembangan awal. Uji klinis formal adalah langkah berikutnya yang direncanakan. Hasil individual dapat berbeda.</p>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section class="order" id="order">
+  <div class="order-inner">
+    <div class="sec-label reveal"><div class="sec-label-line"></div><div class="sec-label-text">Order Now</div></div>
+    <h2 class="sec-h2 reveal">
+      <span class="en">Take back control.</span>
+      <span class="id">Ambil kembali kendalimu.</span>
+    </h2>
+
+    <div class="order-box reveal">
+      <div class="order-box-top">
+        <!-- White logo on dark background -->
+        <img
+          src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775385628/Logo_white_hycckl.png"
+          alt="HUGERLESS" class="order-logo"
+        >
+        <div class="obt-sub en">Natural Appetite Control Formula · NAU Labs</div>
+        <div class="obt-sub id">Formula Pengendali Nafsu Makan Alami · NAU Labs</div>
+      </div>
+      <div class="order-body">
+        <div class="order-specs">
+          <div class="os-row">
+            <div class="os-lbl en">Contents</div><div class="os-lbl id">Isi</div>
+            <div class="os-val en">30 Capsules × 550mg</div><div class="os-val id">30 Kapsul × 550mg</div>
+          </div>
+          <div class="os-row">
+            <div class="os-lbl en">Dosage</div><div class="os-lbl id">Dosis</div>
+            <div class="os-val en">2–3× daily, before meals</div><div class="os-val id">2–3× sehari, sebelum makan</div>
+          </div>
+          <div class="os-row">
+            <div class="os-lbl en">Supply</div><div class="os-lbl id">Stok</div>
+            <div class="os-val en">~1 month</div><div class="os-val id">~1 bulan</div>
+          </div>
+          <div class="os-row">
+            <div class="os-lbl en">Produced by</div><div class="os-lbl id">Diproduksi oleh</div>
+            <div class="os-val">CV. Natura Alamindo</div>
+          </div>
+        </div>
+
+        <div class="order-certs">
+          <div class="cert">🌙 Halal</div>
+          <div class="cert">🏛️ BPOM TR</div>
+          <div class="cert">🇮🇩 Jamu</div>
+        </div>
+
+        <div class="order-checklist">
+          <div class="ocl-item"><div class="ocl-check">✓</div><span class="en">No stimulants — no jitteriness, no sleep disruption</span><span class="id">Tanpa stimulan — tidak gelisah, tidak ganggu tidur</span></div>
+          <div class="ocl-item"><div class="ocl-check">✓</div><span class="en">Works best combined with intermittent fasting</span><span class="id">Hasil terbaik dikombinasikan dengan puasa intermiten</span></div>
+          <div class="ocl-item"><div class="ocl-check">✓</div><span class="en">100% plant-based — cassava leaf + green tea</span><span class="id">100% berbasis tanaman — daun singkong + teh hijau</span></div>
+          <div class="ocl-item"><div class="ocl-check">✓</div><span class="en">Safe to stop — appetite returns to normal naturally</span><span class="id">Aman dihentikan — nafsu makan pulih secara alami</span></div>
+        </div>
+
+        <a href="https://wa.me/6281283638439?text=Hi%2C%20I'm%20interested%20in%20Hugerless%2C%20tell%20me%20more!" class="btn-order" target="_blank" rel="noopener">
+          <span class="en">Order Now →</span>
+          <span class="id">Pesan Sekarang →</span>
+        </a>
+        <div class="order-sub-note en">Direct from manufacturer · CV. Natura Alamindo · Tangerang</div>
+        <div class="order-sub-note id">Langsung dari produsen · CV. Natura Alamindo · Tangerang</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="sec-label reveal"><div class="sec-label-line"></div><div class="sec-label-text">Questions</div></div>
+    <h2 class="sec-h2 reveal">Common questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Is HUGERLESS safe to take?</span>
+          <div class="faq-plus">+</div>
+        </button>
+        <div class="faq-a">
+          <span class="en">Both ingredients — purified cassava leaf and green tea extract — have long histories of safe traditional use and modern scientific research. HUGERLESS contains no stimulants and is registered as a Jamu supplement with BPOM. Consult your physician if pregnant, nursing, or on medication.</span>
+          <span class="id">Kedua bahan — daun singkong murni dan ekstrak teh hijau — telah lama digunakan secara tradisional dengan aman dan didukung riset modern. HUGERLESS tidak mengandung stimulan dan terdaftar sebagai suplemen Jamu di BPOM. Konsultasikan dengan dokter jika sedang hamil, menyusui, atau mengonsumsi obat tertentu.</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>How is this related to Ozempic?</span>
+          <div class="faq-plus">+</div>
+        </button>
+        <div class="faq-a">
+          <span class="en">Ozempic works by stimulating GLP-1 receptors — a pharmaceutical drug given by injection. The phytochemicals in HUGERLESS activate a similar natural GLP-1 pathway through plant compounds. HUGERLESS is not a drug — it is a natural food supplement.</span>
+          <span class="id">Ozempic bekerja dengan merangsang reseptor GLP-1 — obat farmasi yang diberikan lewat suntikan. Fitokimia dalam HUGERLESS mengaktifkan jalur GLP-1 serupa secara alami melalui senyawa tanaman. HUGERLESS bukan obat — ini suplemen makanan alami.</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>When will I notice a difference?</span>
+          <div class="faq-plus">+</div>
+        </button>
+        <div class="faq-a">
+          <span class="en">Based on early user experiences, most people notice a shift in appetite within 3–5 days. Results are strongest when combined with intermittent fasting. Individual response varies.</span>
+          <span class="id">Berdasarkan pengalaman pengguna awal, kebanyakan orang merasakan perubahan nafsu makan dalam 3–5 hari. Hasil paling kuat saat dikombinasikan dengan puasa intermiten. Respons tiap individu berbeda.</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>What happens when I stop taking it?</span>
+          <div class="faq-plus">+</div>
+        </button>
+        <div class="faq-a">
+          <span class="en">Appetite returns naturally to your normal baseline within a few days. There is no dependency, no withdrawal, and no rebound overeating.</span>
+          <span class="id">Nafsu makan kembali ke level normal secara alami dalam beberapa hari. Tidak ada ketergantungan, tidak ada efek penarikan, tidak ada lonjakan nafsu makan berlebih.</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Is there a formal clinical trial?</span>
+          <div class="faq-plus">+</div>
+        </button>
+        <div class="faq-a">
+          <span class="en">HUGERLESS is in early product development. The formula is supported by published peer-reviewed research on both ingredients. Formal human clinical trials are a planned next step.</span>
+          <span class="id">HUGERLESS masih dalam tahap pengembangan awal. Formulanya didukung riset ilmiah yang dipublikasikan untuk kedua bahan aktif. Uji klinis manusia formal adalah langkah berikutnya yang sedang direncanakan.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <!-- White logo on dark footer -->
+    <img src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775385628/Logo_white_hycckl.png" alt="HUGERLESS">
+  </div>
+  <div class="footer-tag en">You Control When You Eat</div>
+  <div class="footer-tag id">Kamulah yang Menentukan Kapan Makan</div>
+  <div class="footer-legal en">HUGERLESS is a dietary supplement registered under Jamu classification with BPOM. Not intended to diagnose, treat, cure, or prevent any disease. Consult your physician before use if pregnant, nursing, diabetic, or under medical supervision.</div>
+  <div class="footer-legal id">HUGERLESS adalah suplemen makanan yang terdaftar dalam klasifikasi Jamu di BPOM. Tidak dimaksudkan untuk mendiagnosis, mengobati, menyembuhkan, atau mencegah penyakit. Konsultasikan dengan dokter sebelum mengonsumsi jika sedang hamil, menyusui, mengidap diabetes, atau dalam pengawasan medis.</div>
+  <div class="footer-nau"><strong>CV. Natura Alamindo · NAU Labs</strong> · Tangerang, Indonesia · Est. 2000</div>
+</footer>
+
+<!-- STICKY -->
+<div class="sticky" id="sticky">
+  <div>
+    <div class="sticky-logo">
+      <img src="https://res.cloudinary.com/dcfep4xzy/image/upload/q_auto/f_auto/v1775385628/Logo_white_hycckl.png" alt="HUGERLESS">
+    </div>
+    <div class="sticky-sub en">Natural Appetite Control · 30 Caps</div>
+    <div class="sticky-sub id">Pengendali Nafsu Makan · 30 Kapsul</div>
+  </div>
+  <a href="https://wa.me/6281283638439?text=Hi%2C%20I'm%20interested%20in%20Hugerless%2C%20tell%20me%20more!" class="sticky-btn" target="_blank" rel="noopener">
+    <span class="en">Order Now →</span>
+    <span class="id">Pesan →</span>
+  </a>
+</div>
+
+<script>
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+    document.documentElement.lang = lang === 'id' ? 'id' : 'en';
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('in'), i * 55);
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => io.observe(el));
+
+  const hero = document.querySelector('.hero');
+  const sticky = document.getElementById('sticky');
+  window.addEventListener('scroll', () => {
+    sticky.classList.toggle('show', hero.getBoundingClientRect().bottom < 0);
+  }, { passive: true });
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const was = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!was) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
